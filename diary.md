@@ -1,0 +1,5 @@
+-26/09/2024
+Start of the Journey! I have been working on the project for two weeks already. I have created two objects so far, player and the bullets that they fire. Each object has it's relevant script file to determine the behaviour. Currently we have a player which is able to move in a 2D dimension (will be 3D by the end of the project), and can shoot a prefab(bullet). Prefabs are objects that we can instantiate when necessary. Some objects like the player are unique and will not have multiple instances. A bullet could have multiple instances thus we need to create a prefab.
+
+-27/09/2024
+Collision logic added. Enemy is destroyed if it is either collided with the player or a bullet. The player now have a life variable. We decrease it by 1 on enemy collision. There is now a spawn manager. It spawns enemies while the enemy is alive at random intervals and random locations. Player death stops enemy spawn.
