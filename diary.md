@@ -69,3 +69,6 @@ I have optimized my AI scripts today. Controlling the animations/sounds of objec
 
 -04/11/2024
 I have been doing some reading on animations and sounds. I have implemented a singleton class to manage all the audio for the game. I could be using the exact script in the maingame. I also added multiple animations for a single object and learned how to control the logic for multiple animation triggers. I am almost done with my learning environment and will start designing the visuals for the dungeon game.
+
+-05/11/2024
+It is finally time to build my game. I have many example scripts and objects which I will be using and inspiring from. The principal behaviors such as player movement and enemy ai/spawn are ready. The first thing to do is to find assets and create animations to have visuals to work with. 
