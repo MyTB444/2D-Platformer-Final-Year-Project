@@ -42,3 +42,30 @@ I broke my game today! I am done with this shooter space game so I decided to te
 
 -17/10/2024
 I have been working on my git repo today. The structure is much more clear now.
+
+-18/10/2024
+I have initialized a project with a pre made public environment to further work on effects. I will be learning how to create complex scenes(sub mesh, occlusion, light mapping etc.), cinematography and AI. I will not push everything on git as some files are massive. I will only push the exact files that I am working on.
+
+-21/10/2024
+This week I will be working on the visual aspects. Today, I have been working on some premade assets to test different materials and lightings. I have learned quite a lot about material design(occlusion, albedo panel...). I have learned how to create real world materials like glass, gold etc.. I have also been working on lighting. We apparently can use probes to move the lighting data from one source to the whole environment. This provides an easier baking process. I have also worked on reflections, which is not only dependant on the light but also the reflection probes that we create around the objects that we want to reflect. We use post processing to define the specific look from our main camera, which is usualy what the player sees. I will now test point and click functioning and enemy AI.
+
+-22/102024
+I have been working on point and click controls and camera manipulation. I have implemented point and click movement to an object. The camera angle changes and follows the player as they travel trough the area. Also, I have been woking on animation logic. I use a boolean called walk to swap between idle and walking animations. We set it to true as the player is moving, and set it back to false when we reach the destination.
+
+-23/10/2024
+I have implemented 3 AI based objects. Using navmesh agents and for loops, i have implemented a unique movement pattern for them. I will be working extensively on their AI. They will take action based on player movement. 
+
+-24/10/2024
+GuardAI script now have modular behaviour for every object. I can now create new guards and add as many move points as i like. The script is designed around handling any number of moving points, even if there is non.
+
+-28/10/2024
+Today, I focused on reading. I have learned and will be learning quite a lot about game development. I believe pondering about how to clearly phrase my experiences, is a good idea. 
+
+-30/10/2024
+I am working on my modular scripting, i will be using it quite a lot to implement multiple enemy AI later on. I am also working on line of sight. Enemies will take action based on player movement.
+
+-31/10/2024
+I have optimized my AI scripts today. Controlling the animations/sounds of objects can get very complicated as more behaviors are added. Today, i have implemented a much better movement pattern for multiple guards and they now can be distracted by the player by instantiating an object. They stop their regular movement routine and walk directly to the instantiated object without having their movement animation bugged. These AI scripts will be very usefull once i start creating the enemies for my main game.
+
+-04/11/2024
+I have been doing some reading on animations and sounds. I have implemented a singleton class to manage all the audio for the game. I could be using the exact script in the maingame. I also added multiple animations for a single object and learned how to control the logic for multiple animation triggers. I am almost done with my learning environment and will start designing the visuals for the dungeon game.
