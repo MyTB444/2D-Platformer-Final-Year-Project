@@ -72,3 +72,6 @@ I have been doing some reading on animations and sounds. I have implemented a si
 
 -05/11/2024
 It is finally time to build my game. I have many example scripts and objects which I will be using and inspiring from. The principal behaviors such as player movement and enemy ai/spawn are ready. The first thing to do is to find assets and create animations to have visuals to work with. 
+
+-06/11/2024
+I have found some simple pixel assets that I can work on. I will customize those assets to create my own unique maps and characters also to create unique animations. For now i have creatd a demo map with some little items, and a simple character. I will start implementing the essential behaviors.
