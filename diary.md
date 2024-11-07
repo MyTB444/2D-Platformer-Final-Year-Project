@@ -75,3 +75,6 @@ It is finally time to build my game. I have many example scripts and objects whi
 
 -06/11/2024
 I have found some simple pixel assets that I can work on. I will customize those assets to create my own unique maps and characters also to create unique animations. For now i have creatd a demo map with some little items, and a simple character. I will start implementing the essential behaviors.
+
+-07/11/2024
+I have created a demo map with 2 objects. Also, a simple character called jack. I will be approaching everything modularly. In this demo map, i will implement all the behaviors on jack, behaviors which I will be able to use on different characters. The environmental behaviors should be modular as well. Meaning, adding new maps should not require any additional hard coding. October was a speed learning month for me. It is finally time to start utilizing the skills that I have acquired to build the game that I dream of! 
