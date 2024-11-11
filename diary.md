@@ -78,3 +78,6 @@ I have found some simple pixel assets that I can work on. I will customize those
 
 -07/11/2024
 I have created a demo map with 2 objects. Also, a simple character called jack. I will be approaching everything modularly. In this demo map, i will implement all the behaviors on jack, behaviors which I will be able to use on different characters. The environmental behaviors should be modular as well. Meaning, adding new maps should not require any additional hard coding. October was a speed learning month for me. It is finally time to start utilizing the skills that I have acquired to build the game that I dream of! 
+
+-11/11/2024
+I am still working on the sprites that i will be using. Today i have added jumping behavior for the player. I have also created idle, running and jumping animations for Jack.
