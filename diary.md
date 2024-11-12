@@ -81,3 +81,6 @@ I have created a demo map with 2 objects. Also, a simple character called jack. 
 
 -11/11/2024
 I am still working on the sprites that i will be using. Today i have added jumping behavior for the player. I have also created idle, running and jumping animations for Jack.
+
+-12/11/2024
+Massive progress today! Jack can not run, jump, roll and swing his sword with good looking animations. I have also added a hitbox logic for his attack. We have goblins spawning every 5 seconds. Jack can destroy these goblins with his sword. The goblins do not have any behavior yet. I am doing my best to make sure nothing is hard coded. Also, the camera is now following Jack!
