@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 7433581688963937478}
   - component: {fileID: 1289480890913374507}
   - component: {fileID: 7140391068598068856}
+  - component: {fileID: 8378145082272018851}
   m_Layer: 0
   m_Name: Goblin_enemy
   m_TagString: Untagged
@@ -104,7 +105,7 @@ Transform:
   m_GameObject: {fileID: 4070226153672958933}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalPosition: {x: 5, y: 3, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -184,6 +185,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.76684475, y: 0.9848486}
   m_EdgeRadius: 0
+--- !u!114 &8378145082272018851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4070226153672958933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b725574dabc40499490b2a443fc93161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 0
+  _speed: 2
+  _jumpForce: 5
+  _jumpCooldown: 4
+  _canJump: 1
+  target: {fileID: 3414531809540765021, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
 --- !u!1 &5275172241374850976
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 428456040567079839}
   - component: {fileID: 6044891031706643118}
+  - component: {fileID: 4242578874937649378}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -268,3 +288,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4242578874937649378
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5275172241374850976}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a1bd31da67f94b66b42278b32a4f672, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

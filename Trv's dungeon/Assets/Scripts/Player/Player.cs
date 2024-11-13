@@ -7,8 +7,8 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _speed = 4.0f;
-    [SerializeField] private float _jumpForce = 7.0f;
+    [SerializeField] protected float _speed;
+    [SerializeField] protected float _jumpForce;
     private int _canRoll = 0;
     private bool _facedRight;
     private bool _duringRoll;
@@ -106,9 +106,9 @@ public class Player : MonoBehaviour
     IEnumerator Rolling()
     {
         _duringRoll = true;
-        _speed = 7.0f;
+        _speed = _speed * 2;
         yield return new WaitForSeconds(1.0f);
-        _speed = 4.0f;
+        _speed = _speed / 2;
         _duringRoll = false;
         yield return new WaitForSeconds(1.5f);
         _canRoll = 0;

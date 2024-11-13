@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5850302717373224424}
   - component: {fileID: -4296220996109164671}
   m_Layer: 0
-  m_Name: Player_swing_hitbox
+  m_Name: Jack_swing_hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

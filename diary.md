@@ -84,3 +84,6 @@ I am still working on the sprites that i will be using. Today i have added jumpi
 
 -12/11/2024
 Massive progress today! Jack can not run, jump, roll and swing his sword with good looking animations. I have also added a hitbox logic for his attack. We have goblins spawning every 5 seconds. Jack can destroy these goblins with his sword. The goblins do not have any behavior yet. I am doing my best to make sure nothing is hard coded. Also, the camera is now following Jack!
+
+-13/11/2024
+I am still working on script modularity. I will be adding few character and enemies to this game, having separate scripts for everysingle one is a terrible idea. I need good player/enemy scripts that will be inherited by personalized classes. Today, i have improved my player script and added follow ai on the enemies.
