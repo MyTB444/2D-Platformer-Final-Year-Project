@@ -8,6 +8,9 @@ public class Goblin : Enemy
 
     public override void Update()
     {
-        Movement();
+        if (_isAlive == true)
+        {
+            Movement();
+        }
     }
 }

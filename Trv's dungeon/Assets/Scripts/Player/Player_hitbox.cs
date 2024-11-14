@@ -20,7 +20,8 @@ public class Player_hitbox : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Destroy(other.transform.parent.gameObject);
+            Enemy _killed = other.gameObject.GetComponentInParent<Enemy>();
+            _killed.TakeDamage();
         }
     }
 }

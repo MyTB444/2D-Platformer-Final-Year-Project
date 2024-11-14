@@ -87,3 +87,6 @@ Massive progress today! Jack can not run, jump, roll and swing his sword with go
 
 -13/11/2024
 I am still working on script modularity. I will be adding few character and enemies to this game, having separate scripts for everysingle one is a terrible idea. I need good player/enemy scripts that will be inherited by personalized classes. Today, i have improved my player script and added follow ai on the enemies.
+
+-14/11/2024
+Enemies can now jump and they have animations. Intead of destroying them immediately we have a death animation. They fall off the platform when killed.
