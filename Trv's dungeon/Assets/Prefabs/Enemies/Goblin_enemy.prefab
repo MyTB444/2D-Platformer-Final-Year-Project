@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7140391068598068856}
   - component: {fileID: 8378145082272018851}
   - component: {fileID: 5004751778368188186}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Goblin_enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,11 +120,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b725574dabc40499490b2a443fc93161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 0
+  _health: 1
   _speed: 2
   _jumpForce: 5
   _jumpCooldown: 4
   _canJump: 1
+  _attackDistance: 0.5
 --- !u!114 &5004751778368188186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ GameObject:
   - component: {fileID: 6044891031706643118}
   - component: {fileID: 4242578874937649378}
   - component: {fileID: 6015146530365354964}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -90,3 +90,6 @@ I am still working on script modularity. I will be adding few character and enem
 
 -14/11/2024
 Enemies can now jump and they have animations. Intead of destroying them immediately we have a death animation. They fall off the platform when killed.
+
+-18/11/2024
+I have improved enemy script modularity. Also, enemies now stop moving at a certain distance to jack which will be unique for each enemy, they wait for a second when they stop. They will be attacking in this time line.

@@ -6,11 +6,4 @@ using UnityEngine;
 public class Goblin : Enemy
 {
 
-    public override void Update()
-    {
-        if (_isAlive == true)
-        {
-            Movement();
-        }
-    }
 }

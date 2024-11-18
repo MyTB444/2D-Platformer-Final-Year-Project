@@ -72,7 +72,6 @@ public class Player : MonoBehaviour
     bool GroundCalculate()
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.down, 0.3f, 1 << 6);
-        // Debug.DrawRay(transform.position, Vector2.down * 0.3f, Color.green);
         if (hitInfo.collider != null)
         {
             if (_resetJump == false)

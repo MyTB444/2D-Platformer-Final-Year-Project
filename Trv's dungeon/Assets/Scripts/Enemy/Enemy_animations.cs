@@ -14,6 +14,10 @@ public class Enemy_animations : MonoBehaviour
     {
         _anim.SetBool("Walking", true);
     }
+    public void StopWalking()
+    {
+        _anim.SetBool("Walking", false);
+    }
     public void DeadAnimation()
     {
         _anim.SetTrigger("Dead");

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEditor.VisionOS;
 using UnityEngine;
@@ -11,14 +12,17 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float _jumpForce;
     [SerializeField] protected float _jumpCooldown;
     [SerializeField] protected bool _canJump;
+    [SerializeField] protected float _attackDistance;
+    protected float _currentSpeed;
     protected bool _isAlive = true;
+    protected bool _canAttack = false;
     protected Transform _target;
     protected Collider2D _collider;
     protected Rigidbody2D _rigid;
     protected Enemy_animations _enemyAnim;
     protected SpriteRenderer _enemySprite;
 
-    protected void Start()
+    protected virtual void Init()
     {
         _collider = GetComponent<Collider2D>();
         _enemyAnim = GetComponentInChildren<Enemy_animations>();
@@ -26,26 +30,40 @@ public abstract class Enemy : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
         _enemySprite = GetComponentInChildren<SpriteRenderer>();
     }
+    private void Start()
+    {
+        Init();
+    }
     // Start is called before the first frame update
 
     // Update is called once per frame
-    public abstract void Update();
-    public void Movement()
+    public virtual void Update()
     {
-        if (_target.position.x < transform.position.x)
+        //Debug.DrawRay(transform.position, Vector2.left * 0.5f, Color.green);
+        //Debug.DrawRay(transform.position, Vector2.right * 0.5f, Color.green);
+        if (_isAlive == true)
         {
+            Movement();
+        }
+    }
+    public virtual void Movement()
+    {
+        if (_target.position.x < transform.position.x && _canAttack == false)
+        {
+            _currentSpeed = _speed * -1;
             _enemySprite.flipX = true;
-            _rigid.velocity = new Vector2(_speed * -1, _rigid.velocity.y);
-            _enemyAnim.StartWalking();
+            StartCoroutine(Walking());
         }
 
-        else if (_target.position.x > transform.position.x)
+        else if (_target.position.x > transform.position.x && _canAttack == false)
         {
+            _currentSpeed = _speed;
             _enemySprite.flipX = false;
-            _rigid.velocity = new Vector2(_speed, _rigid.velocity.y);
-            _enemyAnim.StartWalking();
+            StartCoroutine(Walking());
+
         }
 
+        //jump
         if (_target.position.y > 0.4f && _canJump == true)
         {
             _canJump = false;
@@ -75,6 +93,11 @@ public abstract class Enemy : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         Destroy(this.gameObject);
     }
+    IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(1.0f);
+        _canAttack = false;
+    }
     public void TakeDamage()
     {
         _health = _health - 1;
@@ -82,5 +105,18 @@ public abstract class Enemy : MonoBehaviour
         {
             EnemyDead();
         }
+    }
+    //check if it is time to attack
+    IEnumerator Walking()
+    {
+        RaycastHit2D rightInfo = Physics2D.Raycast(transform.position, Vector2.right, _attackDistance, 1 << 3);
+        RaycastHit2D leftInfo = Physics2D.Raycast(transform.position, Vector2.left, _attackDistance, 1 << 3);
+        _rigid.velocity = new Vector2(_currentSpeed, _rigid.velocity.y);
+        _enemyAnim.StartWalking();
+        yield return new WaitUntil(() => leftInfo.collider == true || rightInfo.collider == true);
+        _rigid.velocity = new Vector2(0, _rigid.velocity.y);
+        _canAttack = true;
+        _enemyAnim.StopWalking();
+        StartCoroutine(Attack());
     }
 }
