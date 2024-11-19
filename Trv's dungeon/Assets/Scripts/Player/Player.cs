@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] protected float _speed;
     [SerializeField] protected float _jumpForce;
+    [SerializeField] protected float _attackDuration;
     private int _canRoll = 0;
     private bool _facedRight;
     private bool _duringRoll;
@@ -63,8 +64,7 @@ public class Player : MonoBehaviour
         //SWING
         if (Input.GetKeyDown(KeyCode.K) && _attacking == false && _duringRoll == false || Input.GetKeyDown(KeyCode.K) && _attacking == false && GroundCalculate() == false)
         {
-            StartCoroutine(SwingAttack());
-            _playerAnim.SwingAnim();
+            StartCoroutine(Attack());
         }
 
     }
@@ -112,22 +112,19 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         _canRoll = 0;
     }
-    IEnumerator SwingAttack()
+    IEnumerator Attack()
     {
         _attacking = true;
         if (_facedRight == true)
         {
-            GameObject _newHitBox = Instantiate(_swingHitbox, new Vector2(transform.position.x + 0.3f, transform.position.y), quaternion.identity, transform);
-            yield return new WaitForSeconds(0.4f);
-            Destroy(_newHitBox);
-
+            _playerAnim.SwingRightAnim();
         }
         else if (_facedRight == false)
         {
-            GameObject _newHitBox = Instantiate(_swingHitbox, new Vector2(transform.position.x - 0.3f, transform.position.y), quaternion.identity, transform);
-            yield return new WaitForSeconds(0.4f);
-            Destroy(_newHitBox);
+            _playerAnim.SwingLeftAnim();
         }
+        yield return new WaitForSeconds(_attackDuration);
         _attacking = false;
     }
+
 }

@@ -623,14 +623,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblin_enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 4070226153672958933, guid: 44205798bdcff4563b509f07868856ee, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5275172241374850976, guid: 44205798bdcff4563b509f07868856ee, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 7433581688963937478, guid: 44205798bdcff4563b509f07868856ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -1738,17 +1730,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 415114276050635132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3414531809540765021, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
       propertyPath: m_Name
       value: Player_jack
-      objectReference: {fileID: 0}
-    - target: {fileID: 3414531809540765021, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4492341538723553257, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
       propertyPath: m_LocalPosition.x

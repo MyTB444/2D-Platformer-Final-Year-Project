@@ -20,9 +20,13 @@ public class PlayerAnimation : MonoBehaviour
     {
         _anim.SetTrigger("Jump");
     }
-    public void SwingAnim()
+    public void SwingRightAnim()
     {
         _anim.SetTrigger("Swing");
+    }
+    public void SwingLeftAnim()
+    {
+        _anim.SetTrigger("Swingleft");
     }
 
     public void RollAnim()

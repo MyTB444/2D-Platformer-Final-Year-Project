@@ -22,4 +22,12 @@ public class Enemy_animations : MonoBehaviour
     {
         _anim.SetTrigger("Dead");
     }
+    public void AttackRight()
+    {
+        _anim.SetTrigger("Attackright");
+    }
+    public void AttackLeft()
+    {
+        _anim.SetTrigger("Attackleft");
+    }
 }
