@@ -10,7 +10,12 @@ public class Player : MonoBehaviour
     [SerializeField] protected float _speed;
     [SerializeField] protected float _jumpForce;
     [SerializeField] protected float _attackDuration;
+    [SerializeField] protected float _stunDuration;
+    [SerializeField] protected int _health;
+    public float _playerfragility;
+    private float horizontalInput;
     private int _canRoll = 0;
+    private bool _canWalk = true;
     private bool _facedRight;
     private bool _duringRoll;
     private bool _resetJump = false;
@@ -33,12 +38,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        if (_canWalk == true)
+        {
+            Movement();
+        }
     }
     void Movement()
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
         Flip(horizontalInput);
+        _rigid.velocity = new Vector2(horizontalInput * _speed, _rigid.velocity.y);
+        _playerAnim.RunAnim(horizontalInput);
         //JUMP
         if (Input.GetKeyDown(KeyCode.Space) && GroundCalculate() == true)
         {
@@ -59,8 +69,9 @@ public class Player : MonoBehaviour
             StartCoroutine(Rolling());
         }
         //RUN
-        _rigid.velocity = new Vector2(horizontalInput * _speed, _rigid.velocity.y);
-        _playerAnim.RunAnim(horizontalInput);
+
+
+
         //SWING
         if (Input.GetKeyDown(KeyCode.K) && _attacking == false && _duringRoll == false || Input.GetKeyDown(KeyCode.K) && _attacking == false && GroundCalculate() == false)
         {
@@ -125,6 +136,19 @@ public class Player : MonoBehaviour
         }
         yield return new WaitForSeconds(_attackDuration);
         _attacking = false;
+    }
+    public void TakeDamage()
+    {
+        _canWalk = false;
+        _health = _health - 1;
+        StartCoroutine(Stun(_stunDuration));
+
+    }
+    public IEnumerator Stun(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _canWalk = true;
+
     }
 
 }

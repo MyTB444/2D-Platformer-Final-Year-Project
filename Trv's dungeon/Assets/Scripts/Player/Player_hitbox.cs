@@ -5,23 +5,24 @@ using UnityEngine;
 
 public class Player_hitbox : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Enemy _killed = other.gameObject.GetComponentInParent<Enemy>();
-            _killed.TakeDamage();
+            Enemy _enemyHit = other.gameObject.GetComponentInParent<Enemy>();
+            Rigidbody2D _enemyRigid = other.gameObject.GetComponent<Rigidbody2D>();
+            Transform _enemyTransform = other.gameObject.GetComponent<Transform>();
+            if (_enemyTransform.position.x > transform.position.x)
+            {
+                _enemyHit.TakeDamage();
+                _enemyRigid.velocity = new Vector2(_enemyHit._enemyFragility, _enemyHit._enemyFragility);
+            }
+            else if (_enemyTransform.position.x < transform.position.x)
+            {
+                _enemyHit.TakeDamage();
+                _enemyRigid.velocity = new Vector2(_enemyHit._enemyFragility * -1, _enemyHit._enemyFragility);
+            }
         }
     }
+
 }

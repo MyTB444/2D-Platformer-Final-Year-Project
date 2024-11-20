@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5004751778368188186}
   m_Layer: 6
   m_Name: Goblin_enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   _attackDistance: 0.3
   _height: 0.5
   _attackDuration: 2
-  _fragility: 5
+  _enemyFragility: 4
   _canJump: 1
   _knockedBack: 0
 --- !u!114 &5004751778368188186
@@ -153,10 +153,9 @@ GameObject:
   - component: {fileID: 428456040567079839}
   - component: {fileID: 6044891031706643118}
   - component: {fileID: 4242578874937649378}
-  - component: {fileID: 6015146530365354964}
   m_Layer: 6
   m_Name: Goblin
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -250,51 +249,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &6015146530365354964
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5275172241374850976}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0056153536, y: 0.51141906}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.125}
-    oldSize: {x: 4, y: 4}
-    newSize: {x: 4, y: 4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.84580564, y: 1.0190678}
-  m_EdgeRadius: 0
 --- !u!1001 &4253887691935371836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -370,8 +324,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 775518433384658773, guid: b9106e484c73148c3a6c492acc8d63b4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4557841942146602586}
   m_SourcePrefab: {fileID: 100100000, guid: b9106e484c73148c3a6c492acc8d63b4, type: 3}
+--- !u!1 &3588218510429267305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 775518433384658773, guid: b9106e484c73148c3a6c492acc8d63b4, type: 3}
+  m_PrefabInstance: {fileID: 4253887691935371836}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4557841942146602586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3588218510429267305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fab39ff0008443d92904a6381f8c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8393398131507426032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5725077263571722444, guid: b9106e484c73148c3a6c492acc8d63b4, type: 3}

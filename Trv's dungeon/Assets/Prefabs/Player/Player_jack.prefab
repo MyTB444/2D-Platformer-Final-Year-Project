@@ -158,6 +158,9 @@ MonoBehaviour:
   _speed: 4
   _jumpForce: 6
   _attackDuration: 0.4
+  _stunDuration: 0.7
+  _health: 2
+  _playerfragility: 4
   _swingHitbox: {fileID: 2518007898249560221, guid: 4b88daaf3414f449799abc5c176fe5c3, type: 3}
 --- !u!50 &6108027283632666901
 Rigidbody2D:
@@ -171,7 +174,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.3
+  m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1

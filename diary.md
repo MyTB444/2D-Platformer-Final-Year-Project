@@ -96,3 +96,6 @@ I have improved enemy script modularity. Also, enemies now stop moving at a cert
 
 -19/11/2024
 Improved animations for enemies and jack. Enemies now attack when they get close to the player. The attack duration and distance are changable float number which will be unique for each type of enemy. Jack attack hitbox is now much better.
+
+-20/11/2024
+Added attack hitbox for goblins with logic. Now both player hitbox and goblin hitbox push each other when hit. Also, improved both enemy and player movement and interactions. We also destroy enemies if they are out of the screen to avoid unnecessary load.

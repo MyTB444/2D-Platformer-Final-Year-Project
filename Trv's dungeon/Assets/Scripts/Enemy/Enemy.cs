@@ -14,11 +14,12 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float _attackDistance;
     [SerializeField] protected float _height;
     [SerializeField] protected float _attackDuration;
-    [SerializeField] protected int _fragility;
+    public int _enemyFragility;
     protected float _currentSpeed;
     [SerializeField] protected bool _canJump;
     [SerializeField] protected bool _knockedBack = false;
     protected bool _facedRight;
+    protected bool _canMove = true;
     protected bool _isAlive = true;
     protected bool _canAttack = false;
     protected Transform _target;
@@ -50,17 +51,19 @@ public abstract class Enemy : MonoBehaviour
         {
             Movement();
         }
+        OutOfMap();
     }
     public virtual void Movement()
     {
         //Walk
-        if (_target.position.x < transform.position.x && _canAttack == false && _knockedBack == false)
+        CanWeMove();
+        if (_target.position.x < transform.position.x && _canAttack == false && _knockedBack == false && _canMove == true)
         {
             _currentSpeed = _speed * -1;
             StartCoroutine(Walking());
         }
 
-        else if (_target.position.x > transform.position.x && _canAttack == false && _knockedBack == false)
+        else if (_target.position.x > transform.position.x && _canAttack == false && _knockedBack == false && _canMove == true)
         {
             _currentSpeed = _speed;
             StartCoroutine(Walking());
@@ -68,7 +71,7 @@ public abstract class Enemy : MonoBehaviour
         }
 
         //jump
-        if (_target.position.y > 0.4f && _canJump == true && _knockedBack == false)
+        if (_target.position.y >= transform.position.y + 1f && _canJump == true && _knockedBack == false && _canMove == true)
         {
             _canJump = false;
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
@@ -90,6 +93,19 @@ public abstract class Enemy : MonoBehaviour
             _facedRight = false;
         }
     }
+    public void CanWeMove()
+    {
+        if (_target.position.y >= transform.position.y + 1.8f)
+        {
+            _rigid.velocity = new Vector2(0, _rigid.velocity.y);
+            _enemyAnim.StopWalking();
+            _canMove = false;
+        }
+        if (_target.position.y < transform.position.y + 1.8f)
+        {
+            _canMove = true;
+        }
+    }
     IEnumerator Walking()
     {
         RaycastHit2D rightInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.right, _attackDistance, 1 << 3);
@@ -103,9 +119,11 @@ public abstract class Enemy : MonoBehaviour
         _enemyAnim.StopWalking();
         StartCoroutine(Attack());
     }
+    //check if it is time to attack
     IEnumerator Attack()
     {
-        yield return new WaitForSeconds(0.2f);
+        //Attack delay
+        yield return new WaitForSeconds(0.1f);
         if (_facedRight == true)
         {
             _enemyAnim.AttackRight();
@@ -125,14 +143,11 @@ public abstract class Enemy : MonoBehaviour
     public void TakeDamage()
     {
         _health = _health - 1;
-        if (_health > 0)
-        {
-            StartCoroutine(KnockBack());
-        }
-        else if (_health <= 0)
+        StartCoroutine(KnockedBack());
+
+        if (_health <= 0)
         {
             EnemyDead();
-            StartCoroutine(KnockBack());
         }
     }
     public void EnemyDead()
@@ -151,26 +166,19 @@ public abstract class Enemy : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         Destroy(this.gameObject);
     }
-
-    //check if it is time to attack
-
-    IEnumerator KnockBack()
+    // Are we in the screen?
+    public void OutOfMap()
+    {
+        if (_target.position.y > transform.position.y + 10)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    IEnumerator KnockedBack()
     {
         _knockedBack = true;
-        StopCoroutine(Walking());
-        if (_target.position.x < transform.position.x)
-        {
-            _rigid.velocity = new Vector2(_fragility, _rigid.velocity.y + 2);
-            yield return new WaitForSeconds(0.6f);
-            _rigid.velocity = new Vector2(0, _rigid.velocity.y);
-            _knockedBack = false;
-        }
-        else if (_target.position.x > transform.position.x)
-        {
-            _rigid.velocity = new Vector2(_fragility * -1, _rigid.velocity.y + 2);
-            yield return new WaitForSeconds(0.6f);
-            _rigid.velocity = new Vector2(0, _rigid.velocity.y);
-            _knockedBack = false;
-        }
+        yield return new WaitForSeconds(1.0f);
+        _knockedBack = false;
+
     }
 }
