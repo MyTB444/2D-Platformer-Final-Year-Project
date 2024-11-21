@@ -99,3 +99,5 @@ Improved animations for enemies and jack. Enemies now attack when they get close
 
 -20/11/2024
 Added attack hitbox for goblins with logic. Now both player hitbox and goblin hitbox push each other when hit. Also, improved both enemy and player movement and interactions. We also destroy enemies if they are out of the screen to avoid unnecessary load.
+-21/11/2024
+I have spent this whole day working on the report.
