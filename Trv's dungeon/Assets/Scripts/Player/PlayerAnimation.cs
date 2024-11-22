@@ -33,4 +33,8 @@ public class PlayerAnimation : MonoBehaviour
     {
         _anim.SetTrigger("Roll");
     }
+    public void ClimbAnim()
+    {
+        _anim.SetTrigger("Climb");
+    }
 }

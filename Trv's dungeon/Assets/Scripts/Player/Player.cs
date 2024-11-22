@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private float horizontalInput;
     private int _canRoll = 0;
     private bool _canWalk = true;
+    protected bool _canClimb;
     private bool _facedRight;
     private bool _duringRoll;
     private bool _resetJump = false;
@@ -60,6 +61,11 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) && GroundCalculate() == false)
         {
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce * -1);
+        }
+        if (Input.GetKeyDown(KeyCode.W) && _canClimb == true)
+        {
+            _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce / 1.5f);
+            _playerAnim.ClimbAnim();
         }
         //ROLL
         if (Input.GetKeyDown(KeyCode.LeftShift) && GroundCalculate() == true && _canRoll == 0)
@@ -142,6 +148,10 @@ public class Player : MonoBehaviour
         _canWalk = false;
         _health = _health - 1;
         StartCoroutine(Stun(_stunDuration));
+        if (_health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
 
     }
     public IEnumerator Stun(float time)
@@ -149,6 +159,14 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(time);
         _canWalk = true;
 
+    }
+    public void EnableCLimb()
+    {
+        _canClimb = true;
+    }
+    public void DisableClimb()
+    {
+        _canClimb = false;
     }
 
 }

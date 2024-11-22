@@ -101,3 +101,5 @@ Improved animations for enemies and jack. Enemies now attack when they get close
 Added attack hitbox for goblins with logic. Now both player hitbox and goblin hitbox push each other when hit. Also, improved both enemy and player movement and interactions. We also destroy enemies if they are out of the screen to avoid unnecessary load.
 -21/11/2024
 I have spent this whole day working on the report.
+-22/11/2024
+Jack can dive now! I have started creating my maps. There will be 9 maps in total in the final game, i have designed 3 of them and implemented 1. I have also added climbing functionality for jack, with an animation. I will start adding more enemies and create a playable demo.

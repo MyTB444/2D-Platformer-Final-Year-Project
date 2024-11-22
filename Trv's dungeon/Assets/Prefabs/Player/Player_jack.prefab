@@ -159,7 +159,7 @@ MonoBehaviour:
   _jumpForce: 6
   _attackDuration: 0.4
   _stunDuration: 0.7
-  _health: 2
+  _health: 4
   _playerfragility: 4
   _swingHitbox: {fileID: 2518007898249560221, guid: 4b88daaf3414f449799abc5c176fe5c3, type: 3}
 --- !u!50 &6108027283632666901

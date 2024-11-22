@@ -14,7 +14,6 @@ public class Enemy_hitbox : MonoBehaviour
             Player _playerHit = other.gameObject.GetComponentInParent<Player>();
             Rigidbody2D _playerRigid = other.gameObject.GetComponent<Rigidbody2D>();
             Transform _playerTransform = other.gameObject.GetComponent<Transform>();
-            _playerHit.TakeDamage();
             if (_playerTransform.position.x > transform.position.x)
             {
                 _playerHit.TakeDamage();

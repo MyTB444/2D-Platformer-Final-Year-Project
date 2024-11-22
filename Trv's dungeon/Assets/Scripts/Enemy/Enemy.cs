@@ -14,11 +14,13 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float _attackDistance;
     [SerializeField] protected float _height;
     [SerializeField] protected float _attackDuration;
+    [SerializeField] protected float _stunVulnerability;
     public int _enemyFragility;
     protected float _currentSpeed;
     [SerializeField] protected bool _canJump;
     [SerializeField] protected bool _knockedBack = false;
     protected bool _facedRight;
+
     protected bool _canMove = true;
     protected bool _isAlive = true;
     protected bool _canAttack = false;
@@ -47,11 +49,11 @@ public abstract class Enemy : MonoBehaviour
     {
         //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + _height), Vector2.left * 0.5f, Color.green);
         //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + _height), Vector2.right * 0.5f, Color.green);
+        OutOfMap();
         if (_isAlive == true)
         {
             Movement();
         }
-        OutOfMap();
     }
     public virtual void Movement()
     {
@@ -177,7 +179,7 @@ public abstract class Enemy : MonoBehaviour
     IEnumerator KnockedBack()
     {
         _knockedBack = true;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(_stunVulnerability);
         _knockedBack = false;
 
     }
