@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
-  _jumpForce: 6
+  _jumpForce: 7
   _attackDuration: 0.4
   _stunDuration: 0.7
   _health: 4

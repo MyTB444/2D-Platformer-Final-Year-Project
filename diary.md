@@ -103,3 +103,5 @@ Added attack hitbox for goblins with logic. Now both player hitbox and goblin hi
 I have spent this whole day working on the report.
 -22/11/2024
 Jack can dive now! I have started creating my maps. There will be 9 maps in total in the final game, i have designed 3 of them and implemented 1. I have also added climbing functionality for jack, with an animation. I will start adding more enemies and create a playable demo.
+-23/11/2024
+All the maps for the demo are now fully implemented. Enemy scripts are much better, we have now a goblin archer. It does now move, only shoots arrows when jack is at the same height. We also have some spikes on the ground in one of our maps. Also, the overall project structure is much better now. The scene looks very clean.

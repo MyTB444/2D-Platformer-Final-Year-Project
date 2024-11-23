@@ -15,14 +15,14 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float _height;
     [SerializeField] protected float _attackDuration;
     [SerializeField] protected float _stunVulnerability;
+    [SerializeField] protected bool _isanarcher;
     public int _enemyFragility;
     protected float _currentSpeed;
-    [SerializeField] protected bool _canJump;
-    [SerializeField] protected bool _knockedBack = false;
+    protected bool _canJump;
+    protected bool _knockedBack = false;
     protected bool _facedRight;
-
     protected bool _canMove = true;
-    protected bool _isAlive = true;
+    protected bool _isAlive;
     protected bool _canAttack = false;
     protected Transform _target;
     protected Collider2D _collider;
@@ -32,13 +32,14 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Init()
     {
+        _isAlive = true;
         _collider = GetComponent<Collider2D>();
         _enemyAnim = GetComponentInChildren<Enemy_animations>();
         _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _rigid = GetComponent<Rigidbody2D>();
         _enemySprite = GetComponentInChildren<SpriteRenderer>();
     }
-    private void Start()
+    protected void Start()
     {
         Init();
     }
@@ -50,10 +51,6 @@ public abstract class Enemy : MonoBehaviour
         //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + _height), Vector2.left * 0.5f, Color.green);
         //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + _height), Vector2.right * 0.5f, Color.green);
         OutOfMap();
-        if (_isAlive == true)
-        {
-            Movement();
-        }
     }
     public virtual void Movement()
     {
@@ -180,6 +177,10 @@ public abstract class Enemy : MonoBehaviour
     {
         _knockedBack = true;
         yield return new WaitForSeconds(_stunVulnerability);
+        if (_isanarcher == true)
+        {
+            _rigid.velocity = new Vector2(0, 0);
+        }
         _knockedBack = false;
 
     }

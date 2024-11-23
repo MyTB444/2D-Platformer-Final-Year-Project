@@ -25,7 +25,7 @@ public class Spawn_man : MonoBehaviour
         while (true)
         {
             Instantiate(_goblin, _spawnA.position, Quaternion.identity, transform);
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(10.0f);
         }
 
     }

@@ -1,0 +1,70 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class Goblinarcher : Enemy
+{
+    [SerializeField] private GameObject _arrow;
+    public override void Update()
+    {
+        base.Update();
+        ArcherMovement();
+    }
+    protected override void Init()
+    {
+        base.Init();
+        _canAttack = true;
+
+    }
+    private void ArcherMovement()
+    {
+        if (_isAlive == true)
+        {
+            WhereIsPlayer();
+            if (_target.position.y <= transform.position.y + 0.2 && _target.position.y >= transform.position.y - 0.2)
+            {
+                Shoot();
+            }
+        }
+    }
+    private void Shoot()
+    {
+        if (_canAttack == true && _knockedBack == false)
+        {
+            StartCoroutine(Shooting());
+        }
+
+    }
+    IEnumerator Shooting()
+    {
+        _canAttack = false;
+        yield return new WaitForSeconds(0.1f);
+        if (_facedRight == true)
+        {
+            Instantiate(_arrow, new Vector2(transform.position.x + 0.8f, transform.position.y + 0.3f), Quaternion.identity, gameObject.transform);
+            //_enemyAnim.AttackRight();
+        }
+        else if (_facedRight == false)
+        {
+            Instantiate(_arrow, new Vector2(transform.position.x - 0.8f, transform.position.y + 0.3f), Quaternion.identity, gameObject.transform);
+            // _enemyAnim.AttackLeft();
+        }
+        yield return new WaitForSeconds(_attackDuration);
+        _canAttack = true;
+    }
+
+    private void WhereIsPlayer()
+    {
+        if (_target.position.x > transform.position.x)
+        {
+            Flip(1);
+        }
+        else if (_target.position.x < transform.position.x)
+        {
+            Flip(-1);
+        }
+    }
+}
+
