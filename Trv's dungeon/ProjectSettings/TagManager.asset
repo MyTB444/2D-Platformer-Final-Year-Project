@@ -8,6 +8,13 @@ TagManager:
   - Enemy
   - Enemy_sprite
   - Arrow
+  - Ladder
+  - Gameman
+  - Playerkey
+  - Undefined
+  - Key
+  - Spawnman
+  - Gate
   layers:
   - Default
   - TransparentFX

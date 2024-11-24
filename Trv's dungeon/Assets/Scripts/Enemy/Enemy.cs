@@ -1,8 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Rendering;
-using UnityEditor.VisionOS;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
@@ -16,9 +13,9 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float _attackDuration;
     [SerializeField] protected float _stunVulnerability;
     [SerializeField] protected bool _isanarcher;
+    [SerializeField] protected bool _canJump;
     public int _enemyFragility;
     protected float _currentSpeed;
-    protected bool _canJump;
     protected bool _knockedBack = false;
     protected bool _facedRight;
     protected bool _canMove = true;
@@ -94,7 +91,7 @@ public abstract class Enemy : MonoBehaviour
     }
     public void CanWeMove()
     {
-        if (_target.position.y >= transform.position.y + 1.8f)
+        if (_target.position.y >= transform.position.y + 3.0f)
         {
             _rigid.velocity = new Vector2(0, _rigid.velocity.y);
             _enemyAnim.StopWalking();
@@ -160,6 +157,7 @@ public abstract class Enemy : MonoBehaviour
     IEnumerator Dying()
     {
         this._collider.enabled = false;
+        _canAttack = false;
         _isAlive = false;
         _enemyAnim.DeadAnimation();
         yield return new WaitForSeconds(1.2f);

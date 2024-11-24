@@ -40,7 +40,8 @@ public class Goblinarcher : Enemy
     IEnumerator Shooting()
     {
         _canAttack = false;
-        yield return new WaitForSeconds(0.1f);
+        _enemyAnim.AttackLeft();
+        yield return new WaitForSeconds(0.5f);
         if (_facedRight == true)
         {
             Instantiate(_arrow, new Vector2(transform.position.x + 0.8f, transform.position.y + 0.3f), Quaternion.identity, gameObject.transform);

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1753158002482631915}
   - component: {fileID: 9149269148227317760}
   m_Layer: 6
-  m_Name: Goblin
+  m_Name: Goblinarcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,16 +238,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 391485e6774e34597ba3715c652129ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 4
+  _health: 2
   _speed: 0
   _jumpForce: 0
   _jumpCooldown: 0
   _attackDistance: 0
   _height: 0.5
   _attackDuration: 5
-  _stunVulnerability: 0.1
-  _enemyFragility: 4
+  _stunVulnerability: 0.8
+  _isanarcher: 1
   _canJump: 0
-  _knockedBack: 0
-  _canAttack: 0
+  _enemyFragility: 4
   _arrow: {fileID: 4999884830168372156, guid: c67062368f15649febab6b366f00e9eb, type: 3}

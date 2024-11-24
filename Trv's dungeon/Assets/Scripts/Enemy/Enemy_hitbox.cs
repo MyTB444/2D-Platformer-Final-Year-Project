@@ -26,7 +26,7 @@ public class Enemy_hitbox : MonoBehaviour
             }
 
         }
-        if (this.gameObject.tag == "Arrow" && other.gameObject.tag != "Enemy")
+        if (this.gameObject.tag == "Arrow" && other.gameObject.tag != "Enemy" && other.gameObject.tag != "Ladder")
         {
             Destroy(this.gameObject);
         }

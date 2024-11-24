@@ -122,15 +122,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 2
   _speed: 2
-  _jumpForce: 5
-  _jumpCooldown: 4
+  _jumpForce: 6
+  _jumpCooldown: 3
   _attackDistance: 0.3
   _height: 0.5
   _attackDuration: 2
-  _stunVulnerability: 0
-  _enemyFragility: 4
+  _stunVulnerability: 0.5
+  _isanarcher: 0
   _canJump: 1
-  _knockedBack: 0
+  _enemyFragility: 4
 --- !u!114 &5004751778368188186
 MonoBehaviour:
   m_ObjectHideFlags: 0
