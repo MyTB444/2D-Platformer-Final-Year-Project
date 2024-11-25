@@ -136,7 +136,7 @@ Transform:
   m_GameObject: {fileID: 3414531809540765021}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0.79999995, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -156,11 +156,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94faf0a0eef26454ba98571da77ae541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
-  _jumpForce: 10
+  _speed: 5
+  _jumpForce: 6
   _attackDuration: 0.4
   _stunDuration: 0.7
-  _health: 4
+  _health: 5
   _playerfragility: 4
   _key: {fileID: 4501959261323960423, guid: e81e3196f36974236ac4b1d37eca12f5, type: 3}
 --- !u!50 &6108027283632666901

@@ -15,6 +15,7 @@ TagManager:
   - Key
   - Spawnman
   - Gate
+  - UIman
   layers:
   - Default
   - TransparentFX

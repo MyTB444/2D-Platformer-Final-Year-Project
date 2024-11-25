@@ -107,3 +107,5 @@ Jack can dive now! I have started creating my maps. There will be 9 maps in tota
 All the maps for the demo are now fully implemented. Enemy scripts are much better, we have now a goblin archer. It does now move, only shoots arrows when jack is at the same height. We also have some spikes on the ground in one of our maps. Also, the overall project structure is much better now. The scene looks very clean.
 -24/11/2024
 I have finished the animations for the archers. All the enemy and player variables are set and optimized. Demo map is fully implemented and archers are located. We have an objective now! The player can open a gate after they destroy two specific objects, get a key and bring the key on the gate. The aim of the demo is to escape the map. Basically, I now have a playable demo game. 
+-25/11/2024
+I have made a Main menu with start and exit button. I also have UI to display player hp using hearth signs. We have a text to instruct how to restart the game and exit when the player dies or finishes the demo.

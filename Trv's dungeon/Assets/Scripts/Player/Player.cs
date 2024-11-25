@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer _playerSprite;
     private PlayerAnimation _playerAnim;
     private Rigidbody2D _rigid;
+    private UIman _uiman;
+    private Game_man _gameman;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,11 +41,14 @@ public class Player : MonoBehaviour
         _playerAnim = GetComponentInChildren<PlayerAnimation>();
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
         _playerkey = GameObject.FindWithTag("Playerkey").GetComponent<SpriteRenderer>();
+        _uiman = GameObject.FindWithTag("UIman").GetComponent<UIman>();
+        _gameman = GameObject.FindWithTag("Gameman").GetComponent<Game_man>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        OutOfMap();
         if (_canWalk == true)
         {
             Movement();
@@ -162,11 +167,14 @@ public class Player : MonoBehaviour
     public void TakeDamage()
     {
         _canWalk = false;
+        _uiman.DamageUpdate(_health);
         _health = _health - 1;
         StartCoroutine(Stun(_stunDuration));
         if (_health <= 0)
         {
             Destroy(this.gameObject);
+            _uiman.GameOverSequence();
+            _gameman.GameOver();
         }
 
     }
@@ -187,6 +195,14 @@ public class Player : MonoBehaviour
     public void EnableKey()
     {
         _keyFound = true;
+    }
+    protected void OutOfMap()
+    {
+        if (transform.position.y < -8)
+        {
+            _uiman.GameWinSequence();
+            _gameman.GameOver();
+        }
     }
 
 

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Assets.PixelFantasy.PixelHeroes.Common.Scripts.EditorScripts;
 using UnityEngine;
 
 public class Spawn_man : MonoBehaviour
