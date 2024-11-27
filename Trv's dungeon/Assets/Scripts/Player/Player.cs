@@ -8,11 +8,13 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
+    // player stats
     [SerializeField] protected float _speed;
     [SerializeField] protected float _jumpForce;
     [SerializeField] protected float _attackDuration;
     [SerializeField] protected float _stunDuration;
     [SerializeField] protected int _health;
+    //Logic
     public float _playerfragility;
     private float horizontalInput;
     private int _canRoll = 0;
@@ -22,9 +24,8 @@ public class Player : MonoBehaviour
     private bool _duringRoll;
     private bool _resetJump = false;
     private bool _attacking = false;
-    private bool _keyFound;
-
-    //Components
+    private bool _keyFound = false;
+    //Component variables for handles
     [SerializeField] private GameObject _key;
     private SpriteRenderer _playerkey;
     private SpriteRenderer _playerSprite;
@@ -32,10 +33,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigid;
     private UIman _uiman;
     private Game_man _gameman;
-    // Start is called before the first frame update
     void Start()
     {
-        _keyFound = false;
         //HANDLES
         _rigid = GetComponent<Rigidbody2D>();
         _playerAnim = GetComponentInChildren<PlayerAnimation>();
@@ -44,8 +43,6 @@ public class Player : MonoBehaviour
         _uiman = GameObject.FindWithTag("UIman").GetComponent<UIman>();
         _gameman = GameObject.FindWithTag("Gameman").GetComponent<Game_man>();
     }
-
-    // Update is called once per frame
     void Update()
     {
         OutOfMap();
@@ -56,6 +53,7 @@ public class Player : MonoBehaviour
     }
     void Movement()
     {
+        //WALK
         horizontalInput = Input.GetAxisRaw("Horizontal");
         Flip(horizontalInput);
         _rigid.velocity = new Vector2(horizontalInput * _speed, _rigid.velocity.y);
@@ -108,9 +106,11 @@ public class Player : MonoBehaviour
     //CAN WE JUMP?
     bool GroundCalculate()
     {
-        RaycastHit2D hitInfo = Physics2D.Raycast(new Vector2(transform.position.x - 0.1f, transform.position.y), Vector2.down, 0.3f, 1 << 6);
-        RaycastHit2D hitInfo1 = Physics2D.Raycast(new Vector2(transform.position.x + 0.1f, transform.position.y), Vector2.down, 0.3f, 1 << 6);
-        if (hitInfo.collider != null || hitInfo1.collider != null)
+        RaycastHit2D hitInfo = Physics2D.Raycast(new Vector2(transform.position.x - 0.3f, transform.position.y), Vector2.down, 0.3f, 1 << 6);
+        RaycastHit2D hitInfo1 = Physics2D.Raycast(new Vector2(transform.position.x + 0.3f, transform.position.y), Vector2.down, 0.3f, 1 << 6);
+        RaycastHit2D hitInfo2 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.down, 0.3f, 1 << 6);
+
+        if (hitInfo.collider != null || hitInfo1.collider != null || hitInfo2.collider != null)
         {
             if (_resetJump == false)
             {
@@ -196,6 +196,7 @@ public class Player : MonoBehaviour
     {
         _keyFound = true;
     }
+    //Win check
     protected void OutOfMap()
     {
         if (transform.position.y < -8)

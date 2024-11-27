@@ -24,11 +24,14 @@ public class Enemy_hitbox : MonoBehaviour
                 _playerHit.TakeDamage();
                 _playerRigid.velocity = new Vector2(_playerHit._playerfragility * -1, _playerHit._playerfragility);
             }
-
         }
         if (this.gameObject.tag == "Arrow" && other.gameObject.tag != "Enemy" && other.gameObject.tag != "Ladder")
         {
             Destroy(this.gameObject);
         }
+    }
+    public void Disable()
+    {
+        this.gameObject.SetActive(false);
     }
 }

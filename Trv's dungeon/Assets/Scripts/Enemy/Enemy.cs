@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public abstract class Enemy : MonoBehaviour
 {
+    // enemy stats
     [SerializeField] protected int _health;
     [SerializeField] protected float _speed;
     [SerializeField] protected float _jumpForce;
@@ -22,6 +24,7 @@ public abstract class Enemy : MonoBehaviour
     protected bool _canMove = true;
     protected bool _isAlive;
     protected bool _attacking = false;
+    //components for handles
     protected Transform _target;
     protected Collider2D _collider;
     protected Rigidbody2D _rigid;
@@ -31,6 +34,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Init()
     {
         _isAlive = true;
+        //handles
         _collider = GetComponent<Collider2D>();
         _enemyAnim = GetComponentInChildren<Enemy_animations>();
         _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -154,7 +158,7 @@ public abstract class Enemy : MonoBehaviour
         }
 
     }
-    IEnumerator Dying()
+    protected virtual IEnumerator Dying()
     {
         this._collider.enabled = false;
         _isAlive = false;
@@ -165,7 +169,7 @@ public abstract class Enemy : MonoBehaviour
     // Are we in the screen?
     public void OutOfMap()
     {
-        if (_target.position.y > transform.position.y + 10)
+        if (_target.position.y > transform.position.y + 15)
         {
             Destroy(this.gameObject);
         }
@@ -173,7 +177,6 @@ public abstract class Enemy : MonoBehaviour
     IEnumerator KnockedBack()
     {
         _knockedBack = true;
-        //_knockedBack = true;
         yield return new WaitForSeconds(_stunVulnerability);
         if (_isanarcher == true)
         {

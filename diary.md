@@ -111,3 +111,5 @@ I have finished the animations for the archers. All the enemy and player variabl
 I have made a Main menu with start and exit button. I also have UI to display player hp using hearth signs. We have a text to instruct how to restart the game and exit when the player dies or finishes the demo.
 -26/11/2024
 I have added control information to main menu. We can now hard restart the game before finishing, and go back to main menu. I am improving my animations and scripts as well.
+-27/11/2024
+I am optimizing my code, improving gameplay, fixing small buggs and working on my report.

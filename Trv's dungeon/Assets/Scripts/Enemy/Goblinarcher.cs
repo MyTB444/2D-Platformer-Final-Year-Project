@@ -16,7 +16,6 @@ public class Goblinarcher : Enemy
     {
         base.Init();
         _attacking = false;
-
     }
     private void ArcherMovement()
     {
@@ -35,7 +34,6 @@ public class Goblinarcher : Enemy
         {
             StartCoroutine(Shooting());
         }
-
     }
     IEnumerator Shooting()
     {
@@ -55,7 +53,6 @@ public class Goblinarcher : Enemy
         yield return new WaitForSeconds(_attackDuration);
         _attacking = false;
     }
-
     private void WhereIsPlayer()
     {
         if (_target.position.x > transform.position.x)
