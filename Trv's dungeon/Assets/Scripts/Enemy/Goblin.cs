@@ -12,7 +12,7 @@ public class Goblin : Enemy
         base.Init();
         _hitboxCollider = GetComponentInChildren<Enemy_hitbox>();
     }
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
         if (_isAlive == true)

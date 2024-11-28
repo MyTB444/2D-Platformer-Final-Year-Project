@@ -7,7 +7,7 @@ using UnityEngine;
 public class Goblinarcher : Enemy
 {
     [SerializeField] private GameObject _arrow;
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
         ArcherMovement();
@@ -43,12 +43,10 @@ public class Goblinarcher : Enemy
         if (_facedRight == true)
         {
             Instantiate(_arrow, new Vector2(transform.position.x + 0.8f, transform.position.y + 0.3f), Quaternion.identity, gameObject.transform);
-            //_enemyAnim.AttackRight();
         }
         else if (_facedRight == false)
         {
             Instantiate(_arrow, new Vector2(transform.position.x - 0.8f, transform.position.y + 0.3f), Quaternion.identity, gameObject.transform);
-            // _enemyAnim.AttackLeft();
         }
         yield return new WaitForSeconds(_attackDuration);
         _attacking = false;

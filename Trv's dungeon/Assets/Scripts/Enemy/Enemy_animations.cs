@@ -8,7 +8,6 @@ public class Enemy_animations : MonoBehaviour
     void Start()
     {
         _anim = GetComponentInChildren<Animator>();
-
     }
     public void StartWalking()
     {

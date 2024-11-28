@@ -25,7 +25,7 @@ public class Enemy_hitbox : MonoBehaviour
                 _playerRigid.velocity = new Vector2(_playerHit._playerfragility * -1, _playerHit._playerfragility);
             }
         }
-        if (this.gameObject.tag == "Arrow" && other.gameObject.tag != "Enemy" && other.gameObject.tag != "Ladder")
+        if (this.gameObject.tag == "Arrow" && other.gameObject.tag != "Enemy" && other.gameObject.tag != "Ladder" && other.gameObject.tag != "Arrow")
         {
             Destroy(this.gameObject);
         }

@@ -48,13 +48,13 @@ public abstract class Enemy : MonoBehaviour
     // Start is called before the first frame update
 
     // Update is called once per frame
-    public virtual void Update()
+    protected virtual void Update()
     {
         //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + _height), Vector2.left * 0.5f, Color.green);
         //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + _height), Vector2.right * 0.5f, Color.green);
         OutOfMap();
     }
-    public virtual void Movement()
+    protected virtual void Movement()
     {
         //Walk
         CanWeMove();

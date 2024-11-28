@@ -14,9 +14,9 @@ public class Player : MonoBehaviour
     [SerializeField] protected float _attackDuration;
     [SerializeField] protected float _stunDuration;
     [SerializeField] protected int _health;
-    //Logic
     public float _playerfragility;
     private float horizontalInput;
+    //Logic
     private int _canRoll = 0;
     private bool _canWalk = true;
     protected bool _canClimb;
@@ -205,6 +205,4 @@ public class Player : MonoBehaviour
             _gameman.GameOver();
         }
     }
-
-
 }
