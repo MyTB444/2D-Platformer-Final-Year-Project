@@ -1,5 +1,3 @@
-# Final Year Project
+# Game for Final Year Project 
 
-This repository has been created to store your final year project.
-
-You may edit it as you like, but please do not remove the default topics or the project members list. These need to stay as currently defined in order for your supervisor to be able to find your project.
+This is one of my first experiences in game development, offering a great opportunity for me to improve myself. It's an objective-based 2D platformer game. It's not easy; it has a touch of "Souls" inspiration. The goal is to complete the level as quickly as possible. 
