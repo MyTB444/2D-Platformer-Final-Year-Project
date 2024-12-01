@@ -19,7 +19,7 @@ public class Goblinarcher : Enemy
     }
     private void ArcherMovement()
     {
-        if (_isAlive == true)
+        if (_isAlive == true && _target.transform.gameObject != null)
         {
             WhereIsPlayer();
             if (_target.position.y <= transform.position.y + 0.2 && _target.position.y >= transform.position.y - 0.2)

@@ -15,7 +15,7 @@ public class Goblin : Enemy
     protected override void Update()
     {
         base.Update();
-        if (_isAlive == true)
+        if (_isAlive == true && _target.transform.gameObject != null)
         {
             Movement();
         }

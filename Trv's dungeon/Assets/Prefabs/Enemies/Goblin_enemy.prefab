@@ -123,7 +123,7 @@ MonoBehaviour:
   _health: 2
   _speed: 2
   _jumpForce: 6
-  _jumpCooldown: 3
+  _jumpCooldown: 4
   _attackDistance: 0.3
   _height: 0.5
   _attackDuration: 2

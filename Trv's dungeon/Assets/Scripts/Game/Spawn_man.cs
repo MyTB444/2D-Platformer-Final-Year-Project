@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Spawn_man : MonoBehaviour
 {
-    [SerializeField] private Transform _spawnA;
-    [SerializeField] private Transform _spawnC;
-    [SerializeField] private Transform _spawnB;
+    [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] public int _difficulty;
     public GameObject _goblin;
     public bool _canSwpan;
@@ -18,20 +16,16 @@ public class Spawn_man : MonoBehaviour
             StartCoroutine(GoblinSpawn());
         }
     }
-
-
     IEnumerator GoblinSpawn()
     {
         while (true)
         {
-            Instantiate(_goblin, _spawnA.position, Quaternion.identity, transform);
-            yield return new WaitForSeconds(_difficulty);
-            Instantiate(_goblin, _spawnB.position, Quaternion.identity, transform);
-            yield return new WaitForSeconds(_difficulty);
-            Instantiate(_goblin, _spawnC.position, Quaternion.identity, transform);
-            yield return new WaitForSeconds(_difficulty);
+            for (int i = 0; i < _spawnPoints.Length; i++)
+            {
+                Instantiate(_goblin, _spawnPoints[i].position, Quaternion.identity, transform);
+                yield return new WaitForSeconds(_difficulty);
+            }
         }
-
     }
     public void DifficultyIncreased()
     {

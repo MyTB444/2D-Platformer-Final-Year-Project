@@ -45,14 +45,14 @@ public abstract class Enemy : MonoBehaviour
     {
         Init();
     }
-    // Start is called before the first frame update
-
-    // Update is called once per frame
     protected virtual void Update()
     {
         //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + _height), Vector2.left * 0.5f, Color.green);
         //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + _height), Vector2.right * 0.5f, Color.green);
-        OutOfMap();
+        if (_target.transform.gameObject != null)
+        {
+            OutOfMap();
+        }
     }
     protected virtual void Movement()
     {
@@ -63,21 +63,18 @@ public abstract class Enemy : MonoBehaviour
             _currentSpeed = _speed * -1;
             StartCoroutine(Walking());
         }
-
         else if (_target.position.x > transform.position.x && _canMove == true && _knockedBack == false && _attacking == false)
         {
             _currentSpeed = _speed;
             StartCoroutine(Walking());
         }
-
         //jump
-        if (_target.position.y >= transform.position.y + 1f && _canJump == true && _canMove == true && _knockedBack == false)
+        if (_target.position.y >= transform.position.y + 0.7f && _canJump == true && _canMove == true && _knockedBack == false)
         {
             _canJump = false;
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
             StartCoroutine(WaitForJump());
         }
-
     }
     //where are we faced
     public void Flip(float move)
@@ -156,7 +153,6 @@ public abstract class Enemy : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(Dying());
         }
-
     }
     protected virtual IEnumerator Dying()
     {
