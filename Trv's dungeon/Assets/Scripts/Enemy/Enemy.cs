@@ -37,7 +37,10 @@ public abstract class Enemy : MonoBehaviour
         //handles
         _collider = GetComponent<Collider2D>();
         _enemyAnim = GetComponentInChildren<Enemy_animations>();
-        _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
         _rigid = GetComponent<Rigidbody2D>();
         _enemySprite = GetComponentInChildren<SpriteRenderer>();
     }
@@ -49,7 +52,7 @@ public abstract class Enemy : MonoBehaviour
     {
         //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + _height), Vector2.left * 0.5f, Color.green);
         //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + _height), Vector2.right * 0.5f, Color.green);
-        if (_target.transform.gameObject != null)
+        if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             OutOfMap();
         }

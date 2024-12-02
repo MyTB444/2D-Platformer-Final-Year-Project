@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 415114276050635132}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.374, y: -0.936, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -136,7 +136,7 @@ Transform:
   m_GameObject: {fileID: 3414531809540765021}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.79999995, z: 0}
+  m_LocalPosition: {x: 0, y: 0.79999995, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -161,7 +161,7 @@ MonoBehaviour:
   _attackDuration: 0.4
   _stunDuration: 0.7
   _health: 5
-  _playerfragility: 4
+  _playerfragility: 3
   _key: {fileID: 4501959261323960423, guid: e81e3196f36974236ac4b1d37eca12f5, type: 3}
 --- !u!50 &6108027283632666901
 Rigidbody2D:
