@@ -113,3 +113,5 @@ I have made a Main menu with start and exit button. I also have UI to display pl
 I have added control information to main menu. We can now hard restart the game before finishing, and go back to main menu. I am improving my animations and scripts as well.
 -27/11/2024
 I am optimizing my code, improving gameplay, fixing small buggs and working on my report.
+-02/12/2024
+This weekend, I have added a time tracker to count as the player score. I am spending most of my time working on my report and getting ready for the presentation.
