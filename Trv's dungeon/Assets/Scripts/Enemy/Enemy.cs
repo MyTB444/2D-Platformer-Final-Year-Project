@@ -33,10 +33,9 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Init()
     {
-        _isAlive = true;
-        //handles
-        _collider = GetComponent<Collider2D>();
         _enemyAnim = GetComponentInChildren<Enemy_animations>();
+        _isAlive = true;
+        _collider = GetComponent<Collider2D>();
         if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -69,6 +68,7 @@ public abstract class Enemy : MonoBehaviour
         else if (_target.position.x > transform.position.x && _canMove == true && _knockedBack == false && _attacking == false)
         {
             _currentSpeed = _speed;
+
             StartCoroutine(Walking());
         }
         //jump

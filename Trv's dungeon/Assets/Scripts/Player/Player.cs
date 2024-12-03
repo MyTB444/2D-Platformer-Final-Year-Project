@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     protected bool _canClimb;
     private bool _facedRight;
     private bool _duringRoll;
+    private bool _playerDamageable;
     private bool _resetJump = false;
     private bool _attacking = false;
     private bool _keyFound = false;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     private Game_man _gameman;
     void Start()
     {
+        _playerDamageable = true;
         //HANDLES
         _rigid = GetComponent<Rigidbody2D>();
         _playerAnim = GetComponentInChildren<PlayerAnimation>();
@@ -166,15 +168,18 @@ public class Player : MonoBehaviour
     }
     public void TakeDamage()
     {
-        _canWalk = false;
-        _uiman.DamageUpdate(_health);
-        _health = _health - 1;
-        StartCoroutine(Stun(_stunDuration));
-        if (_health <= 0)
+        if (_playerDamageable == true)
         {
-            Destroy(this.gameObject);
-            _uiman.GameOverSequence();
-            _gameman.GameOver();
+            _canWalk = false;
+            _uiman.DamageUpdate(_health);
+            _health = _health - 1;
+            StartCoroutine(Stun(_stunDuration));
+            if (_health <= 0)
+            {
+                Destroy(this.gameObject);
+                _uiman.GameOverSequence();
+                _gameman.GameOver();
+            }
         }
 
     }
@@ -201,6 +206,7 @@ public class Player : MonoBehaviour
     {
         if (transform.position.y < -8)
         {
+            _playerDamageable = false;
             _uiman.GameWinSequence();
             _gameman.GameOver();
         }

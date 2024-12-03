@@ -115,3 +115,5 @@ I have added control information to main menu. We can now hard restart the game 
 I am optimizing my code, improving gameplay, fixing small buggs and working on my report.
 -02/12/2024
 This weekend, I have added a time tracker to count as the player score. I am spending most of my time working on my report and getting ready for the presentation.
+-03/12/2024
+Added arrows to indicate where the player should go. Jack starting point is also changed. We also now have an ending box for jack.
