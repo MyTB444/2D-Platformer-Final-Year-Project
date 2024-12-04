@@ -16,6 +16,13 @@ public class Spawn_man : MonoBehaviour
             StartCoroutine(GoblinSpawn());
         }
     }
+    void Update()
+    {
+        if (_canSwpan == false)
+        {
+            StopAllCoroutines();
+        }
+    }
     IEnumerator GoblinSpawn()
     {
         while (true)
@@ -30,5 +37,9 @@ public class Spawn_man : MonoBehaviour
     public void DifficultyIncreased()
     {
         _difficulty = _difficulty - 1;
+    }
+    public void StopSpawn()
+    {
+        _canSwpan = false;
     }
 }

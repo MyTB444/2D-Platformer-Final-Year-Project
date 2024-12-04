@@ -142,7 +142,7 @@ public abstract class Enemy : MonoBehaviour
     public void TakeDamage()
     {
         _health = _health - 1;
-        StopAllCoroutines();
+        StopCoroutine(Walking());
         StartCoroutine(KnockedBack());
         if (_health <= 0)
         {

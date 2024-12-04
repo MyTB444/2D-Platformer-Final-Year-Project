@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigid;
     private UIman _uiman;
     private Game_man _gameman;
+    private Spawn_man _spawnman;
     void Start()
     {
         _playerDamageable = true;
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
         _playerAnim = GetComponentInChildren<PlayerAnimation>();
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
+        _spawnman = GameObject.FindWithTag("Spawnman").GetComponent<Spawn_man>();
         _playerkey = GameObject.FindWithTag("Playerkey").GetComponent<SpriteRenderer>();
         _uiman = GameObject.FindWithTag("UIman").GetComponent<UIman>();
         _gameman = GameObject.FindWithTag("Gameman").GetComponent<Game_man>();
@@ -168,15 +170,19 @@ public class Player : MonoBehaviour
     }
     public void TakeDamage()
     {
-        if (_playerDamageable == true)
+        if (_playerDamageable == true && _canWalk == true)
         {
-            _canWalk = false;
-            _uiman.DamageUpdate(_health);
             _health = _health - 1;
-            StartCoroutine(Stun(_stunDuration));
-            if (_health <= 0)
+            _uiman.DamageUpdate(_health);
+            if (_health > 0)
             {
-                Destroy(this.gameObject);
+                StartCoroutine(Stun(_stunDuration));
+            }
+            else if (_health <= 0)
+            {
+                _spawnman.StopSpawn();
+                _canWalk = false;
+                _playerAnim.DeathAnim();
                 _uiman.GameOverSequence();
                 _gameman.GameOver();
             }
@@ -185,6 +191,7 @@ public class Player : MonoBehaviour
     }
     public IEnumerator Stun(float time)
     {
+        _canWalk = false;
         yield return new WaitForSeconds(time);
         _canWalk = true;
 

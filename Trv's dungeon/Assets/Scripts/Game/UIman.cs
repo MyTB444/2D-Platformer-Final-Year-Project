@@ -16,7 +16,7 @@ public class UIman : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _gamewinText;
     public void DamageUpdate(int i)
     {
-        _liveImages[i - 1].enabled = false;
+        _liveImages[i].enabled = false;
     }
     public void GameOverSequence()
     {

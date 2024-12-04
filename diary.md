@@ -117,3 +117,5 @@ I am optimizing my code, improving gameplay, fixing small buggs and working on m
 This weekend, I have added a time tracker to count as the player score. I am spending most of my time working on my report and getting ready for the presentation.
 -03/12/2024
 Added arrows to indicate where the player should go. Jack starting point is also changed. We also now have an ending box for jack.
+-04/12/2024
+I am making small adjustmens to my code. I am focused on the presentation and the report.
