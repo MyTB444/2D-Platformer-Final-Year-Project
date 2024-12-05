@@ -119,3 +119,5 @@ This weekend, I have added a time tracker to count as the player score. I am spe
 Added arrows to indicate where the player should go. Jack starting point is also changed. We also now have an ending box for jack.
 -04/12/2024
 I am making small adjustmens to my code. I am focused on the presentation and the report.
+-05/12/2024 
+Added many enviromental animations, the game looks feels way better now. Also fixed an old bug where enemies would start two movement coroutines and attack twice.

@@ -10,13 +10,13 @@ public class UIman : MonoBehaviour
     public float timeValue = 0;
     private bool _gameStop = false;
     public TextMeshProUGUI TimeText;
+    [SerializeField] private Animator[] _live;
     public TextMeshProUGUI finalScore;
-    [SerializeField] private Image[] _liveImages;
     [SerializeField] private TextMeshProUGUI _gameoverText;
     [SerializeField] private TextMeshProUGUI _gamewinText;
     public void DamageUpdate(int i)
     {
-        _liveImages[i].enabled = false;
+        _live[i].SetTrigger("Destroy");
     }
     public void GameOverSequence()
     {

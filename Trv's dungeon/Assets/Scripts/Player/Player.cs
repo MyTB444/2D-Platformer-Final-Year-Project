@@ -170,7 +170,7 @@ public class Player : MonoBehaviour
     }
     public void TakeDamage()
     {
-        if (_playerDamageable == true && _canWalk == true)
+        if (_playerDamageable == true)
         {
             _health = _health - 1;
             _uiman.DamageUpdate(_health);
@@ -178,10 +178,11 @@ public class Player : MonoBehaviour
             {
                 StartCoroutine(Stun(_stunDuration));
             }
-            else if (_health <= 0)
+            else if (_health == 0)
             {
                 _spawnman.StopSpawn();
                 _canWalk = false;
+                _playerDamageable = false;
                 _playerAnim.DeathAnim();
                 _uiman.GameOverSequence();
                 _gameman.GameOver();
