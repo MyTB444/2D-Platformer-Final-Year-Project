@@ -11,7 +11,7 @@ public class Background : MonoBehaviour
     }
     private void Flow()
     {
-        gameObject.transform.Translate(new Vector2(1, 0) * 0.003f);
+        gameObject.transform.Translate(new Vector2(1, 0) * 0.006f);
         if (transform.position.x >= 58.3f)
         {
             transform.position = new Vector2(-58.3f, 0);

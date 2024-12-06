@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 5725077263571722444}
   - component: {fileID: 3279916365067309620}
   - component: {fileID: 4878495361481083101}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Enemy_hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5725077263571722444
 Transform:
   m_ObjectHideFlags: 0

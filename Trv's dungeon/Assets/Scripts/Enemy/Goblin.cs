@@ -6,23 +6,12 @@ using UnityEngine;
 
 public class Goblin : Enemy
 {
-    private Enemy_hitbox _hitboxCollider;
-    protected override void Init()
-    {
-        base.Init();
-        _hitboxCollider = GetComponentInChildren<Enemy_hitbox>();
-    }
     protected override void Update()
     {
         base.Update();
-        if (_isAlive == true && GameObject.FindGameObjectWithTag("Player") != null)
+        if (_isAlive == true && GameObject.FindGameObjectWithTag("Player") != null && _enemyAnim != null)
         {
             Movement();
         }
-    }
-    protected override IEnumerator Dying()
-    {
-        _hitboxCollider.Disable();
-        return base.Dying();
     }
 }

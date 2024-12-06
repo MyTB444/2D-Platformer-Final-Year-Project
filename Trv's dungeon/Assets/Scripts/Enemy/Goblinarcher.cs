@@ -11,6 +11,7 @@ public class Goblinarcher : Enemy
     {
         base.Update();
         ArcherMovement();
+        JumpAway();
     }
     protected override void Init()
     {
@@ -27,6 +28,31 @@ public class Goblinarcher : Enemy
                 Shoot();
             }
         }
+    }
+    protected void JumpAway()
+    {
+        RaycastHit2D rightInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.right, _attackDistance, 1 << 3);
+        RaycastHit2D leftInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.left, _attackDistance, 1 << 3);
+        if (leftInfo.collider == true && _canJump == true)
+        {
+            _currentSpeed = 4f;
+            StartCoroutine(JumpingAway(_currentSpeed));
+        }
+        else if (rightInfo.collider == true && _canJump == true)
+        {
+            _currentSpeed = -4f;
+            StartCoroutine(JumpingAway(_currentSpeed));
+        }
+    }
+    private IEnumerator JumpingAway(float speed)
+    {
+        _canJump = false;
+        _rigid.velocity = new Vector2(speed, 4f);
+        yield return new WaitForSeconds(0.4f);
+        _rigid.velocity = new Vector2(0, 0);
+        yield return new WaitForSeconds(2.0f);
+        _canJump = true;
+
     }
     private void Shoot()
     {

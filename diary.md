@@ -121,3 +121,5 @@ Added arrows to indicate where the player should go. Jack starting point is also
 I am making small adjustmens to my code. I am focused on the presentation and the report.
 -05/12/2024 
 Added many enviromental animations, the game looks feels way better now. Also fixed an old bug where enemies would start two movement coroutines and attack twice.
+-06/12/2024
+Today I ve worked extensively on the overall game physics. Customized layering and collision. The gameplay feels much better now. I have also added some animations for the main menu.

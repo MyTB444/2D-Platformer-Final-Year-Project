@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Enemy_animations : MonoBehaviour
 {
+    private SpriteRenderer _sprite;
     private Animator _anim;
     void Start()
     {
         _anim = GetComponentInChildren<Animator>();
+        _sprite = GetComponentInChildren<SpriteRenderer>();
     }
     public void StartWalking()
     {
@@ -28,5 +30,16 @@ public class Enemy_animations : MonoBehaviour
     public void AttackLeft()
     {
         _anim.SetTrigger("Attackleft");
+    }
+    public void Damaged()
+    {
+        StartCoroutine(Reding());
+    }
+    private IEnumerator Reding()
+    {
+        _sprite.color = Color.red;
+        yield return new WaitForSeconds(0.4f);
+        _sprite.color = Color.white;
+
     }
 }

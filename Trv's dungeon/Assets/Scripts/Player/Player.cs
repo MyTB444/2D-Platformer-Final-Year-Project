@@ -94,26 +94,17 @@ public class Player : MonoBehaviour
         //KEY
         if (Input.GetKeyDown(KeyCode.J) && _keyFound == true)
         {
-            _keyFound = false;
-            _playerkey.enabled = false;
-            if (_facedRight == true)
-            {
-                Instantiate(_key, new Vector2(transform.position.x + 0.8f, transform.position.y + 0.3f), Quaternion.identity);
-            }
-            else if (_facedRight == false)
-            {
-                Instantiate(_key, new Vector2(transform.position.x - 0.8f, transform.position.y + 0.3f), Quaternion.identity);
-            }
+            SpawnKey();
         }
 
     }
     //CAN WE JUMP?
     bool GroundCalculate()
     {
-        RaycastHit2D hitInfo = Physics2D.Raycast(new Vector2(transform.position.x - 0.3f, transform.position.y), Vector2.down, 0.3f, 1 << 6);
-        RaycastHit2D hitInfo1 = Physics2D.Raycast(new Vector2(transform.position.x + 0.3f, transform.position.y), Vector2.down, 0.3f, 1 << 6);
-        RaycastHit2D hitInfo2 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.down, 0.3f, 1 << 6);
-
+        int layerMask = (1 << 6) | (1 << 7);
+        RaycastHit2D hitInfo = Physics2D.Raycast(new Vector2(transform.position.x - 0.3f, transform.position.y), Vector2.down, 0.3f, layerMask);
+        RaycastHit2D hitInfo1 = Physics2D.Raycast(new Vector2(transform.position.x + 0.3f, transform.position.y), Vector2.down, 0.3f, layerMask);
+        RaycastHit2D hitInfo2 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.down, 0.3f, layerMask);
         if (hitInfo.collider != null || hitInfo1.collider != null || hitInfo2.collider != null)
         {
             if (_resetJump == false)
@@ -180,9 +171,10 @@ public class Player : MonoBehaviour
             }
             else if (_health == 0)
             {
-                _spawnman.StopSpawn();
+                StopAllCoroutines();
                 _canWalk = false;
                 _playerDamageable = false;
+                _spawnman.StopSpawn();
                 _playerAnim.DeathAnim();
                 _uiman.GameOverSequence();
                 _gameman.GameOver();
@@ -209,12 +201,26 @@ public class Player : MonoBehaviour
     {
         _keyFound = true;
     }
+    protected void SpawnKey()
+    {
+        _keyFound = false;
+        _playerkey.enabled = false;
+        if (_facedRight == true)
+        {
+            Instantiate(_key, new Vector2(transform.position.x + 0.8f, transform.position.y + 0.3f), Quaternion.identity);
+        }
+        else if (_facedRight == false)
+        {
+            Instantiate(_key, new Vector2(transform.position.x - 0.8f, transform.position.y + 0.3f), Quaternion.identity);
+        }
+    }
     //Win check
     protected void OutOfMap()
     {
         if (transform.position.y < -8)
         {
             _playerDamageable = false;
+            _spawnman.StopSpawn();
             _uiman.GameWinSequence();
             _gameman.GameOver();
         }
