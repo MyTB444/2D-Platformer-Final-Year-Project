@@ -261,7 +261,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.6
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -295,10 +295,10 @@ BoxCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 128
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 192
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -571,25 +571,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8033277503925599022}
     m_Modifications:
-    - target: {fileID: -4296220996109164671, guid: 4b88daaf3414f449799abc5c176fe5c3, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2518007898249560221, guid: 4b88daaf3414f449799abc5c176fe5c3, type: 3}
       propertyPath: m_Name
       value: Jack_swing_hitbox
-      objectReference: {fileID: 0}
-    - target: {fileID: 3881764687358681864, guid: 4b88daaf3414f449799abc5c176fe5c3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3881764687358681864, guid: 4b88daaf3414f449799abc5c176fe5c3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3881764687358681864, guid: 4b88daaf3414f449799abc5c176fe5c3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3881764687358681864, guid: 4b88daaf3414f449799abc5c176fe5c3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -631,12 +615,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4367996121779845102, guid: 4b88daaf3414f449799abc5c176fe5c3, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4367996121779845102, guid: 4b88daaf3414f449799abc5c176fe5c3, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
