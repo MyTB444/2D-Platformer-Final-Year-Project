@@ -97,14 +97,14 @@ public abstract class Enemy : MonoBehaviour
     public void CanWeMove()
     {
         RaycastHit2D upInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.up, _attackDistance * 3, 1 << 3);
-
-        if (_target.position.y >= transform.position.y + 3.0f || upInfo.collider == true)
+        RaycastHit2D downInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.down, _attackDistance * 3, 1 << 3);
+        if (_target.position.y >= transform.position.y + 3.0f || upInfo.collider == true || downInfo.collider == true)
         {
             _rigid.velocity = new Vector2(0, _rigid.velocity.y);
             _enemyAnim.StopWalking();
             _canMove = false;
         }
-        else if (_target.position.y < transform.position.y + 1.8f && upInfo.collider == false)
+        else if (_target.position.y < transform.position.y + 1.8f && upInfo.collider == false && downInfo.collider == false)
         {
             _canMove = true;
         }

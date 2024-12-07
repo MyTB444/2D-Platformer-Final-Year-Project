@@ -4523,9 +4523,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1196418837}
+  - component: {fileID: 1196418839}
+  - component: {fileID: 1196418838}
   m_Layer: 0
   m_Name: Audioman
-  m_TagString: Untagged
+  m_TagString: Audioman
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4546,6 +4548,115 @@ Transform:
   - {fileID: 2003035077}
   m_Father: {fileID: 1224481880}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1196418838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196418836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dc32a980b4264534831a21d58097cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickClip: {fileID: 8300000, guid: aba2a3684c9e64649975c992c31b9e34, type: 3}
+--- !u!82 &1196418839
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196418836}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1224481879
 GameObject:
   m_ObjectHideFlags: 0
@@ -7280,10 +7391,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1627707227}
     m_Modifications:
-    - target: {fileID: 5809865949396001858, guid: 2be0021ee9a7b422793488e7d5f786ec, type: 3}
-      propertyPath: _attackDuration
-      value: 3.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5824533104856276866, guid: 2be0021ee9a7b422793488e7d5f786ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -7327,10 +7434,6 @@ PrefabInstance:
     - target: {fileID: 8649210186964826479, guid: 2be0021ee9a7b422793488e7d5f786ec, type: 3}
       propertyPath: m_Name
       value: 'Goblinarcher_enemy '
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649210186964826479, guid: 2be0021ee9a7b422793488e7d5f786ec, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7667,7 +7770,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b2de1f0ab718745f6b98a0bac77ffd86, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.05
+  m_Volume: 0.02
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8354,6 +8457,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1920877316666601164, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3414531809540765021, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
       propertyPath: m_Name
       value: Player_jack
@@ -8397,14 +8504,6 @@ PrefabInstance:
     - target: {fileID: 4492341538723553257, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5642793675232961716, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: m_Volume
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7248239965004876355, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: _dashClip
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -123,3 +123,5 @@ I am making small adjustmens to my code. I am focused on the presentation and th
 Added many enviromental animations, the game looks feels way better now. Also fixed an old bug where enemies would start two movement coroutines and attack twice.
 -06/12/2024
 Today I ve worked extensively on the overall game physics. Customized layering and collision. The gameplay feels much better now. I have also added some animations for the main menu.
+-07/12/2024
+I have recorded some audios for the game. The characters have sound effects we also have an ongoing background wind sound.

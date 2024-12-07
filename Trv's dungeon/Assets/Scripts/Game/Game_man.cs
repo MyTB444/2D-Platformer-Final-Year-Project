@@ -9,12 +9,14 @@ public class Game_man : MonoBehaviour
     private bool _isGameover = false;
     private Spawn_man _spawnman;
     private Collider2D _gateCollider;
+    private Audioman _audio;
     [SerializeField] private GameObject _gate;
     [SerializeField] private GameObject _diamond;
     [SerializeField] private GameObject _hearth;
     [SerializeField] private int _count;
     void Start()
     {
+        _audio = GameObject.FindWithTag("Audioman").GetComponent<Audioman>();
         _spawnman = GameObject.FindWithTag("Spawnman").GetComponent<Spawn_man>();
         _gateCollider = GameObject.FindWithTag("Gate").GetComponent<Collider2D>();
         _count = 0;
@@ -36,6 +38,7 @@ public class Game_man : MonoBehaviour
     }
     public void DestroyGate()
     {
+        _audio.CLickAudio();
         Destroy(_gate.gameObject);
     }
     public void HearthFound()
@@ -43,6 +46,7 @@ public class Game_man : MonoBehaviour
         _count = _count + 1;
         _spawnman.DifficultyIncreased();
         Destroy(_hearth.gameObject);
+        _audio.CLickAudio();
         EnableGate();
     }
     public void DiamonFound()
@@ -50,6 +54,7 @@ public class Game_man : MonoBehaviour
         _count = _count + 1;
         _spawnman.DifficultyIncreased();
         Destroy(_diamond.gameObject);
+        _audio.CLickAudio();
         EnableGate();
     }
     private void EnableGate()

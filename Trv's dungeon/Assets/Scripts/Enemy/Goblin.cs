@@ -21,7 +21,7 @@ public class Goblin : Enemy
     }
     private IEnumerator SpawnDelay()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.5f);
         _isAlive = true;
     }
 }

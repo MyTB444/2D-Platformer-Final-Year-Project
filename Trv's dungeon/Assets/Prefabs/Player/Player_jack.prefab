@@ -261,7 +261,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.6
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -462,7 +462,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -560,10 +560,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackClip: {fileID: 8300000, guid: 2219c82a3ef3c4560a693e5a439c9464, type: 3}
   _damageClip: {fileID: 8300000, guid: e1c2a01bfcebc45f1ba030d3ff0c694d, type: 3}
-  _jumpClip: {fileID: 8300000, guid: 96331ce20a1114d74995ff70fe92e67b, type: 3}
+  _jumpClip: {fileID: 0}
   _deathClip: {fileID: 8300000, guid: d279f21795578404896af9563a6558e8, type: 3}
-  _dashClip: {fileID: 8300000, guid: d10d075d813c447f6836f8a070eb4fc3, type: 3}
-  _spawnClip: {fileID: 8300000, guid: 2572673c704124f1faa49ed1b5018a70, type: 3}
+  _dashClip: {fileID: 8300000, guid: 96331ce20a1114d74995ff70fe92e67b, type: 3}
 --- !u!1001 &8787712503656092691
 PrefabInstance:
   m_ObjectHideFlags: 0

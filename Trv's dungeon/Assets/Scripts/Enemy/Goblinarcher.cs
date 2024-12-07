@@ -24,7 +24,7 @@ public class Goblinarcher : Enemy
         if (_isAlive == true && GameObject.FindGameObjectWithTag("Player") != null)
         {
             WhereIsPlayer();
-            if (_target.position.y <= transform.position.y + 0.2 && _target.position.y >= transform.position.y - 0.2)
+            if (_target.position.y <= transform.position.y + 0.2 && _target.position.y >= transform.position.y - 0.2 && _target.position.x < transform.position.x + 9 && _target.position.x! > transform.position.x - 9)
             {
                 Shoot();
             }
@@ -36,13 +36,11 @@ public class Goblinarcher : Enemy
         RaycastHit2D leftInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.left, _attackDistance, 1 << 3);
         if (leftInfo.collider == true && _canJump == true)
         {
-            _audio.JumpAudio();
             _currentSpeed = 4f;
             StartCoroutine(JumpingAway(_currentSpeed));
         }
         else if (rightInfo.collider == true && _canJump == true)
         {
-            _audio.JumpAudio();
             _currentSpeed = -4f;
             StartCoroutine(JumpingAway(_currentSpeed));
         }
@@ -51,6 +49,8 @@ public class Goblinarcher : Enemy
     {
         _canJump = false;
         _rigid.velocity = new Vector2(speed, 4f);
+        _enemyAnim.WalkTrigger();
+        _audio.JumpAudio();
         yield return new WaitForSeconds(0.4f);
         _rigid.velocity = new Vector2(0, 0);
         yield return new WaitForSeconds(2.0f);

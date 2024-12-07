@@ -8,13 +8,11 @@ public class Player_hitbox : MonoBehaviour
 {
     private SpriteRenderer _playerkey;
     private Player _player;
-    private BoxCollider2D _playerHitbox;
     private int collisionnumber;
     private Game_man _gameman;
     void Start()
     {
         _player = GetComponentInParent<Player>();
-        _playerHitbox = GetComponent<BoxCollider2D>();
         _gameman = GameObject.FindGameObjectWithTag("Gameman").GetComponent<Game_man>();
         _playerkey = GameObject.FindWithTag("Playerkey").GetComponent<SpriteRenderer>();
     }
@@ -61,7 +59,6 @@ public class Player_hitbox : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         collisionnumber = 0;
-
     }
 }
 

@@ -65,11 +65,10 @@ public class Player : MonoBehaviour
         _rigid.velocity = new Vector2(horizontalInput * _speed, _rigid.velocity.y);
         _playerAnim.RunAnim(horizontalInput);
         //JUMP
-        if (Input.GetKeyDown(KeyCode.Space) && GroundCalculate() == true)
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCalculate() == true && _duringRoll == false)
         {
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
             _playerAnim.JumpAnim();
-            _audio.JumpAudio();
             StartCoroutine(ResetingJump());
         }
         //FAST FALL
@@ -85,7 +84,7 @@ public class Player : MonoBehaviour
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce / 1.5f);
         }
         //ROLL
-        if (Input.GetKeyDown(KeyCode.LeftShift) && GroundCalculate() == true && _canRoll == 0 && _attacking == false)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _canRoll == 0 && _attacking == false)
         {
             _canRoll = 1;
             _playerAnim.RollAnim();
@@ -93,7 +92,7 @@ public class Player : MonoBehaviour
             StartCoroutine(Rolling());
         }
         //SWING
-        if (Input.GetKeyDown(KeyCode.K) && _attacking == false && _duringRoll == false || Input.GetKeyDown(KeyCode.K) && _attacking == false && GroundCalculate() == false)
+        if (Input.GetKeyDown(KeyCode.K) && _attacking == false && _duringRoll == false)
         {
             StartCoroutine(Attack());
             _audio.SwingAudio();
@@ -144,11 +143,13 @@ public class Player : MonoBehaviour
     IEnumerator Rolling()
     {
         _duringRoll = true;
-        _speed = _speed * 2;
+        _playerDamageable = false;
+        _speed = _speed * 1.5f;
         yield return new WaitForSeconds(1.0f);
-        _speed = _speed / 2;
+        _speed = _speed / 1.5f;
+        _playerDamageable = true;
         _duringRoll = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         _canRoll = 0;
     }
     IEnumerator Attack()
