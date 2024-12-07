@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     private bool _keyFound = false;
     //Component variables for handles
     [SerializeField] private GameObject _key;
+    private Character_audio _audio;
     private SpriteRenderer _playerkey;
     private SpriteRenderer _playerSprite;
     private PlayerAnimation _playerAnim;
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
         _playerkey = GameObject.FindWithTag("Playerkey").GetComponent<SpriteRenderer>();
         _uiman = GameObject.FindWithTag("UIman").GetComponent<UIman>();
         _gameman = GameObject.FindWithTag("Gameman").GetComponent<Game_man>();
+        _audio = GetComponentInChildren<Character_audio>();
     }
     void Update()
     {
@@ -67,36 +69,40 @@ public class Player : MonoBehaviour
         {
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
             _playerAnim.JumpAnim();
+            _audio.JumpAudio();
             StartCoroutine(ResetingJump());
         }
         //FAST FALL
         if (Input.GetKeyDown(KeyCode.S) && GroundCalculate() == false)
         {
+            _playerAnim.ClimbAnimStop();
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce * -1);
         }
         if (Input.GetKeyDown(KeyCode.W) && _canClimb == true)
         {
+            _rigid.gravityScale = 0;
+            _playerAnim.ClimbAnimStart();
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce / 1.5f);
-            _playerAnim.ClimbAnim();
         }
         //ROLL
-        if (Input.GetKeyDown(KeyCode.LeftShift) && GroundCalculate() == true && _canRoll == 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && GroundCalculate() == true && _canRoll == 0 && _attacking == false)
         {
             _canRoll = 1;
             _playerAnim.RollAnim();
+            _audio.DashAudio();
             StartCoroutine(Rolling());
         }
         //SWING
         if (Input.GetKeyDown(KeyCode.K) && _attacking == false && _duringRoll == false || Input.GetKeyDown(KeyCode.K) && _attacking == false && GroundCalculate() == false)
         {
             StartCoroutine(Attack());
+            _audio.SwingAudio();
         }
         //KEY
         if (Input.GetKeyDown(KeyCode.J) && _keyFound == true)
         {
             SpawnKey();
         }
-
     }
     //CAN WE JUMP?
     bool GroundCalculate()
@@ -163,14 +169,17 @@ public class Player : MonoBehaviour
     {
         if (_playerDamageable == true)
         {
+            _playerAnim.Damaged();
             _health = _health - 1;
             _uiman.DamageUpdate(_health);
             if (_health > 0)
             {
+                _audio.DamageAudio();
                 StartCoroutine(Stun(_stunDuration));
             }
             else if (_health == 0)
             {
+                _audio.DeathAudio();
                 StopAllCoroutines();
                 _canWalk = false;
                 _playerDamageable = false;
@@ -180,14 +189,12 @@ public class Player : MonoBehaviour
                 _gameman.GameOver();
             }
         }
-
     }
     public IEnumerator Stun(float time)
     {
         _canWalk = false;
         yield return new WaitForSeconds(time);
         _canWalk = true;
-
     }
     public void EnableCLimb()
     {
@@ -196,6 +203,8 @@ public class Player : MonoBehaviour
     public void DisableClimb()
     {
         _canClimb = false;
+        _rigid.gravityScale = 1;
+        _playerAnim.ClimbAnimStop();
     }
     public void EnableKey()
     {

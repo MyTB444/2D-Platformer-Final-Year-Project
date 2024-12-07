@@ -26,6 +26,7 @@ public abstract class Enemy : MonoBehaviour
     protected bool _attacking = false;
     //components for handles
     protected Transform _target;
+    protected Character_audio _audio;
     protected Collider2D _collider;
     protected Rigidbody2D _rigid;
     protected Enemy_animations _enemyAnim;
@@ -33,17 +34,18 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Init()
     {
-        _isAlive = true;
+        _enemyAnim = GetComponentInChildren<Enemy_animations>();
+        _audio = GetComponentInChildren<Character_audio>();
         _collider = GetComponent<Collider2D>();
+        _audio = GetComponentInChildren<Character_audio>();
         if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         }
         _rigid = GetComponent<Rigidbody2D>();
         _enemySprite = GetComponentInChildren<SpriteRenderer>();
-        _enemyAnim = GetComponentInChildren<Enemy_animations>();
     }
-    protected void Start()
+    protected virtual void Start()
     {
         Init();
     }
@@ -126,10 +128,12 @@ public abstract class Enemy : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         if (_facedRight == true)
         {
+            _audio.SwingAudio();
             _enemyAnim.AttackRight();
         }
         else if (_facedRight == false)
         {
+            _audio.SwingAudio();
             _enemyAnim.AttackLeft();
         }
         yield return new WaitForSeconds(_attackDuration);
@@ -151,6 +155,7 @@ public abstract class Enemy : MonoBehaviour
     {
         _health = _health - 1;
         StartCoroutine(KnockedBack());
+        _audio.DamageAudio();
         _enemyAnim.Damaged();
         if (_health <= 0)
         {

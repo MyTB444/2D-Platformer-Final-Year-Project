@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    private SpriteRenderer _sprite;
     private Animator _anim;
     void Start()
     {
         _anim = GetComponentInChildren<Animator>();
-
+        _sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -33,12 +34,27 @@ public class PlayerAnimation : MonoBehaviour
     {
         _anim.SetTrigger("Roll");
     }
-    public void ClimbAnim()
+    public void ClimbAnimStart()
     {
-        _anim.SetTrigger("Climb");
+        _anim.SetInteger("Climb", 1);
+    }
+    public void ClimbAnimStop()
+    {
+        _anim.SetInteger("Climb", -1);
     }
     public void DeathAnim()
     {
         _anim.SetTrigger("Dead");
+    }
+    public void Damaged()
+    {
+        StartCoroutine(Reding());
+    }
+    private IEnumerator Reding()
+    {
+        _sprite.color = Color.red;
+        yield return new WaitForSeconds(0.4f);
+        _sprite.color = Color.white;
+
     }
 }

@@ -16,6 +16,7 @@ public class Goblinarcher : Enemy
     protected override void Init()
     {
         base.Init();
+        _isAlive = true;
         _attacking = false;
     }
     private void ArcherMovement()
@@ -35,11 +36,13 @@ public class Goblinarcher : Enemy
         RaycastHit2D leftInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.left, _attackDistance, 1 << 3);
         if (leftInfo.collider == true && _canJump == true)
         {
+            _audio.JumpAudio();
             _currentSpeed = 4f;
             StartCoroutine(JumpingAway(_currentSpeed));
         }
         else if (rightInfo.collider == true && _canJump == true)
         {
+            _audio.JumpAudio();
             _currentSpeed = -4f;
             StartCoroutine(JumpingAway(_currentSpeed));
         }
@@ -68,10 +71,12 @@ public class Goblinarcher : Enemy
         yield return new WaitForSeconds(0.5f);
         if (_facedRight == true)
         {
+            _audio.SwingAudio();
             Instantiate(_arrow, new Vector2(transform.position.x + 0.8f, transform.position.y + 0.3f), Quaternion.identity, gameObject.transform);
         }
         else if (_facedRight == false)
         {
+            _audio.SwingAudio();
             Instantiate(_arrow, new Vector2(transform.position.x - 0.8f, transform.position.y + 0.3f), Quaternion.identity, gameObject.transform);
         }
         yield return new WaitForSeconds(_attackDuration);

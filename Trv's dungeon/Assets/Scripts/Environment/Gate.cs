@@ -9,11 +9,12 @@ public class Gate : MonoBehaviour
     void Start()
     {
         _collider = GetComponent<Collider2D>();
-        _gameman = GameObject.FindWithTag("Gameman").GetComponent<Game_man>();
+        if (GameObject.FindWithTag("Gameman") != null)
+        {
+            _gameman = GameObject.FindWithTag("Gameman").GetComponent<Game_man>();
+        }
         _collider.enabled = false;
     }
-
-    // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Key")
