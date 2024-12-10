@@ -23,14 +23,17 @@ public class Goblinarcher : Enemy
     {
         if (_isAlive == true && GameObject.FindGameObjectWithTag("Player") != null)
         {
-            WhereIsPlayer();
-            if (_target.position.y <= transform.position.y + 0.2 && _target.position.y >= transform.position.y - 0.2 && _target.position.x < transform.position.x + 9 && _target.position.x! > transform.position.x - 9)
+            if (_player.IsPlayerDead() == false)
             {
-                Shoot();
+                WhereIsPlayer();
+                if (_target.position.y <= transform.position.y + 0.2 && _target.position.y >= transform.position.y - 0.2 && _target.position.x < transform.position.x + 9 && _target.position.x! > transform.position.x - 9)
+                {
+                    Shoot();
+                }
             }
         }
     }
-    protected void JumpAway()
+    private void JumpAway()
     {
         RaycastHit2D rightInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.right, _attackDistance, 1 << 3);
         RaycastHit2D leftInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.left, _attackDistance, 1 << 3);

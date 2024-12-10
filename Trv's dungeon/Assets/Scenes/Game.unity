@@ -1719,6 +1719,10 @@ PrefabInstance:
       value: 'Enemy_hitbox '
       objectReference: {fileID: 0}
     - target: {fileID: 775518433384658773, guid: b9106e484c73148c3a6c492acc8d63b4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 775518433384658773, guid: b9106e484c73148c3a6c492acc8d63b4, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -2779,6 +2783,10 @@ PrefabInstance:
       value: Enemy_hitbox
       objectReference: {fileID: 0}
     - target: {fileID: 775518433384658773, guid: b9106e484c73148c3a6c492acc8d63b4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 775518433384658773, guid: b9106e484c73148c3a6c492acc8d63b4, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -2899,7 +2907,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785051219}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -2907,7 +2915,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -5048,6 +5056,10 @@ PrefabInstance:
       value: Enemy_hitbox
       objectReference: {fileID: 0}
     - target: {fileID: 775518433384658773, guid: b9106e484c73148c3a6c492acc8d63b4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 775518433384658773, guid: b9106e484c73148c3a6c492acc8d63b4, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -6830,6 +6842,10 @@ PrefabInstance:
       value: Enemy_hitbox
       objectReference: {fileID: 0}
     - target: {fileID: 775518433384658773, guid: b9106e484c73148c3a6c492acc8d63b4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 775518433384658773, guid: b9106e484c73148c3a6c492acc8d63b4, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -8457,6 +8473,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1374440855811777098, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: m_ForceReceiveLayers.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
     - target: {fileID: 1920877316666601164, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -8504,6 +8524,158 @@ PrefabInstance:
     - target: {fileID: 4492341538723553257, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1658795914}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1710825818}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 2068749183}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: GameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: GameWinSequence
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1658795914}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1710825818}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 2068749183}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: GameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: GameOverSequence
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Spawn_man, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Game_man, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UIman, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Spawn_man, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Game_man, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UIman, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

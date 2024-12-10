@@ -125,3 +125,5 @@ Added many enviromental animations, the game looks feels way better now. Also fi
 Today I ve worked extensively on the overall game physics. Customized layering and collision. The gameplay feels much better now. I have also added some animations for the main menu.
 -07/12/2024
 I have recorded some audios for the game. The characters have sound effects we also have an ongoing background wind sound.
+-10/12/2024
+I am improving my source code.

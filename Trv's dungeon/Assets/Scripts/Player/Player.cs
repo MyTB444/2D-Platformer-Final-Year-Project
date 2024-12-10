@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
@@ -15,87 +16,88 @@ public class Player : MonoBehaviour
     [SerializeField] protected float _stunDuration;
     [SerializeField] protected int _health;
     public float _playerfragility;
-    private float horizontalInput;
     //Logic
-    private int _canRoll = 0;
+    private int rollState = 0;
+    private float horizontalInput;
     private bool _canWalk = true;
     protected bool _canClimb;
-    private bool _facedRight;
-    private bool _duringRoll;
-    private bool _playerDamageable;
-    private bool _resetJump = false;
-    private bool _attacking = false;
     private bool _keyFound = false;
     //Component variables for handles
     [SerializeField] private GameObject _key;
     private Character_audio _audio;
     private SpriteRenderer _playerkey;
     private SpriteRenderer _playerSprite;
+    [SerializeField] UnityEvent playerIsDead;
+    [SerializeField] UnityEvent gameWon;
     private PlayerAnimation _playerAnim;
     private Rigidbody2D _rigid;
     private UIman _uiman;
-    private Game_man _gameman;
-    private Spawn_man _spawnman;
     void Start()
     {
-        _playerDamageable = true;
         //HANDLES
         _rigid = GetComponent<Rigidbody2D>();
         _playerAnim = GetComponentInChildren<PlayerAnimation>();
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
-        _spawnman = GameObject.FindWithTag("Spawnman").GetComponent<Spawn_man>();
         _playerkey = GameObject.FindWithTag("Playerkey").GetComponent<SpriteRenderer>();
         _uiman = GameObject.FindWithTag("UIman").GetComponent<UIman>();
-        _gameman = GameObject.FindWithTag("Gameman").GetComponent<Game_man>();
         _audio = GetComponentInChildren<Character_audio>();
     }
     void Update()
     {
-        OutOfMap();
+
+        if (OutOfMap() == true)
+        {
+            gameWon.Invoke();
+        }
         if (_canWalk == true)
         {
-            Movement();
+            MovementInput();
         }
     }
-    void Movement()
+    enum AirState
     {
+        Grounded,
+        InAir,
+    }
+    enum MovementState
+    {
+        Attacking,
+        Rolling,
+        Standing,
+    }
+    AirState currentAirState = AirState.Grounded;
+    MovementState currentMovementState = MovementState.Standing;
+    // input handler
+    void MovementInput()
+    {
+        GroundCalculate();
         //WALK
         horizontalInput = Input.GetAxisRaw("Horizontal");
-        Flip(horizontalInput);
-        _rigid.velocity = new Vector2(horizontalInput * _speed, _rigid.velocity.y);
-        _playerAnim.RunAnim(horizontalInput);
+        Walk(horizontalInput);
         //JUMP
-        if (Input.GetKeyDown(KeyCode.Space) && GroundCalculate() == true && _duringRoll == false)
+        if (Input.GetKeyDown(KeyCode.Space) && currentAirState == AirState.Grounded && currentMovementState == MovementState.Standing)
         {
-            _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
-            _playerAnim.JumpAnim();
-            StartCoroutine(ResetingJump());
+            Jump();
         }
         //FAST FALL
-        if (Input.GetKeyDown(KeyCode.S) && GroundCalculate() == false)
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            _playerAnim.ClimbAnimStop();
-            _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce * -1);
+            FastFall();
         }
-        if (Input.GetKeyDown(KeyCode.W) && _canClimb == true)
+        //CLIMB
+        if (Input.GetKeyDown(KeyCode.W) && _canClimb == true && currentMovementState == MovementState.Standing)
         {
-            _rigid.gravityScale = 0;
-            _playerAnim.ClimbAnimStart();
-            _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce / 1.5f);
+            Climb();
         }
         //ROLL
-        if (Input.GetKeyDown(KeyCode.LeftShift) && _canRoll == 0 && _attacking == false)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && rollState == 0 && currentMovementState == MovementState.Standing)
         {
-            _canRoll = 1;
-            _playerAnim.RollAnim();
-            _audio.DashAudio();
             StartCoroutine(Rolling());
         }
         //SWING
-        if (Input.GetKeyDown(KeyCode.K) && _attacking == false && _duringRoll == false)
+        if (Input.GetKeyDown(KeyCode.K) && currentMovementState == MovementState.Standing)
         {
             StartCoroutine(Attack());
-            _audio.SwingAudio();
         }
         //KEY
         if (Input.GetKeyDown(KeyCode.J) && _keyFound == true)
@@ -104,27 +106,41 @@ public class Player : MonoBehaviour
         }
     }
     //CAN WE JUMP?
-    bool GroundCalculate()
+    private void GroundCalculate()
     {
         int layerMask = (1 << 6) | (1 << 7);
-        RaycastHit2D hitInfo = Physics2D.Raycast(new Vector2(transform.position.x - 0.3f, transform.position.y), Vector2.down, 0.3f, layerMask);
-        RaycastHit2D hitInfo1 = Physics2D.Raycast(new Vector2(transform.position.x + 0.3f, transform.position.y), Vector2.down, 0.3f, layerMask);
-        RaycastHit2D hitInfo2 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.down, 0.3f, layerMask);
-        if (hitInfo.collider != null || hitInfo1.collider != null || hitInfo2.collider != null)
+        RaycastHit2D groundInfo = Physics2D.BoxCast(transform.position, new Vector2(0.65f, 0.2f), 0.0f, Vector2.down, 0.3f, layerMask);
+        if (groundInfo.collider != null)
         {
-            if (_resetJump == false)
-            {
-                return true;
-            }
+            currentAirState = AirState.Grounded;
         }
-        return false;
+        else
+        {
+            currentAirState = AirState.InAir;
+        }
+
     }
-    //WHEN CAN WE JUMP AGAIN?
-    IEnumerator ResetingJump()
+    void Jump()
     {
-        _resetJump = true;
-        yield return new WaitForSeconds(0.1f);
-        _resetJump = false;
+        _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
+        _playerAnim.JumpAnim();
+    }
+    void FastFall()
+    {
+        _playerAnim.ClimbAnimStop();
+        _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce * -1);
+    }
+    void Climb()
+    {
+        _rigid.gravityScale = 0;
+        _playerAnim.ClimbAnimStart();
+        _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce / 1.5f);
+    }
+    void Walk(float quick)
+    {
+        Flip(quick);
+        _rigid.velocity = new Vector2(quick * _speed, _rigid.velocity.y);
+        _playerAnim.RunAnim(quick);
     }
     //FACING LEFT OR RIGHT?
     void Flip(float move)
@@ -132,63 +148,81 @@ public class Player : MonoBehaviour
         if (move > 0)
         {
             _playerSprite.flipX = false;
-            _facedRight = true;
         }
         else if (move < 0)
         {
             _playerSprite.flipX = true;
-            _facedRight = false;
         }
+    }
+    private bool FacedRight()
+    {
+        if (_playerSprite.flipX == false)
+        {
+            return true;
+        }
+        return false;
     }
     IEnumerator Rolling()
     {
-        _duringRoll = true;
-        _playerDamageable = false;
+        currentMovementState = MovementState.Rolling;
+        rollState = 2;
+        _playerAnim.RollAnim();
+        _audio.DashAudio();
         _speed = _speed * 1.5f;
         yield return new WaitForSeconds(1.0f);
         _speed = _speed / 1.5f;
-        _playerDamageable = true;
-        _duringRoll = false;
+        currentMovementState = MovementState.Standing;
         yield return new WaitForSeconds(2.5f);
-        _canRoll = 0;
+        rollState = 0;
     }
     IEnumerator Attack()
     {
-        _attacking = true;
-        if (_facedRight == true)
+        currentMovementState = MovementState.Attacking;
+        _audio.SwingAudio();
+        if (FacedRight() == true)
         {
             _playerAnim.SwingRightAnim();
         }
-        else if (_facedRight == false)
+        else if (FacedRight() == false)
         {
             _playerAnim.SwingLeftAnim();
         }
         yield return new WaitForSeconds(_attackDuration);
-        _attacking = false;
+        currentMovementState = MovementState.Standing;
     }
+
     public void TakeDamage()
     {
-        if (_playerDamageable == true)
+        if (OutOfMap() == false && currentMovementState != MovementState.Rolling && IsPlayerDead() == false)
         {
             _playerAnim.Damaged();
             _health = _health - 1;
             _uiman.DamageUpdate(_health);
-            if (_health > 0)
-            {
-                _audio.DamageAudio();
-                StartCoroutine(Stun(_stunDuration));
-            }
-            else if (_health == 0)
-            {
-                _audio.DeathAudio();
-                StopAllCoroutines();
-                _canWalk = false;
-                _playerDamageable = false;
-                _spawnman.StopSpawn();
-                _playerAnim.DeathAnim();
-                _uiman.GameOverSequence();
-                _gameman.GameOver();
-            }
+            DamageEffect();
+        }
+    }
+    public bool IsPlayerDead()
+    {
+        if (_health == 0)
+        {
+            return true;
+        }
+        return false;
+    }
+    private void DamageEffect()
+    {
+        if (IsPlayerDead() == false)
+        {
+            _audio.DamageAudio();
+            StartCoroutine(Stun(_stunDuration));
+        }
+        else if (IsPlayerDead() == true)
+        {
+            StopAllCoroutines();
+            _canWalk = false;
+            _audio.DeathAudio();
+            _playerAnim.DeathAnim();
+            playerIsDead.Invoke();
         }
     }
     public IEnumerator Stun(float time)
@@ -203,9 +237,9 @@ public class Player : MonoBehaviour
     }
     public void DisableClimb()
     {
-        _canClimb = false;
         _rigid.gravityScale = 1;
         _playerAnim.ClimbAnimStop();
+        _canClimb = false;
     }
     public void EnableKey()
     {
@@ -215,24 +249,22 @@ public class Player : MonoBehaviour
     {
         _keyFound = false;
         _playerkey.enabled = false;
-        if (_facedRight == true)
+        if (FacedRight() == true)
         {
             Instantiate(_key, new Vector2(transform.position.x + 0.8f, transform.position.y + 0.3f), Quaternion.identity);
         }
-        else if (_facedRight == false)
+        else if (FacedRight() == false)
         {
             Instantiate(_key, new Vector2(transform.position.x - 0.8f, transform.position.y + 0.3f), Quaternion.identity);
         }
     }
     //Win check
-    protected void OutOfMap()
+    protected bool OutOfMap()
     {
         if (transform.position.y < -8)
         {
-            _playerDamageable = false;
-            _spawnman.StopSpawn();
-            _uiman.GameWinSequence();
-            _gameman.GameOver();
+            return true;
         }
+        return false;
     }
 }
