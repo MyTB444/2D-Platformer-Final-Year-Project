@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Audioman : MonoBehaviour
 {
+    //Simple audio manager.
     [SerializeField] private AudioClip _clickClip;
     private AudioSource _audioSource;
     void Start()

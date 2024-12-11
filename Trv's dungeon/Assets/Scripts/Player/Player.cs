@@ -44,9 +44,9 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-
         if (OutOfMap() == true)
         {
+            //Observer trigger for gamewon
             gameWon.Invoke();
         }
         if (_canWalk == true)
@@ -105,11 +105,11 @@ public class Player : MonoBehaviour
             SpawnKey();
         }
     }
-    //CAN WE JUMP?
+    //CAN WE JUMP? We cast a box from our foot. If it hits an object, we know that we are grounded.
     private void GroundCalculate()
     {
         int layerMask = (1 << 6) | (1 << 7);
-        RaycastHit2D groundInfo = Physics2D.BoxCast(transform.position, new Vector2(0.65f, 0.2f), 0.0f, Vector2.down, 0.3f, layerMask);
+        RaycastHit2D groundInfo = Physics2D.BoxCast(transform.position, new Vector2(0.6f, 0.2f), 0.0f, Vector2.down, 0.3f, layerMask);
         if (groundInfo.collider != null)
         {
             currentAirState = AirState.Grounded;
@@ -118,7 +118,6 @@ public class Player : MonoBehaviour
         {
             currentAirState = AirState.InAir;
         }
-
     }
     void Jump()
     {
@@ -154,6 +153,7 @@ public class Player : MonoBehaviour
             _playerSprite.flipX = true;
         }
     }
+    // Return true if we are faced right
     private bool FacedRight()
     {
         if (_playerSprite.flipX == false)
@@ -190,7 +190,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(_attackDuration);
         currentMovementState = MovementState.Standing;
     }
-
+    // Trigger damage take.
     public void TakeDamage()
     {
         if (OutOfMap() == false && currentMovementState != MovementState.Rolling && IsPlayerDead() == false)
@@ -201,6 +201,7 @@ public class Player : MonoBehaviour
             DamageEffect();
         }
     }
+    // Return true if health is zero
     public bool IsPlayerDead()
     {
         if (_health == 0)
@@ -209,6 +210,7 @@ public class Player : MonoBehaviour
         }
         return false;
     }
+    // Get stunned when damaged but alive. If we are dead, invoke player is dead event for observers.
     private void DamageEffect()
     {
         if (IsPlayerDead() == false)
@@ -225,6 +227,7 @@ public class Player : MonoBehaviour
             playerIsDead.Invoke();
         }
     }
+    // Cant move fore "time" amound of duration
     public IEnumerator Stun(float time)
     {
         _canWalk = false;
@@ -245,6 +248,7 @@ public class Player : MonoBehaviour
     {
         _keyFound = true;
     }
+    // Instantiate the key object if keyfound is true
     protected void SpawnKey()
     {
         _keyFound = false;

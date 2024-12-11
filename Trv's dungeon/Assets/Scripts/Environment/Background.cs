@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
+    // Background image manual animation.
     void Update()
     {
         Flow();

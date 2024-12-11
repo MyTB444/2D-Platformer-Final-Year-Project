@@ -21,6 +21,7 @@ public class Mainmenu : MonoBehaviour
         _audioSource.Play();
         Application.Quit();
     }
+    //Play menu animation and delay game load.
     private IEnumerator GameStarting()
     {
         _menu.SetTrigger("Start");

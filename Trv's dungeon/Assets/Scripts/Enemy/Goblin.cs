@@ -13,7 +13,6 @@ public class Goblin : Enemy
     }
     protected override void Update()
     {
-
         if (_isAlive == true && GameObject.FindGameObjectWithTag("Player") != null && _enemyAnim != null)
         {
             if (_player.IsPlayerDead() == false)
@@ -22,8 +21,8 @@ public class Goblin : Enemy
                 Movement();
             }
         }
-
     }
+    // Spawn delay allow start method to run before we start executing our code
     private IEnumerator SpawnDelay()
     {
         yield return new WaitForSeconds(0.5f);
@@ -31,17 +30,15 @@ public class Goblin : Enemy
     }
     protected virtual void Movement()
     {
-        //Walk
+        //Walk based on jack location.
         CanWeMove();
         if (_target.position.x < transform.position.x && _canMove == true && _knockedBack == false && _attacking == false)
         {
-            //StopCoroutine(Walking(_currentSpeed));
             _currentSpeed = _speed * -1;
             Walking(_currentSpeed);
         }
         else if (_target.position.x > transform.position.x && _canMove == true && _knockedBack == false && _attacking == false)
         {
-            // StopCoroutine(Walking(_currentSpeed));
             _currentSpeed = _speed;
             Walking(_currentSpeed);
         }
@@ -51,6 +48,7 @@ public class Goblin : Enemy
             Jump();
         }
     }
+    // Is jack at a reachable place.
     protected void CanWeMove()
     {
         RaycastHit2D upInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.up, _attackDistance * 3, 1 << 3);
@@ -72,6 +70,7 @@ public class Goblin : Enemy
         _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
         StartCoroutine(WaitForJump());
     }
+    // Move until jack is at an attackable distance. Then start attack animation.
     protected void Walking(float speed)
     {
         RaycastHit2D rightInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.right, _attackDistance, 1 << 3);
@@ -84,7 +83,7 @@ public class Goblin : Enemy
             StartAttack();
         }
     }
-    //check if it is time to attack
+    //Attack based on sprite flip.
     IEnumerator Attack()
     {
         yield return new WaitForSeconds(0.1f);
@@ -108,6 +107,7 @@ public class Goblin : Enemy
         _enemyAnim.StopWalking();
         StartCoroutine(Attack());
     }
+    // Jump cooldown.
     IEnumerator WaitForJump()
     {
         yield return new WaitForSeconds(_jumpCooldown);

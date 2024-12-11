@@ -6,6 +6,7 @@ using UnityEngine.Animations;
 
 public class Arrow : MonoBehaviour
 {
+    // Check parent object location and move accordingly.
     public Transform _archer;
     void Start()
     {

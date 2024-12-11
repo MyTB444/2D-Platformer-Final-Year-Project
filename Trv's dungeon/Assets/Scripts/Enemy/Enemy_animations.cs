@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy_animations : MonoBehaviour
 {
+    //Simple animation handler for enemies.
     private SpriteRenderer _sprite;
     private Animator _anim;
     void Start()

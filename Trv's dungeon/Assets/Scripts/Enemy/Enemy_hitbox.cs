@@ -8,6 +8,7 @@ using UnityEngine.AI;
 
 public class Enemy_hitbox : MonoBehaviour
 {
+    // Assing handles to the player if we hit the player. Call its take damage, and push it away.
     private int collisionnumber;
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -29,7 +30,7 @@ public class Enemy_hitbox : MonoBehaviour
                     _playerRigid.velocity = new Vector2(_playerHit._playerfragility * -1, _playerHit._playerfragility);
                 }
             }
-            if (this.gameObject.tag == "Arrow" && other.gameObject.tag != "Enemy" && other.gameObject.tag != "Ladder" && other.gameObject.tag != "Arrow")
+            if (this.gameObject.tag == "Arrow" && other.gameObject.tag == "Ground" || other.gameObject.tag == "Player" && this.gameObject.tag == "Arrow")
             {
                 Destroy(this.gameObject);
             }

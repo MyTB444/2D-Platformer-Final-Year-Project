@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    //Simple animation handler for the player.
     private SpriteRenderer _sprite;
     private Animator _anim;
     void Start()
@@ -29,7 +30,6 @@ public class PlayerAnimation : MonoBehaviour
     {
         _anim.SetTrigger("Swingleft");
     }
-
     public void RollAnim()
     {
         _anim.SetTrigger("Roll");
@@ -50,11 +50,11 @@ public class PlayerAnimation : MonoBehaviour
     {
         StartCoroutine(Reding());
     }
+    //Manually created animation for changing color when damage is taken.
     private IEnumerator Reding()
     {
         _sprite.color = Color.red;
         yield return new WaitForSeconds(0.4f);
         _sprite.color = Color.white;
-
     }
 }

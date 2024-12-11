@@ -21,6 +21,7 @@ public class Game_man : MonoBehaviour
         _gateCollider = GameObject.FindWithTag("Gate").GetComponent<Collider2D>();
         _count = 0;
     }
+    //Restart and exit buttons.
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R) && _isGameover == true || Input.GetKeyDown(KeyCode.Alpha8))
@@ -41,6 +42,7 @@ public class Game_man : MonoBehaviour
         _audio.CLickAudio();
         Destroy(_gate.gameObject);
     }
+    // If hearth or diamond is found, inform related objects.
     public void HearthFound()
     {
         _count = _count + 1;
@@ -57,6 +59,7 @@ public class Game_man : MonoBehaviour
         _audio.CLickAudio();
         EnableGate();
     }
+    // If both are found enable the gate collider for unlocking it.
     private void EnableGate()
     {
         if (_count == 2)

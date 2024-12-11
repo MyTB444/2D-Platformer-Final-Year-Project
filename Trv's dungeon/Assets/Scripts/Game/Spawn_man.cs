@@ -23,6 +23,7 @@ public class Spawn_man : MonoBehaviour
             StopAllCoroutines();
         }
     }
+    //Spawn a goblin in the next spot every few seconds.
     IEnumerator GoblinSpawn()
     {
         while (true)
@@ -34,6 +35,7 @@ public class Spawn_man : MonoBehaviour
             }
         }
     }
+    // Decrease the time at wich goblins spawn.
     public void DifficultyIncreased()
     {
         _difficulty = _difficulty - 1;

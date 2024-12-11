@@ -127,3 +127,5 @@ Today I ve worked extensively on the overall game physics. Customized layering a
 I have recorded some audios for the game. The characters have sound effects we also have an ongoing background wind sound.
 -10/12/2024
 I am improving my source code.
+-11/12/2024 
+I am adding more documentation and finalizing the demo.

@@ -18,7 +18,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected bool _isanarcher;
     [SerializeField] protected bool _canJump;
     public int _enemyFragility;
-    //-----------------------
+    // Logic
     protected float _currentSpeed;
     protected bool _knockedBack = false;
     protected bool _facedRight;
@@ -76,7 +76,6 @@ public abstract class Enemy : MonoBehaviour
     public void TakeDamage()
     {
         _health = _health - 1;
-        StopAllCoroutines();
         StartCoroutine(KnockedBack());
         _audio.DamageAudio();
         _enemyAnim.Damaged();

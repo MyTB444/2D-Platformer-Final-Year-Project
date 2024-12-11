@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
+    // Enable collider when allowed. Destroy gate if key is dropped.
     private Game_man _gameman;
     private Collider2D _collider;
     void Start()

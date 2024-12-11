@@ -14,15 +14,18 @@ public class UIman : MonoBehaviour
     public TextMeshProUGUI finalScore;
     [SerializeField] private TextMeshProUGUI _gameoverText;
     [SerializeField] private TextMeshProUGUI _gamewinText;
+    // Play hearth sign animations for taking damage.
     public void DamageUpdate(int i)
     {
         _live[i].SetTrigger("Destroy");
     }
+    //Activate gameover text.
     public void GameOverSequence()
     {
         _gameStop = true;
         _gameoverText.gameObject.SetActive(true);
     }
+    //Activate game win tests.
     public void GameWinSequence()
     {
         _gameStop = true;
@@ -38,7 +41,7 @@ public class UIman : MonoBehaviour
         }
         DisplayTime(timeValue);
     }
-
+    //Display time tracker.
     private void DisplayTime(float timeToDisplay)
     {
         float Minutes = Mathf.FloorToInt(timeToDisplay / 60);
