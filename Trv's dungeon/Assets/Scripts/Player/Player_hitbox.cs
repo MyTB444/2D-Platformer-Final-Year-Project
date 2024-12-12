@@ -59,6 +59,11 @@ public class Player_hitbox : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D other)
     {
+        StartCoroutine(HitboxColdown());
+    }
+    private IEnumerator HitboxColdown()
+    {
+        yield return new WaitForSeconds(0.4f);
         collisionnumber = 0;
     }
 }

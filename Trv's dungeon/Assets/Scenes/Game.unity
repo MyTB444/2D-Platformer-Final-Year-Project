@@ -8473,14 +8473,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1374440855811777098, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: m_ForceReceiveLayers.m_Bits
-      value: 192
-      objectReference: {fileID: 0}
-    - target: {fileID: 1920877316666601164, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3414531809540765021, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
       propertyPath: m_Name
       value: Player_jack
@@ -8526,26 +8518,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
       propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1658795914}
@@ -8558,42 +8530,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2068749183}
     - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StopSpawn
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GameOver
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: GameWinSequence
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
       propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1658795914}
@@ -8605,86 +8541,6 @@ PrefabInstance:
       propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 2068749183}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StopSpawn
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GameOver
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: GameOverSequence
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Spawn_man, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Game_man, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UIman, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Spawn_man, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Game_man, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UIman, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: gameWon.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672093456412492132, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: playerIsDead.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8033277503925599022, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8033277503925599022, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

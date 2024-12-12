@@ -9,7 +9,7 @@ using UnityEngine.AI;
 public class Enemy_hitbox : MonoBehaviour
 {
     // Assing handles to the player if we hit the player. Call its take damage, and push it away.
-    private int collisionnumber;
+    private int collisionnumber = 0;
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (collisionnumber < 1)
@@ -36,12 +36,12 @@ public class Enemy_hitbox : MonoBehaviour
             }
         }
     }
-    public void Disable()
-    {
-        this.gameObject.SetActive(false);
-    }
     private void OnTriggerExit2D(Collider2D other)
     {
         collisionnumber = 0;
+        if (this.gameObject.layer == 6.0f && other.gameObject.tag == "Player")
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }

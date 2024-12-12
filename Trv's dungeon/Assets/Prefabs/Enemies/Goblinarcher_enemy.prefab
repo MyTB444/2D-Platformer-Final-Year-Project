@@ -472,7 +472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 2
   _speed: 2
-  _jumpForce: 6
+  _jumpForce: 7
   _jumpCooldown: 4
   _attackDistance: 1
   _height: 0.5
