@@ -18,8 +18,7 @@ public class Player : MonoBehaviour
     public float _playerfragility;
     //Logic
     private int rollState = 0;
-    private float horizontalInput;
-    private bool _canWalk = true;
+    public bool _canWalk = true;
     protected bool _canClimb;
     private bool _keyFound = false;
     //Component variables for handles
@@ -44,14 +43,11 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        GroundCalculate();
         if (OutOfMap() == true)
         {
             //Observer trigger for gamewon
             gameWon.Invoke();
-        }
-        if (_canWalk == true)
-        {
-            MovementInput();
         }
     }
     enum AirState
@@ -67,44 +63,6 @@ public class Player : MonoBehaviour
     }
     AirState currentAirState = AirState.Grounded;
     MovementState currentMovementState = MovementState.Standing;
-    // input handler
-    void MovementInput()
-    {
-        GroundCalculate();
-        //WALK
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        Walk(horizontalInput);
-        //JUMP
-        if (Input.GetKeyDown(KeyCode.Space) && currentAirState == AirState.Grounded && currentMovementState == MovementState.Standing)
-        {
-            Jump();
-        }
-        //FAST FALL
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            FastFall();
-        }
-        //CLIMB
-        if (Input.GetKeyDown(KeyCode.W) && _canClimb == true && currentMovementState == MovementState.Standing)
-        {
-            Climb();
-        }
-        //ROLL
-        if (Input.GetKeyDown(KeyCode.LeftShift) && rollState == 0 && currentMovementState == MovementState.Standing)
-        {
-            StartCoroutine(Rolling());
-        }
-        //SWING
-        if (Input.GetKeyDown(KeyCode.K) && currentMovementState == MovementState.Standing)
-        {
-            StartCoroutine(Attack());
-        }
-        //KEY
-        if (Input.GetKeyDown(KeyCode.J) && _keyFound == true)
-        {
-            SpawnKey();
-        }
-    }
     //CAN WE JUMP? We cast a box from our foot. If it hits an object, we know that we are grounded.
     private void GroundCalculate()
     {
@@ -119,23 +77,29 @@ public class Player : MonoBehaviour
             currentAirState = AirState.InAir;
         }
     }
-    void Jump()
+    public void Jump()
     {
-        _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
-        _playerAnim.JumpAnim();
+        if (currentAirState == AirState.Grounded && currentMovementState == MovementState.Standing)
+        {
+            _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
+            _playerAnim.JumpAnim();
+        }
     }
-    void FastFall()
+    public void FastFall()
     {
         _playerAnim.ClimbAnimStop();
         _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce * -1);
     }
-    void Climb()
+    public void Climb()
     {
-        _rigid.gravityScale = 0;
-        _playerAnim.ClimbAnimStart();
-        _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce / 1.5f);
+        if (_canClimb == true && currentMovementState == MovementState.Standing)
+        {
+            _rigid.gravityScale = 0;
+            _playerAnim.ClimbAnimStart();
+            _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce / 1.5f);
+        }
     }
-    void Walk(float quick)
+    public void Walk(float quick)
     {
         Flip(quick);
         _rigid.velocity = new Vector2(quick * _speed, _rigid.velocity.y);
@@ -162,6 +126,13 @@ public class Player : MonoBehaviour
         }
         return false;
     }
+    public void StartRoll()
+    {
+        if (rollState == 0 && currentMovementState == MovementState.Standing)
+        {
+            StartCoroutine(Rolling());
+        }
+    }
     IEnumerator Rolling()
     {
         currentMovementState = MovementState.Rolling;
@@ -174,6 +145,13 @@ public class Player : MonoBehaviour
         currentMovementState = MovementState.Standing;
         yield return new WaitForSeconds(2.5f);
         rollState = 0;
+    }
+    public void StartAttack()
+    {
+        if (currentMovementState == MovementState.Standing)
+        {
+            StartCoroutine(Attack());
+        }
     }
     IEnumerator Attack()
     {
@@ -249,21 +227,24 @@ public class Player : MonoBehaviour
         _keyFound = true;
     }
     // Instantiate the key object if keyfound is true
-    protected void SpawnKey()
+    public void SpawnKey()
     {
-        _keyFound = false;
-        _playerkey.enabled = false;
-        if (FacedRight() == true)
+        if (_keyFound == true)
         {
-            Instantiate(_key, new Vector2(transform.position.x + 0.8f, transform.position.y + 0.3f), Quaternion.identity);
-        }
-        else if (FacedRight() == false)
-        {
-            Instantiate(_key, new Vector2(transform.position.x - 0.8f, transform.position.y + 0.3f), Quaternion.identity);
+            _keyFound = false;
+            _playerkey.enabled = false;
+            if (FacedRight() == true)
+            {
+                Instantiate(_key, new Vector2(transform.position.x + 0.8f, transform.position.y + 0.3f), Quaternion.identity);
+            }
+            else if (FacedRight() == false)
+            {
+                Instantiate(_key, new Vector2(transform.position.x - 0.8f, transform.position.y + 0.3f), Quaternion.identity);
+            }
         }
     }
     //Win check
-    protected bool OutOfMap()
+    private bool OutOfMap()
     {
         if (transform.position.y < -8)
         {
