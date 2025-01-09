@@ -176,8 +176,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 428456040567079839}
   - {fileID: 2058618849283624060}
@@ -271,8 +271,8 @@ MonoBehaviour:
   _speed: 2
   _jumpForce: 6
   _jumpCooldown: 4
-  _attackDistance: 0.3
-  _height: 0.5
+  _attackDistance: 0.55
+  _height: 0.9
   _attackDuration: 3
   _stunVulnerability: 0.5
   _isanarcher: 0

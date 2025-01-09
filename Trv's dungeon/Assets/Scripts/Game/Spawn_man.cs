@@ -45,3 +45,4 @@ public class Spawn_man : MonoBehaviour
         _canSwpan = false;
     }
 }
+// Check player location, set state and spawn accordingly.

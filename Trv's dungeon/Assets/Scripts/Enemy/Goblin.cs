@@ -114,3 +114,6 @@ public class Goblin : Enemy
         _canJump = true;
     }
 }
+
+
+// Check player state is in another map stop movement.

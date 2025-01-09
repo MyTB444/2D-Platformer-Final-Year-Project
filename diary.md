@@ -129,3 +129,5 @@ I have recorded some audios for the game. The characters have sound effects we a
 I am improving my source code.
 -11/12/2024 
 I am adding more documentation and finalizing the demo.
+-09/01/2025
+I have decided to change my map structure completely. I will now use tilemapping instead. I had to do this before designing further maps.

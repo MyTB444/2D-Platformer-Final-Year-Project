@@ -44,11 +44,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         GroundCalculate();
-        if (OutOfMap() == true)
-        {
+       // if (OutOfMap() == true)
+       // {
             //Observer trigger for gamewon
-            gameWon.Invoke();
-        }
+           // gameWon.Invoke();
+       // }
     }
     enum AirState
     {

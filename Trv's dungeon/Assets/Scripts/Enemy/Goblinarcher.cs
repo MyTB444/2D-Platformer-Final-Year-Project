@@ -47,12 +47,12 @@ public class Goblinarcher : Enemy
         RaycastHit2D leftInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.left, _attackDistance, 1 << 3);
         if (leftInfo.collider == true && _canJump == true)
         {
-            _currentSpeed = 4f;
+            _currentSpeed = _speed;
             StartCoroutine(JumpingAway(_currentSpeed));
         }
         else if (rightInfo.collider == true && _canJump == true)
         {
-            _currentSpeed = -4f;
+            _currentSpeed = _speed * -1;
             StartCoroutine(JumpingAway(_currentSpeed));
         }
     }
@@ -72,13 +72,13 @@ public class Goblinarcher : Enemy
     {
         if (_attacking == false)
         {
+            _attacking = true;
             StartCoroutine(Shooting());
         }
     }
     // Fire arrow based on sprite flip status
     IEnumerator Shooting()
     {
-        _attacking = true;
         _enemyAnim.AttackLeft();
         yield return new WaitForSeconds(0.5f);
         if (_facedRight == true)
