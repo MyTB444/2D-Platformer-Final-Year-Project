@@ -131,3 +131,5 @@ I am improving my source code.
 I am adding more documentation and finalizing the demo.
 -09/01/2025
 I have decided to change my map structure completely. I will now use tilemapping instead. I had to do this before designing further maps.
+-10/01/2025
+I have been thinking deeply about the quality of my code during the summer. :D  I am improving my AI code modularity and logic. Also polishing the sizing issues occured after swapping to tilemap.

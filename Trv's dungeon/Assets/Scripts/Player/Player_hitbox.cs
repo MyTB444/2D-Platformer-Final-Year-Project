@@ -13,7 +13,10 @@ public class Player_hitbox : MonoBehaviour
     void Start()
     {
         _player = GetComponentInParent<Player>();
-        _gameman = GameObject.FindGameObjectWithTag("Gameman").GetComponent<Game_man>();
+        if (GameObject.FindGameObjectWithTag("Gameman") != null)
+        {
+            _gameman = GameObject.FindGameObjectWithTag("Gameman").GetComponent<Game_man>();
+        }
         _playerkey = GameObject.FindWithTag("Playerkey").GetComponent<SpriteRenderer>();
     }
     // Damage and push enemies with handles. Trigger game events if the object is not an enemy.

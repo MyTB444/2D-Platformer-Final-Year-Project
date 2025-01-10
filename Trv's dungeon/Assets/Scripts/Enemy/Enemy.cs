@@ -15,16 +15,13 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float _height;
     [SerializeField] protected float _attackDuration;
     [SerializeField] protected float _stunVulnerability;
-    [SerializeField] protected bool _isanarcher;
     [SerializeField] protected bool _canJump;
     public int _enemyFragility;
     // Logic
     protected float _currentSpeed;
-    protected bool _knockedBack = false;
+    protected float distance;
     protected bool _facedRight;
-    protected bool _canMove = true;
     protected bool _isAlive;
-    protected bool _attacking = false;
     //components
     protected Transform _target;
     protected Character_audio _audio;
@@ -33,7 +30,6 @@ public abstract class Enemy : MonoBehaviour
     protected Enemy_animations _enemyAnim;
     protected Player _player;
     protected SpriteRenderer _enemySprite;
-
     protected virtual void Init()
     {
         _enemyAnim = GetComponentInChildren<Enemy_animations>();
@@ -56,9 +52,25 @@ public abstract class Enemy : MonoBehaviour
     {
         if (GameObject.FindGameObjectWithTag("Player") != null)
         {
+            distance = Vector2.Distance(transform.position, _target.transform.position);
             OutOfMap();
         }
     }
+
+    protected enum CombatState
+    {
+        Combat,
+        Neutral,
+    }
+    protected enum MovementState
+    {
+        Attacking,
+        Following,
+        Stuned,
+    }
+    protected CombatState currentCombatState = CombatState.Neutral;
+    protected MovementState currentMovementState = MovementState.Stuned;
+
     //where are we faced
     public void Flip(float move)
     {
@@ -86,37 +98,27 @@ public abstract class Enemy : MonoBehaviour
     }
     public void EnemyDead()
     {
-        if (_isAlive == true)
-        {
-            _isAlive = false;
-            StopAllCoroutines();
-            StartCoroutine(Dying());
-        }
-    }
-    protected virtual IEnumerator Dying()
-    {
+        _isAlive = false;
+        currentMovementState = MovementState.Stuned;
+        StopAllCoroutines();
         this._collider.enabled = false;
         _enemyAnim.DeadAnimation();
-        yield return new WaitForSeconds(1.2f);
+
     }
+
     // Are we in the screen?
     public void OutOfMap()
     {
-        if (_target.position.y > transform.position.y + 15 || _target.position.y < transform.position.y - 15)
+        if (distance > 50)
         {
             Destroy(this.gameObject);
         }
     }
-    IEnumerator KnockedBack()
+    protected virtual IEnumerator KnockedBack()
     {
-        _knockedBack = true;
+        currentMovementState = MovementState.Stuned;
         yield return new WaitForSeconds(_stunVulnerability);
-        if (_isanarcher == true)
-        {
-            _rigid.velocity = new Vector2(0, 0);
-        }
-        _knockedBack = false;
-        _canMove = true;
-        _attacking = false;
+        _rigid.velocity = new Vector2(0, 0);
+        currentMovementState = MovementState.Following;
     }
 }

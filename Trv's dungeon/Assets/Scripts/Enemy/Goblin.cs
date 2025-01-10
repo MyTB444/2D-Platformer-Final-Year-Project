@@ -13,7 +13,8 @@ public class Goblin : Enemy
     }
     protected override void Update()
     {
-        if (_isAlive == true && GameObject.FindGameObjectWithTag("Player") != null && _enemyAnim != null)
+        IsJackHere();
+        if (currentCombatState == CombatState.Combat && GameObject.FindGameObjectWithTag("Player") != null && _enemyAnim != null)
         {
             if (_player.IsPlayerDead() == false)
             {
@@ -26,42 +27,42 @@ public class Goblin : Enemy
     private IEnumerator SpawnDelay()
     {
         yield return new WaitForSeconds(0.5f);
-        _isAlive = true;
+        currentMovementState = MovementState.Following;
     }
     protected virtual void Movement()
     {
         //Walk based on jack location.
-        CanWeMove();
-        if (_target.position.x < transform.position.x && _canMove == true && _knockedBack == false && _attacking == false)
+
+        if (_target.position.x < transform.position.x && currentMovementState == MovementState.Following)
         {
             _currentSpeed = _speed * -1;
             Walking(_currentSpeed);
         }
-        else if (_target.position.x > transform.position.x && _canMove == true && _knockedBack == false && _attacking == false)
+        else if (_target.position.x > transform.position.x && currentMovementState == MovementState.Following)
         {
             _currentSpeed = _speed;
             Walking(_currentSpeed);
         }
         //jump
-        if (_target.position.y >= transform.position.y + 0.7f && _canJump == true && _canMove == true && _knockedBack == false)
+        if (_target.position.y >= transform.position.y + 0.7f && currentMovementState == MovementState.Following && _canJump == true)
         {
             Jump();
         }
     }
     // Is jack at a reachable place.
-    protected void CanWeMove()
+    protected void IsJackHere()
     {
         RaycastHit2D upInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.up, _attackDistance * 3, 1 << 3);
         RaycastHit2D downInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.down, _attackDistance * 3, 1 << 3);
-        if (_target.position.y >= transform.position.y + 3.0f || upInfo.collider == true || downInfo.collider == true)
+        if (_target.position.y >= transform.position.y + 4.5f || upInfo.collider == true || downInfo.collider == true)
         {
             _rigid.velocity = new Vector2(0, _rigid.velocity.y);
             _enemyAnim.StopWalking();
-            _canMove = false;
+            currentCombatState = CombatState.Neutral;
         }
-        else if (_target.position.y < transform.position.y + 1.8f && upInfo.collider == false && downInfo.collider == false)
+        else if (_target.position.y < transform.position.y + 4.5f && upInfo.collider == false && downInfo.collider == false)
         {
-            _canMove = true;
+            currentCombatState = CombatState.Combat;
         }
     }
     protected void Jump()
@@ -80,12 +81,15 @@ public class Goblin : Enemy
         _enemyAnim.StartWalking();
         if (leftInfo.collider == true || rightInfo.collider == true)
         {
-            StartAttack();
+            currentMovementState = MovementState.Attacking;
+            StartCoroutine(Attack());
         }
     }
     //Attack based on sprite flip.
     IEnumerator Attack()
     {
+        _rigid.velocity = new Vector2(0, _rigid.velocity.y);
+        _enemyAnim.StopWalking();
         yield return new WaitForSeconds(0.1f);
         if (_facedRight == true)
         {
@@ -98,20 +102,19 @@ public class Goblin : Enemy
             _enemyAnim.AttackLeft();
         }
         yield return new WaitForSeconds(_attackDuration);
-        _attacking = false;
-    }
-    protected void StartAttack()
-    {
-        _attacking = true;
-        _rigid.velocity = new Vector2(0, _rigid.velocity.y);
-        _enemyAnim.StopWalking();
-        StartCoroutine(Attack());
+        currentMovementState = MovementState.Following;
     }
     // Jump cooldown.
     IEnumerator WaitForJump()
     {
         yield return new WaitForSeconds(_jumpCooldown);
         _canJump = true;
+    }
+    protected override IEnumerator KnockedBack()
+    {
+        currentMovementState = MovementState.Stuned;
+        yield return new WaitForSeconds(_stunVulnerability);
+        currentMovementState = MovementState.Following;
     }
 }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -30,18 +31,17 @@ public class Enemy_hitbox : MonoBehaviour
                     _playerRigid.velocity = new Vector2(_playerHit._playerfragility * -1, _playerHit._playerfragility);
                 }
             }
-            if (this.gameObject.tag == "Arrow" && other.gameObject.tag == "Ground" || other.gameObject.tag == "Player" && this.gameObject.tag == "Arrow")
+            if (this.gameObject.tag == "Arrow")
             {
-                Destroy(this.gameObject);
+                if (other.gameObject.tag == "Ground" || other.gameObject.tag == "Player")
+                {
+                    Destroy(this.gameObject);
+                }
             }
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         collisionnumber = 0;
-        if (this.gameObject.layer == 6.0f && other.gameObject.tag == "Player")
-        {
-            this.gameObject.SetActive(false);
-        }
     }
 }

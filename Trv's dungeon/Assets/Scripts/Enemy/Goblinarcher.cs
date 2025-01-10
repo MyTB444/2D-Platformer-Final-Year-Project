@@ -9,7 +9,7 @@ public class Goblinarcher : Enemy
     [SerializeField] private GameObject _arrow;
     protected override void Update()
     {
-        if (_isAlive == true && GameObject.FindGameObjectWithTag("Player") != null)
+        if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             if (_player.IsPlayerDead() == false)
             {
@@ -18,24 +18,30 @@ public class Goblinarcher : Enemy
                 JumpAway();
             }
         }
+
     }
     protected override void Init()
     {
         base.Init();
-        _isAlive = true;
-        _attacking = false;
+        currentMovementState = MovementState.Following;
     }
     //If jack is close and at the same distance, fire arrow.
     private void ArcherMovement()
     {
-        if (_isAlive == true && GameObject.FindGameObjectWithTag("Player") != null)
+        WhereIsPlayer();
+        if (currentMovementState == MovementState.Following)
         {
-            if (_player.IsPlayerDead() == false)
+            if (distance < 9)
             {
-                WhereIsPlayer();
-                if (_target.position.y <= transform.position.y + 0.2 && _target.position.y >= transform.position.y - 0.2 && _target.position.x < transform.position.x + 9 && _target.position.x! > transform.position.x - 9)
+                if (_target.position.y <= transform.position.y + 2 && _target.position.y >= transform.position.y - 2)
                 {
-                    Shoot();
+                    RaycastHit2D upInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.up, _attackDistance * 3, 1 << 3);
+                    //RaycastHit2D downInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.down, _attackDistance * 3, 1 << 3);
+                    if (upInfo.collider == null)
+                    {
+                        currentMovementState = MovementState.Attacking;
+                        StartCoroutine(Shooting());
+                    }
                 }
             }
         }
@@ -68,14 +74,6 @@ public class Goblinarcher : Enemy
         _canJump = true;
 
     }
-    private void Shoot()
-    {
-        if (_attacking == false)
-        {
-            _attacking = true;
-            StartCoroutine(Shooting());
-        }
-    }
     // Fire arrow based on sprite flip status
     IEnumerator Shooting()
     {
@@ -92,7 +90,7 @@ public class Goblinarcher : Enemy
             Instantiate(_arrow, new Vector2(transform.position.x - 0.8f, transform.position.y + 0.3f), Quaternion.identity, gameObject.transform);
         }
         yield return new WaitForSeconds(_attackDuration);
-        _attacking = false;
+        currentMovementState = MovementState.Following;
     }
     // Flip the sprite based on jack location.
     private void WhereIsPlayer()

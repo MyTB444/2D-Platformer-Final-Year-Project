@@ -6,6 +6,7 @@ public class Player_input : MonoBehaviour
 {
     private float horizontalInput;
     private Player _player;
+
     void Start()
     {
         _player = GetComponent<Player>();
