@@ -18,10 +18,10 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected bool _canJump;
     public int _enemyFragility;
     // Logic
+    [SerializeField] protected bool _hasLos = false;
     protected float _currentSpeed;
-    protected float distance;
+    [SerializeField] protected float distance;
     protected bool _facedRight;
-    protected bool _isAlive;
     //components
     protected Transform _target;
     protected Character_audio _audio;
@@ -50,13 +50,10 @@ public abstract class Enemy : MonoBehaviour
     }
     protected virtual void Update()
     {
-        if (GameObject.FindGameObjectWithTag("Player") != null)
-        {
-            distance = Vector2.Distance(transform.position, _target.transform.position);
-            OutOfMap();
-        }
+        distance = Vector2.Distance(transform.position, _target.transform.position);
+        FowCheck();
+        OutOfMap();
     }
-
     protected enum CombatState
     {
         Combat,
@@ -72,6 +69,17 @@ public abstract class Enemy : MonoBehaviour
     protected MovementState currentMovementState = MovementState.Stuned;
 
     //where are we faced
+    protected void FowCheck()
+    {
+        int layerMask = (1 << 3 | 1 << 7);
+        RaycastHit2D fow = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.6f), _target.position - transform.position, distance + 2, layerMask);
+        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + 0.7f), _target.position - transform.position, Color.green);
+        Debug.Log(fow.collider.tag);
+        if (fow.collider != null)
+        {
+            _hasLos = fow.collider.CompareTag("Player");
+        }
+    }
     public void Flip(float move)
     {
         if (move > 0)
@@ -98,12 +106,10 @@ public abstract class Enemy : MonoBehaviour
     }
     public void EnemyDead()
     {
-        _isAlive = false;
         currentMovementState = MovementState.Stuned;
         StopAllCoroutines();
         this._collider.enabled = false;
         _enemyAnim.DeadAnimation();
-
     }
 
     // Are we in the screen?

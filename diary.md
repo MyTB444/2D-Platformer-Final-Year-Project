@@ -133,3 +133,5 @@ I am adding more documentation and finalizing the demo.
 I have decided to change my map structure completely. I will now use tilemapping instead. I had to do this before designing further maps.
 -10/01/2025
 I have been thinking deeply about the quality of my code during the summer. :D  I am improving my AI code modularity and logic. Also polishing the sizing issues occured after swapping to tilemap.
+-13/02/2025
+Enemies now have a field of view. Archers attack based on their fow. They also have a distance variable based on jack location. They can now attack in an angle, and always attack towards jack. The background is updated, map is expanded.

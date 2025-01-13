@@ -12,10 +12,10 @@ public class Background : MonoBehaviour
     }
     private void Flow()
     {
-        gameObject.transform.Translate(new Vector2(1.5f, 0) * 0.006f);
-        if (transform.position.x >= 116.6f)
+        gameObject.transform.Translate(new Vector2(0.5f, 0) * 0.006f);
+        if (transform.position.x >= 110.36f)
         {
-            transform.position = new Vector2(-116.6f, 0);
+            transform.position = new Vector2(-110.36f, 0);
         }
     }
 

@@ -31,9 +31,9 @@ public class Goblinarcher : Enemy
         WhereIsPlayer();
         if (currentMovementState == MovementState.Following)
         {
-            if (distance < 9)
+            if (_hasLos == true)
             {
-                if (_target.position.y <= transform.position.y + 2 && _target.position.y >= transform.position.y - 2)
+                if (distance < 11)
                 {
                     RaycastHit2D upInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.up, _attackDistance * 3, 1 << 3);
                     //RaycastHit2D downInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.down, _attackDistance * 3, 1 << 3);

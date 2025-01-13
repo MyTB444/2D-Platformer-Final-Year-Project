@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
     // Trigger damage take.
     public void TakeDamage()
     {
-        if (OutOfMap() == false && currentMovementState != MovementState.Rolling && IsPlayerDead() == false)
+        if (currentMovementState != MovementState.Rolling && IsPlayerDead() == false)
         {
             _playerAnim.Damaged();
             _health = _health - 1;
@@ -244,12 +244,4 @@ public class Player : MonoBehaviour
         }
     }
     //Win check
-    private bool OutOfMap()
-    {
-        if (transform.position.y < -8)
-        {
-            return true;
-        }
-        return false;
-    }
 }
