@@ -18,7 +18,10 @@ public class Game_man : MonoBehaviour
     {
         _audio = GameObject.FindWithTag("Audioman").GetComponent<Audioman>();
         _spawnman = GameObject.FindWithTag("Spawnman").GetComponent<Spawn_man>();
-        _gateCollider = GameObject.FindWithTag("Gate").GetComponent<Collider2D>();
+        if (GameObject.FindWithTag("Gate") != null)
+        {
+            _gateCollider = GameObject.FindWithTag("Gate").GetComponent<Collider2D>();
+        }
         _count = 0;
     }
     //Restart and exit buttons.

@@ -18,10 +18,12 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected bool _canJump;
     public int _enemyFragility;
     // Logic
-    [SerializeField] protected bool _hasLos = false;
-    protected float _currentSpeed;
-    [SerializeField] protected float distance;
+    public bool _hasLos = false;
+    protected bool canAttack = true;
+    public float distance;
     protected bool _facedRight;
+    protected float _currentSpeed;
+    [SerializeField] protected bool _isABoss;
     //components
     protected Transform _target;
     protected Character_audio _audio;
@@ -56,8 +58,9 @@ public abstract class Enemy : MonoBehaviour
     }
     protected enum CombatState
     {
-        Combat,
         Neutral,
+        Combat,
+        Dead,
     }
     protected enum MovementState
     {
@@ -73,14 +76,14 @@ public abstract class Enemy : MonoBehaviour
     {
         int layerMask = (1 << 3 | 1 << 7);
         RaycastHit2D fow = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.6f), _target.position - transform.position, distance + 2, layerMask);
-        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + 0.7f), _target.position - transform.position, Color.green);
-        Debug.Log(fow.collider.tag);
+        //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + 0.7f), _target.position - transform.position, Color.green);
+        // Debug.Log(fow.collider.tag);
         if (fow.collider != null)
         {
             _hasLos = fow.collider.CompareTag("Player");
         }
     }
-    public void Flip(float move)
+    protected void Flip(float move)
     {
         if (move > 0)
         {
@@ -95,35 +98,47 @@ public abstract class Enemy : MonoBehaviour
     }
     public void TakeDamage()
     {
-        _health = _health - 1;
-        StartCoroutine(KnockedBack());
-        _audio.DamageAudio();
-        _enemyAnim.Damaged();
-        if (_health <= 0)
+        if (currentCombatState != CombatState.Dead)
         {
-            EnemyDead();
+            _health = _health - 1;
+            currentMovementState = MovementState.Stuned;
+            StartCoroutine(KnockedBack(_stunVulnerability));
+            _audio.DamageAudio();
+            _enemyAnim.Damaged();
+            if (_health <= 0)
+            {
+                EnemyDead();
+            }
         }
     }
     public void EnemyDead()
     {
-        currentMovementState = MovementState.Stuned;
         StopAllCoroutines();
-        this._collider.enabled = false;
+        currentMovementState = MovementState.Stuned;
+        currentCombatState = CombatState.Dead;
+        if (_isABoss == false)
+        {
+            this._collider.enabled = false;
+        }
+        else if (_isABoss == true)
+        {
+            _rigid.constraints = RigidbodyConstraints2D.FreezePositionY;
+        }
         _enemyAnim.DeadAnimation();
     }
 
     // Are we in the screen?
-    public void OutOfMap()
+    protected void OutOfMap()
     {
         if (distance > 50)
         {
             Destroy(this.gameObject);
         }
     }
-    protected virtual IEnumerator KnockedBack()
+    protected virtual IEnumerator KnockedBack(float x)
     {
         currentMovementState = MovementState.Stuned;
-        yield return new WaitForSeconds(_stunVulnerability);
+        yield return new WaitForSeconds(x);
         _rigid.velocity = new Vector2(0, 0);
         currentMovementState = MovementState.Following;
     }

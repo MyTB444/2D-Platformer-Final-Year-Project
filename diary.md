@@ -135,3 +135,5 @@ I have decided to change my map structure completely. I will now use tilemapping
 I have been thinking deeply about the quality of my code during the summer. :D  I am improving my AI code modularity and logic. Also polishing the sizing issues occured after swapping to tilemap.
 -13/02/2025
 Enemies now have a field of view. Archers attack based on their fow. They also have a distance variable based on jack location. They can now attack in an angle, and always attack towards jack. The background is updated, map is expanded.
+-15/02/2025
+We now have a goblinminiboss. It has two separate attacks. The fighting arena inside the new map is also implemented. Overall enemy AI is improved.

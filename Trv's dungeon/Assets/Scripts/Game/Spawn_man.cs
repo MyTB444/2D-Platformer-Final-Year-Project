@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public class Spawn_man : MonoBehaviour
@@ -7,6 +8,8 @@ public class Spawn_man : MonoBehaviour
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] public int _difficulty;
     public GameObject _goblin;
+    public GameObject _minigoblin;
+    public GameObject _goblinarcher;
     public bool _canSwpan;
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,14 @@ public class Spawn_man : MonoBehaviour
                 yield return new WaitForSeconds(_difficulty);
             }
         }
+    }
+    public void SpawnBossArcher(float x, float y)
+    {
+        Instantiate(_goblinarcher, new Vector2(x, y), Quaternion.identity);
+    }
+    public void SpawnMiniBoss(float x, float y)
+    {
+        Instantiate(_minigoblin, new Vector2(x, y), Quaternion.identity);
     }
     // Decrease the time at wich goblins spawn.
     public void DifficultyIncreased()

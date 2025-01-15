@@ -40,6 +40,10 @@ public class Enemy_animations : MonoBehaviour
     {
         StartCoroutine(Reding());
     }
+    public void RockThrowAnim()
+    {
+        _anim.SetTrigger("Throw");
+    }
     private IEnumerator Reding()
     {
         _sprite.color = Color.red;

@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class Goblin : Enemy
 {
+    [SerializeField] private GameObject rock;
+    [SerializeField] private float spawnDelay;
+    private int _canThrow = 1;
     protected override void Init()
     {
         base.Init();
@@ -13,54 +18,70 @@ public class Goblin : Enemy
     }
     protected override void Update()
     {
-        IsJackHere();
-        if (currentCombatState == CombatState.Combat && GameObject.FindGameObjectWithTag("Player") != null && _enemyAnim != null)
+        if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             if (_player.IsPlayerDead() == false)
             {
-                base.Update();
-                Movement();
+                if (currentCombatState != CombatState.Dead)
+                {
+                    IsJackHere();
+                    base.Update();
+
+                    if (currentCombatState == CombatState.Combat && _enemyAnim != null)
+                    {
+                        Movement();
+                        if (_isABoss == true)
+                        {
+                            RockThrow();
+                        }
+                    }
+                }
             }
         }
     }
     // Spawn delay allow start method to run before we start executing our code
     private IEnumerator SpawnDelay()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(spawnDelay);
         currentMovementState = MovementState.Following;
     }
     protected virtual void Movement()
     {
-        //Walk based on jack location.
-
-        if (_target.position.x < transform.position.x && currentMovementState == MovementState.Following)
+        if (currentMovementState != MovementState.Stuned)
         {
-            _currentSpeed = _speed * -1;
-            Walking(_currentSpeed);
-        }
-        else if (_target.position.x > transform.position.x && currentMovementState == MovementState.Following)
-        {
-            _currentSpeed = _speed;
-            Walking(_currentSpeed);
-        }
-        //jump
-        if (_target.position.y >= transform.position.y + 0.7f && currentMovementState == MovementState.Following && _canJump == true)
-        {
-            Jump();
+            //Walk based on jack location.
+            if (_hasLos == true)
+            {
+                if (_target.position.x < transform.position.x && currentMovementState == MovementState.Following)
+                {
+                    _currentSpeed = _speed * -1;
+                    Walking(_currentSpeed);
+                }
+                else if (_target.position.x > transform.position.x && currentMovementState == MovementState.Following)
+                {
+                    _currentSpeed = _speed;
+                    Walking(_currentSpeed);
+                }
+            }
+            //jump
+            if (_target.position.y >= transform.position.y + 0.7f && currentMovementState == MovementState.Following && _canJump == true)
+            {
+                Jump();
+            }
         }
     }
     // Is jack at a reachable place.
     protected void IsJackHere()
     {
-        RaycastHit2D upInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.up, _attackDistance * 3, 1 << 3);
+        RaycastHit2D upInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.up, _attackDistance * 5, 1 << 3);
         RaycastHit2D downInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.down, _attackDistance * 3, 1 << 3);
-        if (_target.position.y >= transform.position.y + 4.5f || upInfo.collider == true || downInfo.collider == true)
+        if (_target.position.y > transform.position.y + 4 || distance > 17 && _hasLos == false || upInfo.collider == true || downInfo.collider == true)
         {
+            currentCombatState = CombatState.Neutral;
             _rigid.velocity = new Vector2(0, _rigid.velocity.y);
             _enemyAnim.StopWalking();
-            currentCombatState = CombatState.Neutral;
         }
-        else if (_target.position.y < transform.position.y + 4.5f && upInfo.collider == false && downInfo.collider == false)
+        else if (_target.position.y < transform.position.y + 4 && distance < 17 && upInfo.collider == false && downInfo.collider == false)
         {
             currentCombatState = CombatState.Combat;
         }
@@ -81,8 +102,12 @@ public class Goblin : Enemy
         _enemyAnim.StartWalking();
         if (leftInfo.collider == true || rightInfo.collider == true)
         {
-            currentMovementState = MovementState.Attacking;
-            StartCoroutine(Attack());
+            if (canAttack == true)
+            {
+                currentMovementState = MovementState.Attacking;
+                canAttack = false;
+                StartCoroutine(Attack());
+            }
         }
     }
     //Attack based on sprite flip.
@@ -102,7 +127,11 @@ public class Goblin : Enemy
             _enemyAnim.AttackLeft();
         }
         yield return new WaitForSeconds(_attackDuration);
-        currentMovementState = MovementState.Following;
+        canAttack = true;
+        if (currentMovementState != MovementState.Stuned)
+        {
+            currentMovementState = MovementState.Following;
+        }
     }
     // Jump cooldown.
     IEnumerator WaitForJump()
@@ -110,13 +139,38 @@ public class Goblin : Enemy
         yield return new WaitForSeconds(_jumpCooldown);
         _canJump = true;
     }
-    protected override IEnumerator KnockedBack()
+    private void RockThrow()
     {
-        currentMovementState = MovementState.Stuned;
-        yield return new WaitForSeconds(_stunVulnerability);
-        currentMovementState = MovementState.Following;
+        if (currentMovementState == MovementState.Following)
+        {
+            if (_hasLos == true)
+            {
+                if (distance < 17)
+                {
+                    RaycastHit2D upInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.up, _attackDistance * 3, 1 << 3);
+                    if (upInfo.collider == null)
+                    {
+                        if (_canThrow == 1)
+                        {
+                            currentMovementState = MovementState.Attacking;
+                            StartCoroutine(Shooting());
+                        }
+                    }
+                }
+            }
+        }
+    }
+    IEnumerator Shooting()
+    {
+        _canThrow = 0;
+        StartCoroutine(KnockedBack(2.1f));
+        _enemyAnim.StopWalking();
+        _rigid.velocity = new Vector2(0, 0);
+        _enemyAnim.RockThrowAnim();
+        yield return new WaitForSeconds(1.4f);
+        _audio.SwingAudio();
+        Instantiate(rock, new Vector2(transform.position.x, transform.position.y + 2.0f), Quaternion.identity, gameObject.transform);
+        yield return new WaitForSeconds(8);
+        _canThrow = 1;
     }
 }
-
-
-// Check player state is in another map stop movement.
