@@ -137,3 +137,5 @@ I have been thinking deeply about the quality of my code during the summer. :D  
 Enemies now have a field of view. Archers attack based on their fow. They also have a distance variable based on jack location. They can now attack in an angle, and always attack towards jack. The background is updated, map is expanded.
 -15/02/2025
 We now have a goblinminiboss. It has two separate attacks. The fighting arena inside the new map is also implemented. Overall enemy AI is improved.
+-16/02/2025
+I now have a detailed boss fight. I also want one of my levels to be movement based. I have started working on the cloud map and added many traps around.I will implement an inventory system and add double jump boots as the reward of this map.

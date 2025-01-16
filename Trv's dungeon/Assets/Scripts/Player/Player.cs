@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -44,11 +45,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         GroundCalculate();
-       // if (OutOfMap() == true)
-       // {
-            //Observer trigger for gamewon
-           // gameWon.Invoke();
-       // }
+        SlowCheck();
+        // if (OutOfMap() == true)
+        // {
+        //Observer trigger for gamewon
+        // gameWon.Invoke();
+        // }
     }
     enum AirState
     {
@@ -66,7 +68,7 @@ public class Player : MonoBehaviour
     //CAN WE JUMP? We cast a box from our foot. If it hits an object, we know that we are grounded.
     private void GroundCalculate()
     {
-        int layerMask = (1 << 6) | (1 << 7);
+        int layerMask = (1 << 6) | (1 << 7) | (1 << 8);
         RaycastHit2D groundInfo = Physics2D.BoxCast(transform.position, new Vector2(0.6f, 0.2f), 0.0f, Vector2.down, 0.3f, layerMask);
         if (groundInfo.collider != null)
         {
@@ -77,12 +79,27 @@ public class Player : MonoBehaviour
             currentAirState = AirState.InAir;
         }
     }
+    private void SlowCheck()
+    {
+        RaycastHit2D groundInfo1 = Physics2D.BoxCast(transform.position, new Vector2(0.6f, 0.2f), 0.0f, Vector2.down, 0.4f, 1 << 8);
+        if (groundInfo1.collider != null)
+        {
+            _jumpForce = 4.6f;
+            _speed = 1;
+        }
+        else if (groundInfo1.collider == null)
+        {
+            _jumpForce = 8;
+            _speed = 5.5f;
+        }
+    }
+
     public void Jump()
     {
         if (currentAirState == AirState.Grounded && currentMovementState == MovementState.Standing)
         {
-            _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
             _playerAnim.JumpAnim();
+            _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
         }
     }
     public void FastFall()
