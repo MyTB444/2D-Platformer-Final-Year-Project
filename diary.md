@@ -139,3 +139,5 @@ Enemies now have a field of view. Archers attack based on their fow. They also h
 We now have a goblinminiboss. It has two separate attacks. The fighting arena inside the new map is also implemented. Overall enemy AI is improved.
 -16/02/2025
 I now have a detailed boss fight. I also want one of my levels to be movement based. I have started working on the cloud map and added many traps around.I will implement an inventory system and add double jump boots as the reward of this map.
+-17/02/2025
+I am adding more enemies to the game. I now have a fully implemented mermaid enemy. It jumps and dahsed towards jack. I also have a firemage which cannot be killed yet. It could be the final boss of the game. The clouds map is full of traps, mermaids and the fire mage is shooting fireballs towards jack. It is quite hard to get trough!

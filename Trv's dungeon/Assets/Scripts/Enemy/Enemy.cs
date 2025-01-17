@@ -18,10 +18,10 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected bool _canJump;
     public int _enemyFragility;
     // Logic
-    public bool _hasLos = false;
+    protected bool _hasLos = false;
     protected bool canAttack = true;
-    public float distance;
-    protected bool _facedRight;
+    protected float distance;
+    public bool _facedRight;
     protected float _currentSpeed;
     [SerializeField] protected bool _isABoss;
     //components
@@ -54,7 +54,6 @@ public abstract class Enemy : MonoBehaviour
     {
         distance = Vector2.Distance(transform.position, _target.transform.position);
         FowCheck();
-        OutOfMap();
     }
     protected enum CombatState
     {
@@ -96,7 +95,7 @@ public abstract class Enemy : MonoBehaviour
             _facedRight = false;
         }
     }
-    public void TakeDamage()
+    public virtual void TakeDamage()
     {
         if (currentCombatState != CombatState.Dead)
         {
@@ -116,6 +115,7 @@ public abstract class Enemy : MonoBehaviour
         StopAllCoroutines();
         currentMovementState = MovementState.Stuned;
         currentCombatState = CombatState.Dead;
+        _rigid.gravityScale = 1;
         if (_isABoss == false)
         {
             this._collider.enabled = false;
@@ -130,10 +130,28 @@ public abstract class Enemy : MonoBehaviour
     // Are we in the screen?
     protected void OutOfMap()
     {
-        if (distance > 50)
+        if (distance > 40)
         {
             Destroy(this.gameObject);
         }
+    }
+    protected void JumpCheck()
+    {
+        if (_target.position.y >= transform.position.y + _height && currentMovementState == MovementState.Following && _canJump == true)
+        {
+            Jump();
+        }
+    }
+    protected void Jump()
+    {
+        _canJump = false;
+        _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
+        StartCoroutine(WaitForJump());
+    }
+    protected IEnumerator WaitForJump()
+    {
+        yield return new WaitForSeconds(_jumpCooldown);
+        _canJump = true;
     }
     protected virtual IEnumerator KnockedBack(float x)
     {

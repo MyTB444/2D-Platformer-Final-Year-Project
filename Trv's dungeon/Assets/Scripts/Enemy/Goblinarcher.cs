@@ -13,15 +13,17 @@ public class Goblinarcher : Enemy
         {
             if (_player.IsPlayerDead() == false)
             {
+                base.Update();
+                OutOfMap();
                 if (currentCombatState != CombatState.Dead)
                 {
-                    base.Update();
                     ArcherMovement();
                     JumpAway();
                 }
             }
         }
     }
+
     protected override void Init()
     {
         base.Init();

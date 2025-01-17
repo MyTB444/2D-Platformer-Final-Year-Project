@@ -22,13 +22,14 @@ public class Goblin : Enemy
         {
             if (_player.IsPlayerDead() == false)
             {
+                base.Update();
+                OutOfMap();
                 if (currentCombatState != CombatState.Dead)
                 {
                     IsJackHere();
-                    base.Update();
-
                     if (currentCombatState == CombatState.Combat && _enemyAnim != null)
                     {
+                        JumpCheck();
                         Movement();
                         if (_isABoss == true)
                         {
@@ -63,11 +64,6 @@ public class Goblin : Enemy
                     Walking(_currentSpeed);
                 }
             }
-            //jump
-            if (_target.position.y >= transform.position.y + 0.7f && currentMovementState == MovementState.Following && _canJump == true)
-            {
-                Jump();
-            }
         }
     }
     // Is jack at a reachable place.
@@ -85,12 +81,6 @@ public class Goblin : Enemy
         {
             currentCombatState = CombatState.Combat;
         }
-    }
-    protected void Jump()
-    {
-        _canJump = false;
-        _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
-        StartCoroutine(WaitForJump());
     }
     // Move until jack is at an attackable distance. Then start attack animation.
     protected void Walking(float speed)
@@ -134,11 +124,6 @@ public class Goblin : Enemy
         }
     }
     // Jump cooldown.
-    IEnumerator WaitForJump()
-    {
-        yield return new WaitForSeconds(_jumpCooldown);
-        _canJump = true;
-    }
     private void RockThrow()
     {
         if (currentMovementState == MovementState.Following)
