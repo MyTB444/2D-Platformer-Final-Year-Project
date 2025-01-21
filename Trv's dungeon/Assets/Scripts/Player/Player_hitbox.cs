@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Player_hitbox : MonoBehaviour
 {
+    public InventoryItemSO key;
+    public InventoryItemSO gem;
     private SpriteRenderer _playerkey;
     private Player _player;
     private int collisionnumber;
@@ -44,6 +46,8 @@ public class Player_hitbox : MonoBehaviour
 
             else if (other.gameObject.name == "Diamond")
             {
+                InventorySystem inventory = FindObjectOfType<InventorySystem>();
+                inventory.AddItem(new InventorySystem.InventoryItem { icon = gem.icon, name = gem.itemName });
                 Destroy(other.gameObject);
                 _gameman.DiamonFound();
             }
@@ -54,6 +58,8 @@ public class Player_hitbox : MonoBehaviour
             }
             else if (other.gameObject.tag == "Key")
             {
+                InventorySystem inventory = FindObjectOfType<InventorySystem>();
+                inventory.AddItem(new InventorySystem.InventoryItem { icon = key.icon, name = key.itemName });
                 Destroy(other.gameObject);
                 _playerkey.enabled = true;
                 _player.EnableKey();

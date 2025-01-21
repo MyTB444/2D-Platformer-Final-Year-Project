@@ -34,25 +34,28 @@ public class Mermaid : Enemy
         {
             if (canAttack == true)
             {
-                if (rightInfo.collider != null)
+                if (_hasLos)
                 {
-                    Flip(1);
-                    currentMovementState = MovementState.Attacking;
-                    canAttack = false;
-                    _enemyAnim.AttackRight();
-                    _rigid.gravityScale = 0;
-                    _rigid.velocity = new Vector2(_speed, 0);
-                    StartCoroutine(AttackReset());
-                }
-                else if (leftInfo.collider != null)
-                {
-                    Flip(-1);
-                    currentMovementState = MovementState.Attacking;
-                    canAttack = false;
-                    _enemyAnim.AttackLeft();
-                    _rigid.gravityScale = 0;
-                    _rigid.velocity = new Vector2(_speed * -1, 0);
-                    StartCoroutine(AttackReset());
+                    if (rightInfo.collider != null)
+                    {
+                        Flip(1);
+                        currentMovementState = MovementState.Attacking;
+                        canAttack = false;
+                        _enemyAnim.AttackRight();
+                        _rigid.gravityScale = 0;
+                        _rigid.velocity = new Vector2(_speed, 0);
+                        StartCoroutine(AttackReset());
+                    }
+                    else if (leftInfo.collider != null)
+                    {
+                        Flip(-1);
+                        currentMovementState = MovementState.Attacking;
+                        canAttack = false;
+                        _enemyAnim.AttackLeft();
+                        _rigid.gravityScale = 0;
+                        _rigid.velocity = new Vector2(_speed * -1, 0);
+                        StartCoroutine(AttackReset());
+                    }
                 }
             }
         }
