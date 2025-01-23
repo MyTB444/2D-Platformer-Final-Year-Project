@@ -51,7 +51,11 @@ public class Player_input : MonoBehaviour
         //KEY
         if (Input.GetKeyDown(KeyCode.J))
         {
-            _player.SpawnKey();
+            _player.DropKey();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            _player.StartPickUp();
         }
     }
 }

@@ -30,6 +30,14 @@ public class PlayerAnimation : MonoBehaviour
     {
         _anim.SetTrigger("Swingleft");
     }
+    public void PickUpLeft()
+    {
+        _anim.SetTrigger("Pickupl");
+    }
+    public void PickUpRight()
+    {
+        _anim.SetTrigger("Pickupr");
+    }
     public void RollAnim()
     {
         _anim.SetTrigger("Roll");

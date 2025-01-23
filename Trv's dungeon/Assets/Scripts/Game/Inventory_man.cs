@@ -2,48 +2,75 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
+
 public class InventorySystem : MonoBehaviour
 {
-    [System.Serializable]
-    public class InventoryItem
-    {
-        public Sprite icon;
-        public string name;
-    }
-
     public GameObject inventoryPanel;
     public GameObject itemSlotPrefab;
+    public int maxItems = 3;
+    private InventoryItemSO[] inventory;
 
-    private List<InventoryItem> inventory = new List<InventoryItem>();
-
-    public int maxItems = 3; // Maximum number of items allowed
-
-    public void AddItem(InventoryItem newItem)
+    private void Start()
     {
-        if (inventory.Count < maxItems && !inventory.Exists(item => item.name == newItem.name))
+        inventory = new InventoryItemSO[maxItems];
+        UpdateUI();
+    }
+
+    public bool AddItem(InventoryItemSO newItem)
+    {
+        for (int i = 0; i < inventory.Length; i++)
         {
-            inventory.Add(newItem); // Add item if it's not already in the inventory
+            if (inventory[i] == null)
+            {
+                inventory[i] = newItem;
+                UpdateUI();
+                return true;
+            }
+        }
+        Debug.Log("Inventory is full!");
+        return false;
+    }
+
+    public void RemoveItem(int index)
+    {
+        if (index >= 0 && index < inventory.Length && inventory[index] != null)
+        {
+            inventory[index] = null;
             UpdateUI();
         }
         else
         {
-            Debug.Log("Inventory is full or item already exists.");
+            Debug.Log("Invalid slot or no item to remove.");
         }
     }
 
     private void UpdateUI()
     {
-        for (int i = inventoryPanel.transform.childCount - 1; i >= 0; i--)
+        // Clear existing slots
+        foreach (Transform child in inventoryPanel.transform)
         {
-            Transform child = inventoryPanel.transform.GetChild(i);
-            if (child != null) // Ensure the object is valid
-            {
-                Destroy(child.gameObject); // Destroy the object
-            }
+            Destroy(child.gameObject);
         }
 
-        // Add each item in the inventory to the UI
-       
+        // Populate slots
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            if (inventory[i] != null)
+            {
+                GameObject slot = Instantiate(itemSlotPrefab, inventoryPanel.transform);
+                Image itemImage = slot.GetComponent<Image>();
+
+                itemImage.sprite = inventory[i].icon;
+            }
+        }
+    }
+
+    public InventoryItemSO GetItem(int index)
+    {
+        if (index >= 0 && index < inventory.Length)
+        {
+            return inventory[index];
+        }
+        return null;
     }
 }
-

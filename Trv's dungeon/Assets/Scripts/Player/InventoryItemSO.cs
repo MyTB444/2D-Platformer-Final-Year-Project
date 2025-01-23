@@ -6,5 +6,7 @@ using UnityEngine;
 public class InventoryItemSO : ScriptableObject
 {
     public Sprite icon;
-    public string itemName; 
+    public bool isKey;
+    public bool grantsDoubleJump; 
+
 }

@@ -18,14 +18,16 @@ public class Player : MonoBehaviour
     [SerializeField] protected int _health;
     public float _playerfragility;
     //Logic
+    public bool canDoubleJump = false;
+    private bool airjump;
+    [SerializeField] private int jumpCount = 0;
     private int rollState = 0;
+    private bool canAttack = true;
     public bool _canWalk = true;
     protected bool _canClimb;
-    private bool _keyFound = false;
     //Component variables for handles
     [SerializeField] private GameObject _key;
     private Character_audio _audio;
-    private SpriteRenderer _playerkey;
     private SpriteRenderer _playerSprite;
     [SerializeField] UnityEvent playerIsDead;
     [SerializeField] UnityEvent gameWon;
@@ -38,7 +40,6 @@ public class Player : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
         _playerAnim = GetComponentInChildren<PlayerAnimation>();
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
-        _playerkey = GameObject.FindWithTag("Playerkey").GetComponent<SpriteRenderer>();
         _uiman = GameObject.FindWithTag("UIman").GetComponent<UIman>();
         _audio = GetComponentInChildren<Character_audio>();
     }
@@ -73,6 +74,7 @@ public class Player : MonoBehaviour
         if (groundInfo.collider != null)
         {
             currentAirState = AirState.Grounded;
+            airjump = false;
         }
         else
         {
@@ -81,16 +83,19 @@ public class Player : MonoBehaviour
     }
     private void SlowCheck()
     {
-        RaycastHit2D groundInfo1 = Physics2D.BoxCast(transform.position, new Vector2(0.6f, 0.2f), 0.0f, Vector2.down, 0.4f, 1 << 8);
-        if (groundInfo1.collider != null)
+        if (currentMovementState != MovementState.Rolling)
         {
-            _jumpForce = 4.6f;
-            _speed = 1;
-        }
-        else if (groundInfo1.collider == null)
-        {
-            _jumpForce = 8;
-            _speed = 5.5f;
+            RaycastHit2D groundInfo1 = Physics2D.BoxCast(transform.position, new Vector2(0.6f, 0.2f), 0.0f, Vector2.down, 0.4f, 1 << 8);
+            if (groundInfo1.collider != null)
+            {
+                _jumpForce = 4.6f;
+                _speed = 1;
+            }
+            else if (groundInfo1.collider == null)
+            {
+                _jumpForce = 8;
+                _speed = 5.5f;
+            }
         }
     }
 
@@ -100,6 +105,20 @@ public class Player : MonoBehaviour
         {
             _playerAnim.JumpAnim();
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
+            jumpCount++;
+        }
+        else if (canDoubleJump == true && jumpCount > 0 && currentMovementState == MovementState.Standing)
+        {
+            _playerAnim.JumpAnim();
+            _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
+            jumpCount = 0;
+            airjump = true;
+        }
+        else if (canDoubleJump == true && currentAirState == AirState.InAir && airjump == false)
+        {
+            _playerAnim.JumpAnim();
+            _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
+            airjump = true;
         }
     }
     public void FastFall()
@@ -134,7 +153,6 @@ public class Player : MonoBehaviour
             _playerSprite.flipX = true;
         }
     }
-    // Return true if we are faced right
     private bool FacedRight()
     {
         if (_playerSprite.flipX == false)
@@ -165,8 +183,9 @@ public class Player : MonoBehaviour
     }
     public void StartAttack()
     {
-        if (currentMovementState == MovementState.Standing)
+        if (currentMovementState == MovementState.Standing && canAttack == true)
         {
+            canAttack = false;
             StartCoroutine(Attack());
         }
     }
@@ -182,10 +201,25 @@ public class Player : MonoBehaviour
         {
             _playerAnim.SwingLeftAnim();
         }
-        yield return new WaitForSeconds(_attackDuration);
         currentMovementState = MovementState.Standing;
+        yield return new WaitForSeconds(_attackDuration);
+        canAttack = true;
     }
-    // Trigger damage take.
+    public void StartPickUp()
+    {
+        if (currentMovementState == MovementState.Standing)
+        {
+            _audio.SwingAudio();
+            if (FacedRight() == true)
+            {
+                _playerAnim.PickUpRight();
+            }
+            else if (FacedRight() == false)
+            {
+                _playerAnim.PickUpLeft();
+            }
+        }
+    }
     public void TakeDamage()
     {
         if (currentMovementState != MovementState.Rolling && IsPlayerDead() == false)
@@ -196,7 +230,6 @@ public class Player : MonoBehaviour
             DamageEffect();
         }
     }
-    // Return true if health is zero
     public bool IsPlayerDead()
     {
         if (_health == 0)
@@ -205,7 +238,6 @@ public class Player : MonoBehaviour
         }
         return false;
     }
-    // Get stunned when damaged but alive. If we are dead, invoke player is dead event for observers.
     private void DamageEffect()
     {
         if (IsPlayerDead() == false)
@@ -222,7 +254,6 @@ public class Player : MonoBehaviour
             playerIsDead.Invoke();
         }
     }
-    // Cant move fore "time" amound of duration
     public IEnumerator Stun(float time)
     {
         _canWalk = false;
@@ -239,26 +270,47 @@ public class Player : MonoBehaviour
         _playerAnim.ClimbAnimStop();
         _canClimb = false;
     }
-    public void EnableKey()
+    public void EnableDoubleJump()
     {
-        _keyFound = true;
+        canDoubleJump = true;
     }
-    // Instantiate the key object if keyfound is true
-    public void SpawnKey()
+
+    public void DisableDoubleJump()
     {
-        if (_keyFound == true)
+        canDoubleJump = false;
+    }
+    public void DropItem(int index)
+    {
+        InventorySystem inventory = FindObjectOfType<InventorySystem>();
+        InventoryItemSO itemToDrop = inventory.GetItem(index);
+
+        Vector3 dropPosition = transform.position + transform.forward * 1.5f + Vector3.up * 0.5f;
+        GameObject droppedItem = Instantiate(_key, dropPosition, Quaternion.identity);
+
+        droppedItem.transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+        Player_pickbox droppedItemPickup = droppedItem.GetComponent<Player_pickbox>();
+        if (droppedItemPickup != null)
         {
-            _keyFound = false;
-            _playerkey.enabled = false;
-            if (FacedRight() == true)
+            droppedItemPickup.key = itemToDrop;
+        }
+        inventory.RemoveItem(index);
+    }
+    public void DropKey()
+    {
+        InventorySystem inventory = FindObjectOfType<InventorySystem>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            InventoryItemSO item = inventory.GetItem(i);
+            if (item != null && item.isKey)
             {
-                Instantiate(_key, new Vector2(transform.position.x + 0.8f, transform.position.y + 0.3f), Quaternion.identity);
-            }
-            else if (FacedRight() == false)
-            {
-                Instantiate(_key, new Vector2(transform.position.x - 0.8f, transform.position.y + 0.3f), Quaternion.identity);
+                DropItem(i);
+                break;
             }
         }
     }
-    //Win check
 }
+
+
+
+

@@ -337,7 +337,7 @@ BoxCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 392
+    m_Bits: 384
   m_ForceReceiveLayers:
     serializedVersion: 2
     m_Bits: 384
@@ -391,14 +391,13 @@ MonoBehaviour:
   _speed: 12
   _jumpForce: 10
   _jumpCooldown: 4.2
-  _attackDistance: 8
+  _attackDistance: 12
   _height: 0
   _attackDuration: 4
   _stunVulnerability: 0.5
   _canJump: 1
   _enemyFragility: 4
-  _hasLos: 0
-  distance: 0
+  _facedRight: 0
   _isABoss: 0
 --- !u!1 &7448354852614901446
 GameObject:

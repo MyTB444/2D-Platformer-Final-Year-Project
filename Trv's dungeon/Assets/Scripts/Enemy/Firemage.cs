@@ -71,6 +71,7 @@ public class Firemage : Enemy
     private IEnumerator LocationUpdate(int x)
     {
         _enemyAnim.WalkTrigger();
+        _collider.enabled = false;
         yield return new WaitForSeconds(1f);
         switch (x)
         {
@@ -89,6 +90,7 @@ public class Firemage : Enemy
                 currentphase = phase.phase2;
                 break;
         }
+        _collider.enabled = true;
     }
     private void WhereIsPlayer()
     {

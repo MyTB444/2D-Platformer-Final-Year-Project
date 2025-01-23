@@ -143,3 +143,5 @@ I now have a detailed boss fight. I also want one of my levels to be movement ba
 I am adding more enemies to the game. I now have a fully implemented mermaid enemy. It jumps and dahsed towards jack. I also have a firemage which cannot be killed yet. It could be the final boss of the game. The clouds map is full of traps, mermaids and the fire mage is shooting fireballs towards jack. It is quite hard to get trough!
 -21/02/2025
 Before I design the final area, I will add an inventory system using scriptable objects. These are basically data types which can be physically created inside the editor. There will be three items in the game, one of them being the already implemented key. Their order will not be hardcoded, thus will be ordered from left to right. The player will need some items to get to the final area.
+-22/02/2025
+Inventory is fully implemented. The sky level is almost finished. I will start designing the final area and the boss fight. There will be new enemies and interactables in this area.
