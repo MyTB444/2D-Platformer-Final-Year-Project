@@ -8,7 +8,7 @@ public class Lever : MonoBehaviour
     [SerializeField] private Sprite[] sprites;
     private bool mooving = false;
     private SpriteRenderer sr;
-    private float state = 1;
+    [SerializeField] private float state;
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();

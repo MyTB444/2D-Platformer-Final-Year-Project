@@ -147,3 +147,5 @@ Before I design the final area, I will add an inventory system using scriptable 
 Inventory is fully implemented. The sky level is almost finished. I will start designing the final area and the boss fight. There will be new enemies and interactables in this area.
 -25/02/2025
 Sky area is finished. I have started implementing the last area. There are levers that open gates. The player has to go to the sky area, get the winged boots in order to reach these levers. The winged boots grant us double jumping.
+-27/02/2025
+There is a labyrinth puzzle before the last boss. Time to design the boss fight and the final objective. There will be skeleton enemies in this area.
