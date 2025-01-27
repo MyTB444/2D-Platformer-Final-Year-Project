@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Goblinarcher : Enemy
 {
+    [SerializeField] private float attackdelay;
     [SerializeField] private GameObject _arrow;
     protected override void Update()
     {
@@ -70,7 +71,7 @@ public class Goblinarcher : Enemy
     IEnumerator Shooting()
     {
         _enemyAnim.AttackLeft();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(attackdelay);
         if (_facedRight == true)
         {
             _audio.SwingAudio();

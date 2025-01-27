@@ -145,3 +145,5 @@ I am adding more enemies to the game. I now have a fully implemented mermaid ene
 Before I design the final area, I will add an inventory system using scriptable objects. These are basically data types which can be physically created inside the editor. There will be three items in the game, one of them being the already implemented key. Their order will not be hardcoded, thus will be ordered from left to right. The player will need some items to get to the final area.
 -22/02/2025
 Inventory is fully implemented. The sky level is almost finished. I will start designing the final area and the boss fight. There will be new enemies and interactables in this area.
+-25/02/2025
+Sky area is finished. I have started implementing the last area. There are levers that open gates. The player has to go to the sky area, get the winged boots in order to reach these levers. The winged boots grant us double jumping.

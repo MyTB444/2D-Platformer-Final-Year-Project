@@ -9,6 +9,7 @@ using UnityEngine;
 public class Goblin : Enemy
 {
     [SerializeField] private GameObject rock;
+    [SerializeField] private float attackDelay;
     [SerializeField] private float spawnDelay;
     private int _canThrow = 1;
     protected override void Init()
@@ -105,7 +106,7 @@ public class Goblin : Enemy
     {
         _rigid.velocity = new Vector2(0, _rigid.velocity.y);
         _enemyAnim.StopWalking();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(attackDelay);
         if (_facedRight == true)
         {
             _audio.SwingAudio();

@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     private bool airjump;
     [SerializeField] private int jumpCount = 0;
     private int rollState = 0;
+    private bool canPickUp = true;
     private bool canAttack = true;
     public bool _canWalk = true;
     protected bool _canClimb;
@@ -201,22 +202,33 @@ public class Player : MonoBehaviour
         {
             _playerAnim.SwingLeftAnim();
         }
+        yield return new WaitForSeconds(0.3f);
         currentMovementState = MovementState.Standing;
         yield return new WaitForSeconds(_attackDuration);
         canAttack = true;
     }
     public void StartPickUp()
     {
+        StartCoroutine(PickUp());
+    }
+    IEnumerator PickUp()
+    {
         if (currentMovementState == MovementState.Standing)
         {
-            _audio.SwingAudio();
-            if (FacedRight() == true)
+            if (canPickUp == true)
             {
-                _playerAnim.PickUpRight();
-            }
-            else if (FacedRight() == false)
-            {
-                _playerAnim.PickUpLeft();
+                canPickUp = false;
+                _audio.SwingAudio();
+                if (FacedRight() == true)
+                {
+                    _playerAnim.PickUpRight();
+                }
+                else if (FacedRight() == false)
+                {
+                    _playerAnim.PickUpLeft();
+                }
+                yield return new WaitForSeconds(0.3f);
+                canPickUp = true;
             }
         }
     }

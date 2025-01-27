@@ -42,5 +42,10 @@ public class Player_pickbox : MonoBehaviour
             player.EnableDoubleJump();
             Destroy(other.gameObject);
         }
+        else if (other.gameObject.name == "Lever")
+        {
+            Lever lever = other.gameObject.GetComponent<Lever>();
+            lever.MoveGates();
+        }
     }
 }

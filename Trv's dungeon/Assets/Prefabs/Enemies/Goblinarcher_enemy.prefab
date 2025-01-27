@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1753158002482631915}
   - component: {fileID: 9149269148227317760}
   m_Layer: 6
-  m_Name: Goblinarcher
+  m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -473,15 +473,14 @@ MonoBehaviour:
   _health: 2
   _speed: 6
   _jumpForce: 9
-  _jumpCooldown: 4
+  _jumpCooldown: 6
   _attackDistance: 1
   _height: 0.8
   _attackDuration: 5
   _stunVulnerability: 1.5
   _canJump: 1
   _enemyFragility: 4
-  _hasLos: 0
-  distance: 0
-  _isArcher: 1
+  _facedRight: 0
   _isABoss: 0
+  attackdelay: 0.5
   _arrow: {fileID: 4999884830168372156, guid: c67062368f15649febab6b366f00e9eb, type: 3}
