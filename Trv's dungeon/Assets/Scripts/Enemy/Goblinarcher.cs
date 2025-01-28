@@ -15,7 +15,7 @@ public class Goblinarcher : Enemy
             if (_player.IsPlayerDead() == false)
             {
                 base.Update();
-                OutOfMap();
+                // OutOfMap();
                 if (currentCombatState != CombatState.Dead)
                 {
                     ArcherMovement();

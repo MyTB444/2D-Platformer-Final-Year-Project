@@ -321,6 +321,11 @@ public class Player : MonoBehaviour
             }
         }
     }
+    public void Regen()
+    {
+        _health = 5;
+        _uiman.Regen();
+    }
 }
 
 

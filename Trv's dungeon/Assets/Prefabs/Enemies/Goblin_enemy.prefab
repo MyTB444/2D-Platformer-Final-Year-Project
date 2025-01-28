@@ -273,14 +273,14 @@ MonoBehaviour:
   _jumpCooldown: 6
   _attackDistance: 0.55
   _height: 0.9
-  _attackDuration: 3
+  _attackDuration: 2
   _stunVulnerability: 0.5
   _canJump: 1
   _enemyFragility: 4
-  _hasLos: 0
-  distance: 0
+  _facedRight: 0
   _isABoss: 0
   rock: {fileID: 0}
+  attackDelay: 0
   spawnDelay: 0.5
 --- !u!114 &5004751778368188186
 MonoBehaviour:

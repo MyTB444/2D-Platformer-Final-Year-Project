@@ -149,3 +149,5 @@ Inventory is fully implemented. The sky level is almost finished. I will start d
 Sky area is finished. I have started implementing the last area. There are levers that open gates. The player has to go to the sky area, get the winged boots in order to reach these levers. The winged boots grant us double jumping.
 -27/02/2025
 There is a labyrinth puzzle before the last boss. Time to design the boss fight and the final objective. There will be skeleton enemies in this area.
+-28/02/2025
+I have decided to set enemies on certain locations instead of continously spawning them. They also have a fow distance. They start attacking the player only if they get close to them. The enemies are set all around the map. I have also added fountains which can be used to restore hp to full.

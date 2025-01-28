@@ -24,7 +24,7 @@ public class Goblin : Enemy
             if (_player.IsPlayerDead() == false)
             {
                 base.Update();
-                OutOfMap();
+                //OutOfMap();
                 if (currentCombatState != CombatState.Dead)
                 {
                     IsJackHere();

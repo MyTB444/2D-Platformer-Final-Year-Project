@@ -47,5 +47,9 @@ public class Player_pickbox : MonoBehaviour
             Lever lever = other.gameObject.GetComponent<Lever>();
             lever.MoveGates();
         }
+        else if (other.gameObject.name == "Fountain")
+        {
+            player.Regen();
+        }
     }
 }

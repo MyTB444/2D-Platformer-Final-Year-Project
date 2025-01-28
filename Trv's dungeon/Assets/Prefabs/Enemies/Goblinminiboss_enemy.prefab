@@ -240,10 +240,10 @@ MonoBehaviour:
   _stunVulnerability: 0.1
   _canJump: 0
   _enemyFragility: 4
-  _hasLos: 0
-  distance: 0
+  _facedRight: 0
   _isABoss: 1
   rock: {fileID: 8591732540436232880, guid: fdb6347f0a0a24ca589b026ba9c94128, type: 3}
+  attackDelay: 0
   spawnDelay: 1
 --- !u!114 &7381796038325077182
 MonoBehaviour:
@@ -537,19 +537,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3372279685224855763, guid: 72c9ca21f27164102ba7caa8da14a11b, type: 3}
       propertyPath: m_Size.x
-      value: 0.05845589
+      value: 0.14546934
       objectReference: {fileID: 0}
     - target: {fileID: 3372279685224855763, guid: 72c9ca21f27164102ba7caa8da14a11b, type: 3}
       propertyPath: m_Size.y
-      value: 2.2987192
+      value: 0.23570919
       objectReference: {fileID: 0}
     - target: {fileID: 3372279685224855763, guid: 72c9ca21f27164102ba7caa8da14a11b, type: 3}
       propertyPath: m_Offset.x
-      value: 0.001520073
+      value: -0.00019456446
       objectReference: {fileID: 0}
     - target: {fileID: 3372279685224855763, guid: 72c9ca21f27164102ba7caa8da14a11b, type: 3}
       propertyPath: m_Offset.y
-      value: 0.86070454
+      value: 0.10599077
       objectReference: {fileID: 0}
     - target: {fileID: 8553940886739749090, guid: 72c9ca21f27164102ba7caa8da14a11b, type: 3}
       propertyPath: m_Name
@@ -579,7 +579,8 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3187507492624756608, guid: 72c9ca21f27164102ba7caa8da14a11b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

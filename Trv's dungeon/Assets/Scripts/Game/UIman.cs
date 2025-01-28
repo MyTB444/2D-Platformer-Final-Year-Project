@@ -51,4 +51,11 @@ public class UIman : MonoBehaviour
         TimeText.text = string.Format("{0:0}:{1:00}:{2:00}", Minutes, Seconds, MilleSeconds);
         finalScore.text = string.Format("{0:0}:{1:00}:{2:00}", Minutes, Seconds, MilleSeconds);
     }
+    public void Regen()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            _live[i].SetTrigger("Regen");
+        }
+    }
 }
