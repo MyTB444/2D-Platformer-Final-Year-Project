@@ -12,7 +12,8 @@ public class Game_man : MonoBehaviour
     private Audioman _audio;
     [SerializeField] private GameObject _gate;
     [SerializeField] private GameObject _diamond;
-    [SerializeField] private GameObject _hearth;
+    [SerializeField] private GameObject _emerald;
+    [SerializeField] private GameObject _gem;
     [SerializeField] private int _count;
     void Start()
     {
@@ -46,26 +47,31 @@ public class Game_man : MonoBehaviour
         Destroy(_gate.gameObject);
     }
     // If hearth or diamond is found, inform related objects.
-    public void HearthFound()
+    public void GemFound()
     {
         _count = _count + 1;
-        _spawnman.DifficultyIncreased();
-        Destroy(_hearth.gameObject);
+        Destroy(_gem.gameObject);
         _audio.CLickAudio();
         EnableGate();
     }
-    public void DiamonFound()
+    public void DiamondFound()
     {
         _count = _count + 1;
-        _spawnman.DifficultyIncreased();
         Destroy(_diamond.gameObject);
+        _audio.CLickAudio();
+        EnableGate();
+    }
+    public void EmeraldFound()
+    {
+        _count = _count + 1;
+        Destroy(_emerald.gameObject);
         _audio.CLickAudio();
         EnableGate();
     }
     // If both are found enable the gate collider for unlocking it.
     private void EnableGate()
     {
-        if (_count == 2)
+        if (_count == 3)
         {
             _gateCollider.enabled = true;
         }

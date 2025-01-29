@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Player_hitbox : MonoBehaviour
 {
-    public InventoryItemSO key;
-    public InventoryItemSO boots;
     private int collisionnumber;
     // Damage and push enemies with handles. Trigger game events if the object is not an enemy.
     public void OnTriggerEnter2D(Collider2D other)

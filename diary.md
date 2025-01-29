@@ -151,3 +151,5 @@ Sky area is finished. I have started implementing the last area. There are lever
 There is a labyrinth puzzle before the last boss. Time to design the boss fight and the final objective. There will be skeleton enemies in this area.
 -28/02/2025
 I have decided to set enemies on certain locations instead of continously spawning them. They also have a fow distance. They start attacking the player only if they get close to them. The enemies are set all around the map. I have also added fountains which can be used to restore hp to full.
+-29/02/2025
+I have created two sprites, a sword and a blue wave. The sword will be a collectable item enchancing the player. The blue wave will either be a projectile that the player is able to shoot or a shield that the player can hold up to protect themselves.

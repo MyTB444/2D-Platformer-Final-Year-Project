@@ -1,62 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
     //Simple animation handler for the player.
     private SpriteRenderer _sprite;
-    private Animator _anim;
+    private Animator[] _anim;
     void Start()
     {
-        _anim = GetComponentInChildren<Animator>();
+        _anim = GetComponentsInChildren<Animator>();
         _sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
     public void RunAnim(float move)
     {
-        _anim.SetFloat("Running", Mathf.Abs(move));
+        _anim[0].SetFloat("Running", Mathf.Abs(move));
     }
     public void JumpAnim()
     {
-        _anim.SetTrigger("Jump");
+        _anim[0].SetTrigger("Jump");
     }
     public void SwingRightAnim()
     {
-        _anim.SetTrigger("Swing");
+        _anim[0].SetTrigger("Swing");
     }
     public void SwingLeftAnim()
     {
-        _anim.SetTrigger("Swingleft");
+        _anim[0].SetTrigger("Swingleft");
     }
     public void PickUpLeft()
     {
-        _anim.SetTrigger("Pickupl");
+        _anim[0].SetTrigger("Pickupl");
     }
     public void PickUpRight()
     {
-        _anim.SetTrigger("Pickupr");
+        _anim[0].SetTrigger("Pickupr");
     }
     public void RollAnim()
     {
-        _anim.SetTrigger("Roll");
+        _anim[0].SetTrigger("Roll");
     }
     public void ClimbAnimStart()
     {
-        _anim.SetInteger("Climb", 1);
+        _anim[0].SetInteger("Climb", 1);
     }
     public void ClimbAnimStop()
     {
-        _anim.SetInteger("Climb", -1);
+        _anim[0].SetInteger("Climb", -1);
     }
     public void DeathAnim()
     {
-        _anim.SetTrigger("Dead");
+        _anim[0].SetTrigger("Dead");
     }
     public void Damaged()
     {
         StartCoroutine(Reding());
+    }
+    public void BlueRight()
+    {
+        _anim[1].SetTrigger("Right");
+    }
+    public void BlueLeft()
+    {
+        _anim[1].SetTrigger("Left");
     }
     //Manually created animation for changing color when damage is taken.
     private IEnumerator Reding()

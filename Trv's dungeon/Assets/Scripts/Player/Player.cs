@@ -24,14 +24,15 @@ public class Player : MonoBehaviour
     private int rollState = 0;
     private bool canPickUp = true;
     private bool canAttack = true;
+    [SerializeField] private bool hasSword;
     public bool _canWalk = true;
     protected bool _canClimb;
     //Component variables for handles
     [SerializeField] private GameObject _key;
     private Character_audio _audio;
+    [SerializeField] private GameObject wavePrefab;
     private SpriteRenderer _playerSprite;
     [SerializeField] UnityEvent playerIsDead;
-    [SerializeField] UnityEvent gameWon;
     private PlayerAnimation _playerAnim;
     private Rigidbody2D _rigid;
     private UIman _uiman;
@@ -197,10 +198,18 @@ public class Player : MonoBehaviour
         if (FacedRight() == true)
         {
             _playerAnim.SwingRightAnim();
+            if (hasSword == true)
+            {
+                Instantiate(wavePrefab, new Vector2(transform.position.x + 1, transform.position.y + 0.4f), Quaternion.identity, gameObject.transform);
+            }
         }
         else if (FacedRight() == false)
         {
             _playerAnim.SwingLeftAnim();
+            if (hasSword == true)
+            {
+                Instantiate(wavePrefab, new Vector2(transform.position.x - 1, transform.position.y + 0.4f), Quaternion.identity, gameObject.transform);
+            }
         }
         yield return new WaitForSeconds(0.3f);
         currentMovementState = MovementState.Standing;
@@ -327,7 +336,5 @@ public class Player : MonoBehaviour
         _uiman.Regen();
     }
 }
-
-
 
 
