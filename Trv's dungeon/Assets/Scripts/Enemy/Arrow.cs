@@ -22,13 +22,13 @@ public class Arrow : MonoBehaviour
         float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + rotation);
     }
-    // void Update()
-    //{
-    //  if (transform.position.y > 30 || transform.position.y < -50 || transform.position.x < -60 || transform.position.x > 60)
-    //{
-    //  Destroy(this.gameObject);
-    //}
-    //}
+    void Update()
+    {
+        if (transform.position.y > 50 || transform.position.y < -50 || transform.position.x < -60 || transform.position.x > 60)
+        {
+            Destroy(this.gameObject);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Ground")

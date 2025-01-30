@@ -52,6 +52,7 @@ public class Player_pickbox : MonoBehaviour
         {
             InventorySystem inventory = FindObjectOfType<InventorySystem>();
             inventory.AddItem(sword);
+            player.GotSword();
             Destroy(other.gameObject);
         }
         else if (other.gameObject.name == "Lever")

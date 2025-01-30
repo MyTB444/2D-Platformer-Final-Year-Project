@@ -54,6 +54,7 @@ public abstract class Enemy : MonoBehaviour
     {
         distance = Vector2.Distance(transform.position, _target.transform.position);
         FowCheck();
+        OutOfMap();
     }
     protected enum CombatState
     {
@@ -130,7 +131,7 @@ public abstract class Enemy : MonoBehaviour
     // Are we in the screen?
     protected void OutOfMap()
     {
-        if (distance > 40)
+        if (distance > 100)
         {
             Destroy(this.gameObject);
         }

@@ -153,3 +153,5 @@ There is a labyrinth puzzle before the last boss. Time to design the boss fight 
 I have decided to set enemies on certain locations instead of continously spawning them. They also have a fow distance. They start attacking the player only if they get close to them. The enemies are set all around the map. I have also added fountains which can be used to restore hp to full.
 -29/02/2025
 I have created two sprites, a sword and a blue wave. The sword will be a collectable item enchancing the player. The blue wave will either be a projectile that the player is able to shoot or a shield that the player can hold up to protect themselves.
+-30/02/2025
+Last boss arena and the boss fight is implemented. It has two different attack which it casts randomly. When it is hit, it teleports between 4 locations randomly. There is also a second phase. The fight will be improved.

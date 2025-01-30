@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wave : MonoBehaviour
 {
-    public float speed = 30f;
+    public float speed = 1000000f;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
@@ -22,11 +22,11 @@ public class Wave : MonoBehaviour
     {
         float direction = transform.position.x > parentTransform.position.x ? 1f : -1f;
         spriteRenderer.flipX = direction < 0;
-        rb.velocity = new Vector2(direction * speed, rb.velocity.y);
+        rb.velocity = new Vector2(direction * speed * 2, rb.velocity.y);
     }
     private IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
         Destroy(this.gameObject);
     }
 

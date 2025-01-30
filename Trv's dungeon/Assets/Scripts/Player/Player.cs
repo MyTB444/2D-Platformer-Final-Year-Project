@@ -200,7 +200,7 @@ public class Player : MonoBehaviour
             _playerAnim.SwingRightAnim();
             if (hasSword == true)
             {
-                Instantiate(wavePrefab, new Vector2(transform.position.x + 1, transform.position.y + 0.4f), Quaternion.identity, gameObject.transform);
+                _playerAnim.BlueRight();
             }
         }
         else if (FacedRight() == false)
@@ -208,13 +208,17 @@ public class Player : MonoBehaviour
             _playerAnim.SwingLeftAnim();
             if (hasSword == true)
             {
-                Instantiate(wavePrefab, new Vector2(transform.position.x - 1, transform.position.y + 0.4f), Quaternion.identity, gameObject.transform);
+                _playerAnim.BlueLeft();
             }
         }
         yield return new WaitForSeconds(0.3f);
         currentMovementState = MovementState.Standing;
         yield return new WaitForSeconds(_attackDuration);
         canAttack = true;
+    }
+    public void GotSword()
+    {
+        hasSword = true;
     }
     public void StartPickUp()
     {

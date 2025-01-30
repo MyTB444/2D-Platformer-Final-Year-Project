@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 public class Game_man : MonoBehaviour
 {
     private bool _isGameover = false;
-    private Spawn_man _spawnman;
+
     private Collider2D _gateCollider;
     private Audioman _audio;
+    [SerializeField] private GameObject[] firewall;
     [SerializeField] private GameObject _gate;
     [SerializeField] private GameObject _diamond;
     [SerializeField] private GameObject _emerald;
@@ -18,7 +19,6 @@ public class Game_man : MonoBehaviour
     void Start()
     {
         _audio = GameObject.FindWithTag("Audioman").GetComponent<Audioman>();
-        _spawnman = GameObject.FindWithTag("Spawnman").GetComponent<Spawn_man>();
         if (GameObject.FindWithTag("Gate") != null)
         {
             _gateCollider = GameObject.FindWithTag("Gate").GetComponent<Collider2D>();
@@ -74,6 +74,25 @@ public class Game_man : MonoBehaviour
         if (_count == 3)
         {
             _gateCollider.enabled = true;
+        }
+    }
+    public void BossFight()
+    {
+        firewall[0].SetActive(true);
+        firewall[4].SetActive(true);
+    }
+    public void FightWalls()
+    {
+        for (int i = 1; i < 4; i++)
+        {
+            firewall[i].SetActive(true);
+        }
+    }
+    public void StopAllWalls()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            firewall[i].SetActive(false);
         }
     }
     public void GameOver()
