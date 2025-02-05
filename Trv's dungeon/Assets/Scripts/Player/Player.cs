@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     private Character_audio _audio;
     [SerializeField] private GameObject wavePrefab;
     private SpriteRenderer _playerSprite;
+    public Dashpanel dp;
     [SerializeField] UnityEvent playerIsDead;
     private PlayerAnimation _playerAnim;
     private Rigidbody2D _rigid;
@@ -139,7 +140,10 @@ public class Player : MonoBehaviour
     }
     public void Walk(float quick)
     {
-        Flip(quick);
+        if (currentMovementState != MovementState.Attacking)
+        {
+            Flip(quick);
+        }
         _rigid.velocity = new Vector2(quick * _speed, _rigid.velocity.y);
         _playerAnim.RunAnim(quick);
     }
@@ -173,19 +177,20 @@ public class Player : MonoBehaviour
     IEnumerator Rolling()
     {
         currentMovementState = MovementState.Rolling;
+        dp.StartTimer();
         rollState = 2;
         _playerAnim.RollAnim();
         _audio.DashAudio();
-        _speed = _speed * 1.5f;
-        yield return new WaitForSeconds(1.0f);
-        _speed = _speed / 1.5f;
+        _speed = _speed * 2.5f;
+        yield return new WaitForSeconds(0.4f);
+        _speed = _speed / 2.5f;
         currentMovementState = MovementState.Standing;
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.6f);
         rollState = 0;
     }
     public void StartAttack()
     {
-        if (currentMovementState == MovementState.Standing && canAttack == true)
+        if (currentMovementState != MovementState.Attacking && canAttack == true)
         {
             canAttack = false;
             StartCoroutine(Attack());

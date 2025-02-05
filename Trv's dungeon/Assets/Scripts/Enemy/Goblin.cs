@@ -80,7 +80,10 @@ public class Goblin : Enemy
         }
         else if (_target.position.y < transform.position.y + 4 && distance < 17 && upInfo.collider == false && downInfo.collider == false)
         {
-            currentCombatState = CombatState.Combat;
+            if (_hasLos == true)
+            {
+                currentCombatState = CombatState.Combat;
+            }
         }
     }
     // Move until jack is at an attackable distance. Then start attack animation.

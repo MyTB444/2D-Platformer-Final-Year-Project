@@ -7,6 +7,10 @@ public class Spawn_man : MonoBehaviour
 {
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] public int _difficulty;
+    [SerializeField] private Transform[] skeletonLocs;
+    [SerializeField] private Transform[] archerLocs;
+    public GameObject skeletonArcher;
+    public GameObject skeletonWarrior;
     public GameObject _goblin;
     public GameObject _minigoblin;
     public GameObject _goblinarcher;
@@ -45,6 +49,20 @@ public class Spawn_man : MonoBehaviour
     public void SpawnMiniBoss(float x, float y)
     {
         Instantiate(_minigoblin, new Vector2(x, y), Quaternion.identity);
+    }
+    public void SpawnFightArcher()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            Instantiate(skeletonArcher, archerLocs[i].position, Quaternion.identity);
+        }
+    }
+    public void SpawnFightSkeleton()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            Instantiate(skeletonWarrior, skeletonLocs[i].position, Quaternion.identity);
+        }
     }
     // Decrease the time at wich goblins spawn.
     public void DifficultyIncreased()

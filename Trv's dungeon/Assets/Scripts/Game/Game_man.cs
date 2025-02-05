@@ -12,6 +12,7 @@ public class Game_man : MonoBehaviour
     private Audioman _audio;
     [SerializeField] private GameObject[] firewall;
     [SerializeField] private GameObject _gate;
+    [SerializeField] private Animator pop;
     [SerializeField] private GameObject _diamond;
     [SerializeField] private GameObject _emerald;
     [SerializeField] private GameObject _gem;
@@ -98,6 +99,6 @@ public class Game_man : MonoBehaviour
     public void GameOver()
     {
         _isGameover = true;
+        pop.SetTrigger("Win");
     }
-
 }

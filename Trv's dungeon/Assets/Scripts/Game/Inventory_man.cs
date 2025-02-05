@@ -51,7 +51,6 @@ public class InventorySystem : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
         // Populate slots
         for (int i = 0; i < inventory.Length; i++)
         {

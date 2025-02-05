@@ -473,7 +473,7 @@ MonoBehaviour:
   _health: 2
   _speed: 6
   _jumpForce: 9
-  _jumpCooldown: 6
+  _jumpCooldown: 8
   _attackDistance: 1
   _height: 0.8
   _attackDuration: 5

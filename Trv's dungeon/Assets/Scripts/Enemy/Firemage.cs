@@ -13,6 +13,8 @@ public class Firemage : Enemy
     [SerializeField] private GameObject minifireball;
     [SerializeField] private float fireballinterval;
     [SerializeField] private Transform[] locations;
+    public Spawn_man sm;
+    private bool damageable = true;
     private bool jackishere = false;
     private int firerotation = 2;
     private enum phase
@@ -73,19 +75,30 @@ public class Firemage : Enemy
     }
     public override void TakeDamage()
     {
-        base.TakeDamage();
-        if (_health > 0)
+        if (damageable == true)
         {
-            StartCoroutine(LocationUpdate(_health));
+            damageable = false;
+            StartCoroutine(ResetDamage());
+            base.TakeDamage();
+            if (_health > 0)
+            {
+                StartCoroutine(LocationUpdate(_health));
+            }
+            if (_health == 2)
+            {
+                gameman.FightWalls();
+                sm.SpawnFightArcher();
+            }
+            else if (_health == 0)
+            {
+                gameman.StopAllWalls();
+            }
         }
-        if (_health == 2)
-        {
-            gameman.FightWalls();
-        }
-        else if (_health == 0)
-        {
-            gameman.StopAllWalls();
-        }
+    }
+    private IEnumerator ResetDamage()
+    {
+        yield return new WaitForSeconds(0.3f);
+        damageable = true;
     }
     private IEnumerator LocationUpdate(int x)
     {

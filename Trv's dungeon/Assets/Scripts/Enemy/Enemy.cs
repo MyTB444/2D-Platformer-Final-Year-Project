@@ -140,7 +140,9 @@ public abstract class Enemy : MonoBehaviour
     {
         if (_target.position.y >= transform.position.y + _height && currentMovementState == MovementState.Following && _canJump == true)
         {
+
             Jump();
+
         }
     }
     protected void Jump()
