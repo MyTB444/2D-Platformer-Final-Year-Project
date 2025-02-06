@@ -110,7 +110,7 @@ public class Goblinarcher : Enemy
         _audio.JumpAudio();
         yield return new WaitForSeconds(0.4f);
         _rigid.velocity = new Vector2(0, 0);
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(_jumpCooldown);
         _canJump = true;
 
     }
