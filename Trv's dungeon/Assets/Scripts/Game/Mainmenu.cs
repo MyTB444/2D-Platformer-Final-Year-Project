@@ -20,6 +20,11 @@ public class Mainmenu : MonoBehaviour
         StartCoroutine(GameStarting());
         _audioSource.Play();
     }
+    public void EndlessButton()
+    {
+        StartCoroutine(EndlessStarting());
+        _audioSource.Play();
+    }
     public void ExitButton()
     {
         _audioSource.Play();
@@ -31,6 +36,12 @@ public class Mainmenu : MonoBehaviour
         _menu.SetTrigger("Start");
         yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene("Game");
+    }
+    private IEnumerator EndlessStarting()
+    {
+        _menu.SetTrigger("Start");
+        yield return new WaitForSeconds(5.0f);
+        SceneManager.LoadScene("Endless");
     }
     string FormatTime(float time)
     {

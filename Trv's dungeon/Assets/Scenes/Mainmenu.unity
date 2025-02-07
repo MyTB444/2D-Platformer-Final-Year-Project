@@ -1110,7 +1110,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 871887379}
         m_TargetAssemblyTypeName: Mainmenu, Assembly-CSharp
-        m_MethodName: StartButton
+        m_MethodName: EndlessButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
