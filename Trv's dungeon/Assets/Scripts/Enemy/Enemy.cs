@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
+using UnityEngine.SceneManagement;
 
 public abstract class Enemy : MonoBehaviour
 {
     // enemy stats
+    [SerializeField] protected int maxHealth;
     [SerializeField] protected int _health;
     [SerializeField] protected float _speed;
     [SerializeField] protected float _jumpForce;
@@ -16,6 +19,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float _attackDuration;
     [SerializeField] protected float _stunVulnerability;
     [SerializeField] protected bool _canJump;
+    private Enemypool pool;
     public int _enemyFragility;
     // Logic
     protected bool _hasLos = false;
@@ -45,6 +49,7 @@ public abstract class Enemy : MonoBehaviour
         }
         _rigid = GetComponent<Rigidbody2D>();
         _enemySprite = GetComponentInChildren<SpriteRenderer>();
+        _health = maxHealth;
     }
     protected virtual void Start()
     {
@@ -127,13 +132,26 @@ public abstract class Enemy : MonoBehaviour
         }
         _enemyAnim.DeadAnimation();
     }
-
+    public void Setup(Enemypool objectPool)
+    {
+        pool = objectPool;
+    }
     // Are we in the screen?
     protected void OutOfMap()
     {
         if (distance > 100)
         {
-            Destroy(this.gameObject);
+            if ("Game" == SceneManager.GetActiveScene().name)
+            {
+                Destroy(this.gameObject);
+            }
+            else if ("Endless" == SceneManager.GetActiveScene().name)
+            {
+                _health = maxHealth;
+                _collider.enabled = true;
+                currentCombatState = CombatState.Neutral;
+                pool.ReturnToPool(gameObject);
+            }
         }
     }
     protected void JumpCheck()

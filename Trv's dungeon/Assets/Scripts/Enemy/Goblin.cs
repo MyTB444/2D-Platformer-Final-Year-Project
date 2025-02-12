@@ -17,6 +17,14 @@ public class Goblin : Enemy
         base.Init();
         StartCoroutine(SpawnDelay());
     }
+    private void OnEnable()
+    {
+        StartCoroutine(SpawnDelay());
+        if (_audio != null)
+        {
+            _audio.DashAudio();
+        }
+    }
     protected override void Update()
     {
         if (GameObject.FindGameObjectWithTag("Player") != null)
