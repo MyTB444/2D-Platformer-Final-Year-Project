@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabb167bd1fbe495e8501a1649db1e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 12
   _health: 12
   _speed: 0
   _jumpForce: 0
@@ -291,13 +292,18 @@ MonoBehaviour:
   _enemyFragility: 4
   _facedRight: 0
   _isABoss: 0
+  gameman: {fileID: 0}
+  firewall: {fileID: 0}
   p1fireball: {fileID: 4895652027227960938, guid: d864cdeffe80a491dba3d72d0db92901, type: 3}
+  p2fireball: {fileID: 0}
+  minifireball: {fileID: 0}
   fireballinterval: 5
   locations:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  sm: {fileID: 0}
 --- !u!1 &6528393104716993656
 GameObject:
   m_ObjectHideFlags: 0

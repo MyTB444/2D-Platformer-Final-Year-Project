@@ -69,6 +69,7 @@ public class UIman : MonoBehaviour
         if (time < bestTime)
         {
             PlayerPrefs.SetFloat("BestTime", time);
+            PlayerPrefs.SetInt("SetTime", 5);
             PlayerPrefs.Save();
         }
     }

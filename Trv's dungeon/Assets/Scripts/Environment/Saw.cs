@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Unity.PlasticSCM.Editor.WebApi;
-using UnityEditor;
 using UnityEngine;
 
 public class Saw : MonoBehaviour

@@ -12,7 +12,12 @@ public class Mainmenu : MonoBehaviour
     void Start()
     {
         float bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue);
-        highestScore.text = FormatTime(bestTime);
+        int set = PlayerPrefs.GetInt("SetTime");
+        if (set == 5)
+        {
+            highestScore.text = FormatTime(bestTime);
+        }
+
         _audioSource = GetComponent<AudioSource>();
     }
     public void StartButton()

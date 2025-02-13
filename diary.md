@@ -163,3 +163,5 @@ I have improved the menu. It looks much better and interactable. The highest sco
 I have created the scene for the endless mode, also connected the button on the menu.
 -12/02/2025
 I have been researchin about how to handle frequently instantiated objects. Instantiating and destroying objects is a costly process, and is unefficient from an engineering perspective. There is a concept called object pooling in Unity. Instead of destroying objects we set them deactivated, store inside a parent object, and activate back again when necessary. This allows us to reuse objects instead of creating fresh ones. I have initiated a goblin pool for the endless mode. There will be a pool for each enemy type.
+-13/02/2025
+Pools are all setup. Spawning in endless mode will be randomized, both in location, spawn interval, and enemy type. The interface for randomly spawning enemies is implemented. I will design the area and set all the locations and spawners with their relevant spawn scripts.
