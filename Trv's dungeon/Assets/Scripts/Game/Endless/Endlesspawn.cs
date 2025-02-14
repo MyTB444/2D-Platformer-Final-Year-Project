@@ -1,43 +1,75 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Endlesspawn : MonoBehaviour
 {
-    [SerializeField] private Transform[] warrSpawnPoints;
-    public GameObject goblin;
-    private float difficulty = 3.0f;
-    public Enemypool goblinwarrPool;
-    public Enemypool skelwarrPool;
+    public Transform[] warrSpawnPoints;
+    public Transform[] archSpawnPoints;
+    public float difficulty;
+    public Enemypool[] archerPool;
+    public Enemypool[] warriorsPool;
+    public struct EnemyTypeToSpawn
+    {
+        public Enemypool[] pool;
+        public Transform[] locs;
+    }
+    public EnemyTypeToSpawn warrior;
+    public EnemyTypeToSpawn archer;
+    private void SetWarriors()
+    {
+        warrior.pool = warriorsPool;
+        warrior.locs = warrSpawnPoints;
+        archer.pool = archerPool;
+        archer.locs = archSpawnPoints;
+    }
+
     void Start()
     {
+        SetWarriors();
         StartCoroutine(WarriorSpawn());
+        StartCoroutine(ArcherSpawn());
     }
     IEnumerator WarriorSpawn()
     {
         while (true)
         {
-            int r = Random.Range(0, 2);
-            int p = Random.Range(1, 3);
-            switch (p)
-            {
-                case 1:
-                    Spawn(goblinwarrPool, r);
-                    break;
-                case 2:
-                    Spawn(skelwarrPool, r);
-                    break;
-            }
+            int x = Random.Range(0, 3);
+            SpawnRandomizer1(warrior, x);
             yield return new WaitForSeconds(difficulty);
         }
     }
-    private void Spawn(Enemypool pool, int x)
+    IEnumerator ArcherSpawn()
+    {
+        while (true)
+        {
+            int x = Random.Range(0, 4);
+            SpawnRandomizer1(archer, x);
+            yield return new WaitForSeconds(difficulty * 2);
+        }
+    }
+    private void Spawn(Enemypool pool, int x, Transform[] loc)
     {
         GameObject enemy = pool.GetFromPool();
-        enemy.transform.position = warrSpawnPoints[x].position;
+        enemy.transform.position = loc[x].position;
         Enemy enemy1 = enemy.GetComponent<Enemy>();
-        enemy1.Setup(goblinwarrPool);
+        enemy1.Setup(pool);
+    }
+    private void SpawnRandomizer1(EnemyTypeToSpawn type, int r)
+    {
+        int p = Random.Range(1, 3);
+        switch (p)
+        {
+            case 1:
+                Spawn(type.pool[0], r, type.locs);
+                break;
+            case 2:
+                Spawn(type.pool[1], r, type.locs);
+                break;
+        }
     }
 }
-

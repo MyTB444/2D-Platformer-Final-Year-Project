@@ -31,7 +31,14 @@ public class Game_man : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) && _isGameover == true || Input.GetKeyDown(KeyCode.Alpha8))
         {
-            SceneManager.LoadScene("Game");
+            if (SceneManager.GetActiveScene().name == "Game")
+            {
+                SceneManager.LoadScene("Game");
+            }
+            else
+            {
+                SceneManager.LoadScene("Endless");
+            }
         }
         if (Input.GetKeyDown(KeyCode.H) && _isGameover == true)
         {
@@ -99,6 +106,9 @@ public class Game_man : MonoBehaviour
     public void GameOver()
     {
         _isGameover = true;
-        pop.SetTrigger("Win");
+        if (pop != null)
+        {
+            pop.SetTrigger("Win");
+        }
     }
 }
