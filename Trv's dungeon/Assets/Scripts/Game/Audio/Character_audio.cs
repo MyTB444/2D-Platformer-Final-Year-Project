@@ -15,8 +15,6 @@ public class Character_audio : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
     }
-
-    // Update is called once per frame
     public void SwingAudio()
     {
         _audioSource.clip = _attackClip;

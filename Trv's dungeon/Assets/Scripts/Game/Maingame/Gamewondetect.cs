@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class Gamewondetect : MonoBehaviour
 {
+    // Observant for win
     [SerializeField] UnityEvent gamewon;
     private void OnTriggerEnter2D(Collider2D other)
     {

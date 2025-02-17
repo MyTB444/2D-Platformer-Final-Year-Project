@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
     }
     AirState currentAirState = AirState.Grounded;
     MovementState currentMovementState = MovementState.Standing;
-    //CAN WE JUMP? We cast a box from our foot. If it hits an object, we know that we are grounded.
+    //CAN WE JUMP? We cast a box from our foot. If it hits an object, we know that we are grounded
     private void GroundCalculate()
     {
         int layerMask = (1 << 6) | (1 << 7) | (1 << 8);
@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
             currentAirState = AirState.InAir;
         }
     }
+    // Check if we are moving on snow, slow us if we are
     private void SlowCheck()
     {
         if (currentMovementState != MovementState.Rolling)
@@ -100,7 +101,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-
+    // Jump logic with double jump
     public void Jump()
     {
         if (currentAirState == AirState.Grounded && currentMovementState == MovementState.Standing)
@@ -123,6 +124,7 @@ public class Player : MonoBehaviour
             airjump = true;
         }
     }
+    // Most are self explanatory
     public void FastFall()
     {
         _playerAnim.ClimbAnimStop();
@@ -195,6 +197,7 @@ public class Player : MonoBehaviour
             StartCoroutine(Attack());
         }
     }
+    // Play attack animation based on where we are faced
     IEnumerator Attack()
     {
         currentMovementState = MovementState.Attacking;
@@ -228,6 +231,7 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(PickUp());
     }
+    // Similar to attacking
     IEnumerator PickUp()
     {
         if (currentMovementState == MovementState.Standing)
@@ -249,6 +253,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+    // Dont take damage if dashing
     public void TakeDamage()
     {
         if (currentMovementState != MovementState.Rolling && IsPlayerDead() == false)
@@ -267,6 +272,7 @@ public class Player : MonoBehaviour
         }
         return false;
     }
+    // Call observers if dead
     private void DamageEffect()
     {
         if (IsPlayerDead() == false)
@@ -308,6 +314,7 @@ public class Player : MonoBehaviour
     {
         canDoubleJump = false;
     }
+    // Spawn dropped item and inform inventory manager
     public void DropItem(int index)
     {
         InventorySystem inventory = FindObjectOfType<InventorySystem>();
@@ -324,6 +331,7 @@ public class Player : MonoBehaviour
         }
         inventory.RemoveItem(index);
     }
+    // Serach inventory, find the key and drop it
     public void DropKey()
     {
         InventorySystem inventory = FindObjectOfType<InventorySystem>();
@@ -338,6 +346,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+    // Heal to full
     public void Regen()
     {
         _health = 5;

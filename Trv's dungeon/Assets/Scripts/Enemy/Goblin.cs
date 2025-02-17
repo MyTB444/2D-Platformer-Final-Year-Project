@@ -74,7 +74,7 @@ public class Goblin : Enemy
             }
         }
     }
-    // Is jack at a reachable place.
+    // Is jack at a reachable place. If not stop walking and combat mode
     protected void IsJackHere()
     {
         RaycastHit2D upInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.up, _attackDistance * 5, 1 << 3);
@@ -134,7 +134,7 @@ public class Goblin : Enemy
             currentMovementState = MovementState.Following;
         }
     }
-    // Jump cooldown.
+    // Rock throwing logic for miniboss similar to the archers
     private void RockThrow()
     {
         if (currentMovementState == MovementState.Following)

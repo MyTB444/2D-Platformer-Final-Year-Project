@@ -10,6 +10,7 @@ public class Enemypool : MonoBehaviour
 
     void Start()
     {
+        // Populate the pool with inactive objects
         for (int i = 0; i < poolSize; i++)
         {
             GameObject obj = Instantiate(goblin);
@@ -17,7 +18,7 @@ public class Enemypool : MonoBehaviour
             pool.Enqueue(obj);
         }
     }
-
+    // Return the object from pool if there is one, otherwise spawn it
     public GameObject GetFromPool()
     {
         if (pool.Count > 0)
@@ -32,6 +33,7 @@ public class Enemypool : MonoBehaviour
             return obj;
         }
     }
+    // Return the object to pool
 
     public void ReturnToPool(GameObject obj)
     {

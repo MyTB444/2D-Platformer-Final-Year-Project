@@ -12,8 +12,7 @@ public class Spawn_man : MonoBehaviour
     public GameObject _minigoblin;
     public GameObject _goblinarcher;
 
-    // Start is called before the first frame update
-    //Spawn a goblin in the next spot every few seconds.
+    // Enemy spawn handler
     public void SpawnBossArcher(float x, float y)
     {
         Instantiate(_goblinarcher, new Vector2(x, y), Quaternion.identity);
@@ -36,6 +35,4 @@ public class Spawn_man : MonoBehaviour
             Instantiate(skeletonWarrior, skeletonLocs[i].position, Quaternion.identity);
         }
     }
-    // Decrease the time at wich goblins spawn.
 }
-// Check player location, set state and spawn accordingly.

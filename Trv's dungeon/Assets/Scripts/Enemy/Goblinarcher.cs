@@ -30,7 +30,7 @@ public class Goblinarcher : Enemy
         base.Init();
         currentMovementState = MovementState.Following;
     }
-    //If jack is close and at the same distance, fire arrow.
+    // Check jacks location and attack if he is close
     private void ArcherMovement()
     {
         WhereIsPlayer();

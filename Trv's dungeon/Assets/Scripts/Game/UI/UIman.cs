@@ -47,6 +47,7 @@ public class UIman : MonoBehaviour
             DisplayTime(Time.time - startTime);
         }
     }
+    // Format time 
     string FormatTime(float time)
     {
         int minutes = (int)(time / 60);
@@ -73,7 +74,7 @@ public class UIman : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
-    //Display time tracker.
+    // Regen player hp
     public void Regen()
     {
         for (int i = 0; i < 5; i++)

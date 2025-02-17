@@ -15,11 +15,11 @@ public class ButtonPress : MonoBehaviour
         bcollider = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         IsPressed();
     }
+    // Check if jack is pressing the button
     private void IsPressed()
     {
         RaycastHit2D upInfo1; // = Physics2D.Raycast(transform.position, Vector2.up, 1 << 3);
@@ -39,6 +39,7 @@ public class ButtonPress : MonoBehaviour
         }
 
     }
+    // Button press action
     IEnumerator ButtonPressed()
     {
         presscount = 1;

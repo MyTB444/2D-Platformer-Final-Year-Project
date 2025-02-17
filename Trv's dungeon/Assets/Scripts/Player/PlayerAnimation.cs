@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    //Simple animation handler for the player.
+    //Animation handler for the player
     private SpriteRenderer _sprite;
     private Animator[] _anim;
     void Start()
@@ -13,8 +13,6 @@ public class PlayerAnimation : MonoBehaviour
         _anim = GetComponentsInChildren<Animator>();
         _sprite = GetComponentInChildren<SpriteRenderer>();
     }
-
-    // Update is called once per frame
     public void RunAnim(float move)
     {
         _anim[0].SetFloat("Running", Mathf.Abs(move));
@@ -67,7 +65,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         _anim[1].SetTrigger("Left");
     }
-    //Manually created animation for changing color when damage is taken.
+    //Manually created animation for changing color when damage is taken
     private IEnumerator Reding()
     {
         _sprite.color = Color.red;

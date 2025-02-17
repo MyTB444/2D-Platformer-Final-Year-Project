@@ -18,6 +18,7 @@ public class Player_pickbox : MonoBehaviour
             _gameman = GameObject.FindGameObjectWithTag("Gameman").GetComponent<Game_man>();
         }
     }
+    // The pickpox for player, colliding with interactables and calling their relevant clases
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Diamond")

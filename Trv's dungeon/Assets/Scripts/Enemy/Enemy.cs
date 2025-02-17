@@ -75,7 +75,7 @@ public abstract class Enemy : MonoBehaviour
     protected CombatState currentCombatState = CombatState.Neutral;
     protected MovementState currentMovementState = MovementState.Stuned;
 
-    //where are we faced
+    //Check if we can see the player
     protected void FowCheck()
     {
         int layerMask = (1 << 3 | 1 << 7);
@@ -87,6 +87,7 @@ public abstract class Enemy : MonoBehaviour
             _hasLos = fow.collider.CompareTag("Player");
         }
     }
+    // Face towards player
     protected void Flip(float move)
     {
         if (move > 0)
@@ -131,11 +132,12 @@ public abstract class Enemy : MonoBehaviour
         }
         _enemyAnim.DeadAnimation();
     }
+    // Assigns the enemy to its relevant pool when called
     public void Setup(Enemypool objectPool)
     {
         pool = objectPool;
     }
-    // Are we in the screen?
+    // Are we in the screen? If not, destroy the object if this is maingame, otherwise return it to pool.
     protected void OutOfMap()
     {
         if (distance > 100)
@@ -153,6 +155,7 @@ public abstract class Enemy : MonoBehaviour
             }
         }
     }
+    // Jump if player is above 
     protected void JumpCheck()
     {
         if (_target.position.y >= transform.position.y + _height && currentMovementState == MovementState.Following && _canJump == true)

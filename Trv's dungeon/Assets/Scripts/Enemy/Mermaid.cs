@@ -25,6 +25,7 @@ public class Mermaid : Enemy
         base.Init();
         currentMovementState = MovementState.Following;
     }
+    // If jack is at the same height dash towards him
     private void Attack()
     {
         RaycastHit2D rightInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.right, _attackDistance, 1 << 3);

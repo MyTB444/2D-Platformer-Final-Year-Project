@@ -7,6 +7,7 @@ public class Bossfightdetector : MonoBehaviour
 {
     [SerializeField] UnityEvent bossfight;
     int x = 0;
+    // Observant for boss fight
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")

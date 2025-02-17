@@ -54,7 +54,7 @@ public class Game_man : MonoBehaviour
         _audio.CLickAudio();
         Destroy(_gate.gameObject);
     }
-    // If hearth or diamond is found, inform related objects.
+    // If gem, everald or diamond is found, inform related objects.
     public void GemFound()
     {
         _count = _count + 1;
@@ -76,7 +76,7 @@ public class Game_man : MonoBehaviour
         _audio.CLickAudio();
         EnableGate();
     }
-    // If both are found enable the gate collider for unlocking it.
+    // If all are found enable the gate collider for unlocking it.
     private void EnableGate()
     {
         if (_count == 3)
@@ -84,11 +84,13 @@ public class Game_man : MonoBehaviour
             _gateCollider.enabled = true;
         }
     }
+    // Boss fight walls
     public void BossFight()
     {
         firewall[0].SetActive(true);
         firewall[4].SetActive(true);
     }
+    // Firemage during fight walls
     public void FightWalls()
     {
         for (int i = 1; i < 4; i++)

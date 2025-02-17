@@ -16,6 +16,7 @@ public class Gate : MonoBehaviour
         }
         _collider.enabled = false;
     }
+    // Destroy the gate if key is here
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Key")

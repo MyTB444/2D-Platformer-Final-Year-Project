@@ -23,6 +23,7 @@ public class Arenaspawndetector : MonoBehaviour
     {
         PhaseInitiate();
     }
+    // Colligion logic for phase handling
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player" && phase1count == 0)
@@ -41,6 +42,7 @@ public class Arenaspawndetector : MonoBehaviour
             }
         }
     }
+    // Spawn enemies based on phase
     private void PhaseInitiate()
     {
         if (currentphase == phase.phase1 && phase1count == 0)

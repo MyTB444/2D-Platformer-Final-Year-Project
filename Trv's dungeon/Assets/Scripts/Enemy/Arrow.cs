@@ -7,7 +7,6 @@ using UnityEngine.Animations;
 
 public class Arrow : MonoBehaviour
 {
-    // Check parent object location and move accordingly.
     private Transform _player;
     public float _speed;
     [SerializeField] private float rotation;
@@ -15,6 +14,7 @@ public class Arrow : MonoBehaviour
     private Rigidbody2D rb;
     void Start()
     {
+        // Set the movement direction and rotation based on player location
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         Vector3 direction = _player.transform.position - transform.position;
@@ -24,11 +24,13 @@ public class Arrow : MonoBehaviour
     }
     void Update()
     {
+        // Destroy if out of map
         if (transform.position.y > 50 || transform.position.y < -50 || transform.position.x < -60 || transform.position.x > 60)
         {
             Destroy(this.gameObject);
         }
     }
+    // Destroy if collided with surface
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Ground")

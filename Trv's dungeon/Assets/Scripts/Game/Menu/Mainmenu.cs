@@ -11,6 +11,7 @@ public class Mainmenu : MonoBehaviour
     [SerializeField] private Animator _menu;
     void Start()
     {
+        // Display highest score
         float bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue);
         int set = PlayerPrefs.GetInt("SetTime");
         if (set == 5)
@@ -48,6 +49,7 @@ public class Mainmenu : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene("Endless");
     }
+    // Format time from float to time with miliseconds
     string FormatTime(float time)
     {
         int minutes = (int)(time / 60);

@@ -13,6 +13,7 @@ public class Fireball : MonoBehaviour
         fm = GetComponentInParent<Firemage>();
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        // Move right and left based on firemage
         if (fm._facedRight == true)
         {
             transform.rotation = Quaternion.Euler(0, 0, 90);
@@ -26,8 +27,6 @@ public class Fireball : MonoBehaviour
             sr.flipX = true;
         }
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (transform.position.x > 60)

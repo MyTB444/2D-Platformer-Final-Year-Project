@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player_input : MonoBehaviour
 {
+    // Handle inputs
     private float horizontalInput;
     private Player _player;
 
@@ -53,6 +54,7 @@ public class Player_input : MonoBehaviour
         {
             _player.DropKey();
         }
+        //PICK UP
         if (Input.GetKeyDown(KeyCode.L))
         {
             _player.StartPickUp();

@@ -14,6 +14,7 @@ public class Saw : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         Movement();
     }
+    // Move between set locations
     private void Movement()
     {
         if (transform.position.x <= movepoints[0].position.x)

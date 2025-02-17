@@ -33,6 +33,7 @@ public class Enemy_hitbox : MonoBehaviour
             }
         }
     }
+    // Onlide collide every 0.7f seconds
     void Update()
     {
         if (collisionnumber == 1)

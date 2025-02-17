@@ -7,7 +7,7 @@ using UnityEngine;
 public class Player_hitbox : MonoBehaviour
 {
     private int collisionnumber;
-    // Damage and push enemies with handles. Trigger game events if the object is not an enemy.
+    // Damage and push enemies with handles
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (collisionnumber < 1)

@@ -15,7 +15,7 @@ public class InventorySystem : MonoBehaviour
         inventory = new InventoryItemSO[maxItems];
         UpdateUI();
     }
-
+    // Add item to the next available slot and update the UI
     public bool AddItem(InventoryItemSO newItem)
     {
         for (int i = 0; i < inventory.Length; i++)
@@ -30,7 +30,7 @@ public class InventorySystem : MonoBehaviour
         Debug.Log("Inventory is full!");
         return false;
     }
-
+    // Remove item from given index
     public void RemoveItem(int index)
     {
         if (index >= 0 && index < inventory.Length && inventory[index] != null)
@@ -63,7 +63,7 @@ public class InventorySystem : MonoBehaviour
             }
         }
     }
-
+    // Return the item from the given index
     public InventoryItemSO GetItem(int index)
     {
         if (index >= 0 && index < inventory.Length)

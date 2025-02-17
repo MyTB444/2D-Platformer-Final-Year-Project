@@ -20,7 +20,8 @@ public class Endlesspawn : MonoBehaviour
     }
     public EnemyTypeToSpawn warrior;
     public EnemyTypeToSpawn archer;
-    private void SetWarriors()
+    // Set the values for enemytypes
+    private void SetEnemyTypes()
     {
         warrior.pool = warriorsPool;
         warrior.locs = warrSpawnPoints;
@@ -30,7 +31,7 @@ public class Endlesspawn : MonoBehaviour
 
     void Start()
     {
-        SetWarriors();
+        SetEnemyTypes();
         StartCoroutine(WarriorSpawn());
         StartCoroutine(ArcherSpawn());
     }
@@ -39,7 +40,7 @@ public class Endlesspawn : MonoBehaviour
         while (true)
         {
             int x = Random.Range(0, 3);
-            SpawnRandomizer1(warrior, x);
+            SpawnRandomizer(warrior, x);
             yield return new WaitForSeconds(difficulty);
         }
     }
@@ -48,10 +49,11 @@ public class Endlesspawn : MonoBehaviour
         while (true)
         {
             int x = Random.Range(0, 4);
-            SpawnRandomizer1(archer, x);
+            SpawnRandomizer(archer, x);
             yield return new WaitForSeconds(difficulty * 2);
         }
     }
+    // Get an object from the pool and set its pool to the relevant
     private void Spawn(Enemypool pool, int x, Transform[] loc)
     {
         GameObject enemy = pool.GetFromPool();
@@ -59,7 +61,8 @@ public class Endlesspawn : MonoBehaviour
         Enemy enemy1 = enemy.GetComponent<Enemy>();
         enemy1.Setup(pool);
     }
-    private void SpawnRandomizer1(EnemyTypeToSpawn type, int r)
+    // Randomly spawn one of the given types
+    private void SpawnRandomizer(EnemyTypeToSpawn type, int r)
     {
         int p = Random.Range(1, 3);
         switch (p)

@@ -9,6 +9,7 @@ public class Dashpanel : MonoBehaviour
     private float remaining;
     private float max = 3f;
     public Slider slider;
+    // Dash "slider" implementation
     void Update()
     {
         slider.value = CalculateSlider();

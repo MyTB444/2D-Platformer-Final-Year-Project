@@ -13,6 +13,7 @@ public class Lever : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
     }
+    // Move the assigned gate and change sprite
     public void MoveGates()
     {
         if (mooving == false)

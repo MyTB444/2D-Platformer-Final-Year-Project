@@ -57,6 +57,7 @@ public class Firemage : Enemy
             firerotation = -2;
         }
     }
+    // Only fire directional fireballs during phase 1
     private IEnumerator FireballPhase1()
     {
         yield return new WaitForSeconds(0.1f);
@@ -66,6 +67,7 @@ public class Firemage : Enemy
             yield return new WaitForSeconds(fireballinterval);
         }
     }
+    // Set fireball rotation based on where we are faced
     private IEnumerator FireBall()
     {
         _enemyAnim.AttackLeft();
@@ -80,10 +82,12 @@ public class Firemage : Enemy
             damageable = false;
             StartCoroutine(ResetDamage());
             base.TakeDamage();
+            // The firemage always teleport to its next location when it takes damage
             if (_health > 0)
             {
                 StartCoroutine(LocationUpdate(_health));
             }
+            // If health is 2 spawn enemies and fire walls
             if (_health == 2)
             {
                 gameman.FightWalls();
@@ -95,6 +99,7 @@ public class Firemage : Enemy
             }
         }
     }
+    // Only take damage every 0.3f seconds
     private IEnumerator ResetDamage()
     {
         yield return new WaitForSeconds(0.3f);
@@ -106,6 +111,7 @@ public class Firemage : Enemy
         _rigid.gravityScale = 0;
         _collider.enabled = false;
         yield return new WaitForSeconds(1f);
+        // Fire mage teleports to specific locations on jacks way back to the underground
         if (x >= 8)
         {
             switch (x)
@@ -127,6 +133,7 @@ public class Firemage : Enemy
                     break;
             }
         }
+        // If hp is less than 8 then the bossfight has started. The firemage randomly teleports on one of the platforms.
         else if (x < 8)
         {
             if (x > 2)
@@ -134,6 +141,7 @@ public class Firemage : Enemy
                 int z = Random.Range(4, 8);
                 transform.position = locations[z].position;
             }
+            //if hp is less than 3 it will teleport to the most right or most left side of the arena based on jacks location
             else if (x < 3)
             {
                 if (_target.position.x > 17)
@@ -149,6 +157,7 @@ public class Firemage : Enemy
         _collider.enabled = true;
         _rigid.gravityScale = 1;
     }
+    // If both firemage and jack is there, start the fight
     private void StartFight()
     {
         if (currentphase == phase.phase2 && jackishere == true)
@@ -162,6 +171,7 @@ public class Firemage : Enemy
     {
         jackishere = true;
     }
+    // Randomly do the big fireball or three mini freballs attack every 4f seconds
     private IEnumerator FightAttack()
     {
         while (true)

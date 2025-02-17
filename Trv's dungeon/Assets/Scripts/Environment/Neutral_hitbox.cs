@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Neutral_hitbox : MonoBehaviour
 {
+    // Hit both the player and the enemy
     private int collisionnumber = 0;
     public void OnTriggerEnter2D(Collider2D other)
     {
