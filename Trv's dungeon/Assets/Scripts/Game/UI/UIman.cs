@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlTypes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIman : MonoBehaviour
@@ -12,6 +13,7 @@ public class UIman : MonoBehaviour
     public TextMeshProUGUI timeText;
     public float scoreTime = 0;
     [SerializeField] private Animator[] _live;
+    public Animator[] waveText;
     public TextMeshProUGUI finalScore;
     [SerializeField] private TextMeshProUGUI _gameoverText;
     [SerializeField] private TextMeshProUGUI _gamewinText;
@@ -29,6 +31,14 @@ public class UIman : MonoBehaviour
     {
         _gameStop = true;
         _gameoverText.gameObject.SetActive(true);
+    }
+    public void EndlessGameOver()
+    {
+        scoreTime = Time.time - startTime;
+        SaveBestWave(scoreTime);
+        finalScore.text = FormatTime(scoreTime);
+        finalScore.gameObject.SetActive(true);
+        timeText.gameObject.SetActive(false);
     }
     //Activate game win tests.
     public void GameWinSequence()
@@ -74,6 +84,17 @@ public class UIman : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+    void SaveBestWave(float time)
+    {
+        float bestTime = PlayerPrefs.GetFloat("BestWave", float.MinValue);
+        if (time > bestTime)
+        {
+            PlayerPrefs.SetFloat("BestWave", time);
+            PlayerPrefs.SetInt("SetWave", 5);
+            PlayerPrefs.Save();
+        }
+
+    }
     // Regen player hp
     public void Regen()
     {
@@ -82,4 +103,9 @@ public class UIman : MonoBehaviour
             _live[i].SetTrigger("Regen");
         }
     }
+    public void WaveTextPlay(int x)
+    {
+        waveText[x].SetTrigger("Play");
+    }
+
 }

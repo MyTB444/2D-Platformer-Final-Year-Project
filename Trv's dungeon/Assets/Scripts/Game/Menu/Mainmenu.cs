@@ -8,15 +8,24 @@ public class Mainmenu : MonoBehaviour
 {
     private AudioSource _audioSource;
     [SerializeField] private TextMeshProUGUI highestScore;
+    [SerializeField] private TextMeshProUGUI highestScore2;
+
     [SerializeField] private Animator _menu;
     void Start()
     {
         // Display highest score
         float bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue);
+        float bestWave = PlayerPrefs.GetFloat("BestWave", float.MaxValue);
+        int set2 = PlayerPrefs.GetInt("SetWave");
         int set = PlayerPrefs.GetInt("SetTime");
         if (set == 5)
         {
             highestScore.text = FormatTime(bestTime);
+        }
+        if (set2 == 5)
+        {
+            highestScore2.text = FormatTime(bestWave);
+
         }
 
         _audioSource = GetComponent<AudioSource>();

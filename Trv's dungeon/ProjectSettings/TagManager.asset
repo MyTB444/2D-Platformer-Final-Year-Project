@@ -18,6 +18,8 @@ TagManager:
   - UIman
   - Audioman
   - Diamond
+  - Sword
+  - Boots
   layers:
   - Default
   - TransparentFX

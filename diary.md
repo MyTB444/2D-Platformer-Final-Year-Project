@@ -167,3 +167,5 @@ I have been researchin about how to handle frequently instantiated objects. Inst
 Pools are all setup. Spawning in endless mode will be randomized, both in location, spawn interval, and enemy type. The interface for randomly spawning enemies is implemented. I will design the area and set all the locations and spawners with their relevant spawn scripts.
 -14/02/2025
 Melee and ranged enemy spawn randomizing is fully setup. The spawn logic for the mermaid and the miniboss wil be different. There will be few stages, by the end of it the player will get the sword and double jump as a reward and the enemies will start to spawn continously. The spawn interval will decrease gradually until the player is dead. Stages on the other hand will have certain algorythms of spawning.
+-18/02/2025
+Wave management for the endless mode is almost completed. I will further study on UI design. It is time to start working on the cosmetic aspects of the game and polish it. The overall gameplay is almost finished.

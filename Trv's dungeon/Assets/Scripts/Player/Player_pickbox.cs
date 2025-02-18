@@ -42,14 +42,14 @@ public class Player_pickbox : MonoBehaviour
             inventory.AddItem(key);
             Destroy(other.gameObject);
         }
-        else if (other.gameObject.name == "Boots")
+        else if (other.gameObject.tag == "Boots")
         {
             InventorySystem inventory = FindObjectOfType<InventorySystem>();
             inventory.AddItem(boots);
             player.EnableDoubleJump();
             Destroy(other.gameObject);
         }
-        else if (other.gameObject.name == "Sword")
+        else if (other.gameObject.tag == "Sword")
         {
             InventorySystem inventory = FindObjectOfType<InventorySystem>();
             inventory.AddItem(sword);

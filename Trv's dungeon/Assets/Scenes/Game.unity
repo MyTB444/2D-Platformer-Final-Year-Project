@@ -2781,6 +2781,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &179833333 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6326405529163564013, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+  m_PrefabInstance: {fileID: 7114450020763652020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &192008890 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7433581688963937478, guid: 44205798bdcff4563b509f07868856ee, type: 3}
@@ -6061,9 +6066,9 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1244403688}
+  m_Follow: {fileID: 179833333}
   m_Lens:
-    FieldOfView: 90
+    FieldOfView: 100
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -6090,7 +6095,7 @@ Transform:
   m_GameObject: {fileID: 303489492}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.1, y: -0.9, z: -5}
+  m_LocalPosition: {x: -23.52, y: -0.98, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8280,7 +8285,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 90
+  field of view: 100
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -8307,7 +8312,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.1, y: -0.9, z: -5}
+  m_LocalPosition: {x: -23.52, y: -0.98, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29103,11 +29108,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!4 &1244403688 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6326405529163564013, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
-  m_PrefabInstance: {fileID: 7114450020763652020}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1250183837
 GameObject:
   m_ObjectHideFlags: 0
@@ -35736,6 +35736,7 @@ MonoBehaviour:
   - {fileID: 428078707}
   - {fileID: 370740046}
   - {fileID: 2066183876}
+  waveText: []
   finalScore: {fileID: 108384420}
   _gameoverText: {fileID: 691743476}
   _gamewinText: {fileID: 412101321}
@@ -37351,14 +37352,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 77363460}
     m_Modifications:
     - target: {fileID: 322983323413377981, guid: 21152b451a4bd4174aad1a9e640cfc87, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 322983323413377981, guid: 21152b451a4bd4174aad1a9e640cfc87, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 322983323413377981, guid: 21152b451a4bd4174aad1a9e640cfc87, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.25
       objectReference: {fileID: 0}
@@ -37398,10 +37391,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7061888277473031992, guid: 21152b451a4bd4174aad1a9e640cfc87, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2000335803, guid: 5320eeba8458e4aa28925c0f69b6b2e2, type: 3}
     - target: {fileID: 8403795513766245533, guid: 21152b451a4bd4174aad1a9e640cfc87, type: 3}
       propertyPath: m_Name
       value: Sword
@@ -37599,11 +37588,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6326405529163564013, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.1
+      value: -23.52
       objectReference: {fileID: 0}
     - target: {fileID: 6326405529163564013, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9
+      value: -1.98
       objectReference: {fileID: 0}
     - target: {fileID: 6326405529163564013, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
       propertyPath: m_LocalPosition.z

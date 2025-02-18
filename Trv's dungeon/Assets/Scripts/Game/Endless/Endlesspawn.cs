@@ -5,12 +5,15 @@ using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.Video;
 
 public class Endlesspawn : MonoBehaviour
 {
     public Transform[] warrSpawnPoints;
     public Transform[] archSpawnPoints;
-    public float difficulty;
+    public Transform[] mermaidSpawnPoints;
+    public Enemypool minibossPool;
+    public Enemypool mermaidPool;
     public Enemypool[] archerPool;
     public Enemypool[] warriorsPool;
     public struct EnemyTypeToSpawn
@@ -32,26 +35,27 @@ public class Endlesspawn : MonoBehaviour
     void Start()
     {
         SetEnemyTypes();
-        StartCoroutine(WarriorSpawn());
-        StartCoroutine(ArcherSpawn());
     }
-    IEnumerator WarriorSpawn()
+    public void SpawnMermaid()
     {
-        while (true)
-        {
-            int x = Random.Range(0, 3);
-            SpawnRandomizer(warrior, x);
-            yield return new WaitForSeconds(difficulty);
-        }
+        int x = Random.Range(0, 3);
+        Spawn(mermaidPool, x, mermaidSpawnPoints);
     }
-    IEnumerator ArcherSpawn()
+    public void SpawnMiniBoss()
     {
-        while (true)
-        {
-            int x = Random.Range(0, 4);
-            SpawnRandomizer(archer, x);
-            yield return new WaitForSeconds(difficulty * 2);
-        }
+        int x = Random.Range(0, 3);
+        Spawn(minibossPool, x, warrSpawnPoints);
+    }
+    public void SpawnWarrior()
+    {
+        int x = Random.Range(0, 3);
+        SpawnRandomizer(warrior, x);
+    }
+
+    public void SpawnArcher()
+    {
+        int x = Random.Range(0, 4);
+        SpawnRandomizer(archer, x);
     }
     // Get an object from the pool and set its pool to the relevant
     private void Spawn(Enemypool pool, int x, Transform[] loc)
@@ -76,3 +80,4 @@ public class Endlesspawn : MonoBehaviour
         }
     }
 }
+

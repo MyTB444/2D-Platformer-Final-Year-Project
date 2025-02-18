@@ -122,11 +122,11 @@ public abstract class Enemy : MonoBehaviour
         currentMovementState = MovementState.Stuned;
         currentCombatState = CombatState.Dead;
         _rigid.gravityScale = 1;
-        if (_isABoss == false)
+        if (_isABoss == false || SceneManager.GetActiveScene().name == "Endless")
         {
             this._collider.enabled = false;
         }
-        else if (_isABoss == true)
+        else if (_isABoss == true && SceneManager.GetActiveScene().name == "Game")
         {
             _rigid.constraints = RigidbodyConstraints2D.FreezePositionY;
         }
