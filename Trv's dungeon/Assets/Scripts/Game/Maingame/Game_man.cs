@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,9 +8,10 @@ using UnityEngine.SceneManagement;
 public class Game_man : MonoBehaviour
 {
     private bool _isGameover = false;
-
+    public float startDelay;
     private Collider2D _gateCollider;
     private Audioman _audio;
+    public GameObject cam;
     [SerializeField] private GameObject[] firewall;
     [SerializeField] private GameObject _gate;
     [SerializeField] private Animator pop;
@@ -19,12 +21,18 @@ public class Game_man : MonoBehaviour
     [SerializeField] private int _count;
     void Start()
     {
+        StartCoroutine(StartDelay());
         _audio = GameObject.FindWithTag("Audioman").GetComponent<Audioman>();
         if (GameObject.FindWithTag("Gate") != null)
         {
             _gateCollider = GameObject.FindWithTag("Gate").GetComponent<Collider2D>();
         }
         _count = 0;
+    }
+    IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(startDelay);
+        cam.SetActive(true);
     }
     //Restart and exit buttons.
     void Update()
@@ -42,7 +50,7 @@ public class Game_man : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.H) && _isGameover == true)
         {
-            Application.Quit();
+            SceneManager.LoadScene("Mainmenu");
         }
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {

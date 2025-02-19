@@ -6,28 +6,29 @@ using UnityEngine.UI;
 
 public class Dashpanel : MonoBehaviour
 {
-    private float remaining;
+
     private float max = 3f;
     public Slider slider;
-    // Dash "slider" implementation
-    void Update()
+    void Start()
     {
-        slider.value = CalculateSlider();
-        if (remaining <= 0)
-        {
-            remaining = 0;
-        }
-        else if (remaining > 0)
-        {
-            remaining -= Time.deltaTime;
-        }
-    }
-    float CalculateSlider()
-    {
-        return remaining / max;
+        slider.value = 1f;
     }
     public void StartTimer()
     {
-        remaining = max;
+        StartCoroutine(DashCooldownRoutine());
+    }
+    IEnumerator DashCooldownRoutine()
+    {
+        slider.value = 0f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < max)
+        {
+            slider.value = elapsedTime / max;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        slider.value = 1f;
     }
 }

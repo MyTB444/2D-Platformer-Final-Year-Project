@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using TMPro;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIman : MonoBehaviour
 {
-    private bool _gameStop = false;
+    public bool _gameStop;
     private float startTime = 0;
     public TextMeshProUGUI timeText;
+    public Slider slider;
     public float scoreTime = 0;
     [SerializeField] private Animator[] _live;
     public Animator[] waveText;
@@ -20,7 +22,15 @@ public class UIman : MonoBehaviour
     // Play hearth sign animations for taking damage.
     private void Start()
     {
+        if (SceneManager.GetActiveScene().name == "Endless")
+        {
+            startTime = Time.time;
+        }
+    }
+    public void StartTimer()
+    {
         startTime = Time.time;
+        _gameStop = false;
     }
     public void DamageUpdate(int i)
     {
@@ -30,6 +40,7 @@ public class UIman : MonoBehaviour
     public void GameOverSequence()
     {
         _gameStop = true;
+        slider.gameObject.SetActive(false);
         _gameoverText.gameObject.SetActive(true);
     }
     public void EndlessGameOver()
@@ -37,6 +48,7 @@ public class UIman : MonoBehaviour
         scoreTime = Time.time - startTime;
         SaveBestWave(scoreTime);
         finalScore.text = FormatTime(scoreTime);
+        slider.gameObject.SetActive(false);
         finalScore.gameObject.SetActive(true);
         timeText.gameObject.SetActive(false);
     }

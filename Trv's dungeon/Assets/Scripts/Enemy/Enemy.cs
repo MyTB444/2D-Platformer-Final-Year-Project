@@ -18,7 +18,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float _attackDuration;
     [SerializeField] protected float _stunVulnerability;
     [SerializeField] protected bool _canJump;
-    private Enemypool pool;
+    public Enemypool pool;
     public int _enemyFragility;
     // Logic
     protected bool _hasLos = false;
@@ -59,6 +59,13 @@ public abstract class Enemy : MonoBehaviour
         distance = Vector2.Distance(transform.position, _target.transform.position);
         FowCheck();
         OutOfMap();
+    }
+    protected virtual void OnEnable()
+    {
+        currentMovementState = MovementState.Following;
+        currentCombatState = CombatState.Neutral;
+        canAttack = true;
+        _canJump = true;
     }
     protected enum CombatState
     {
@@ -142,15 +149,14 @@ public abstract class Enemy : MonoBehaviour
     {
         if (distance > 100)
         {
-            if ("Game" == SceneManager.GetActiveScene().name)
+            if ("Game" == SceneManager.GetActiveScene().name || _isABoss == true)
             {
                 Destroy(this.gameObject);
             }
-            else if ("Endless" == SceneManager.GetActiveScene().name)
+            else if ("Endless" == SceneManager.GetActiveScene().name && _isABoss == false)
             {
                 _health = maxHealth;
                 _collider.enabled = true;
-                currentCombatState = CombatState.Neutral;
                 pool.ReturnToPool(gameObject);
             }
         }

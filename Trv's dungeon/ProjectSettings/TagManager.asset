@@ -20,6 +20,8 @@ TagManager:
   - Diamond
   - Sword
   - Boots
+  - Orange
+  - Startgate
   layers:
   - Default
   - TransparentFX
@@ -30,7 +32,7 @@ TagManager:
   - Enemy
   - Ground
   - Snow
-  - 
+  - Slope
   - 
   - 
   - 

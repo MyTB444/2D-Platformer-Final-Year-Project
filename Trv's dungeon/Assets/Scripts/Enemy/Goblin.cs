@@ -10,15 +10,18 @@ public class Goblin : Enemy
     [SerializeField] private GameObject rock;
     [SerializeField] private float attackDelay;
     [SerializeField] private float spawnDelay;
+    public GameObject ab;
+    public GameObject ad;
     private int _canThrow = 1;
     protected override void Init()
     {
         base.Init();
         StartCoroutine(SpawnDelay());
     }
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        StartCoroutine(SpawnDelay());
+        base.OnEnable();
+        _canThrow = 1;
         if (_audio != null)
         {
             _audio.DashAudio();
@@ -35,6 +38,7 @@ public class Goblin : Enemy
                 if (currentCombatState != CombatState.Dead)
                 {
                     IsJackHere();
+                    CheckSlope();
                     if (currentCombatState == CombatState.Combat && _enemyAnim != null)
                     {
                         JumpCheck();
@@ -71,6 +75,18 @@ public class Goblin : Enemy
                     _currentSpeed = _speed;
                     Walking(_currentSpeed);
                 }
+            }
+        }
+    }
+    private void CheckSlope()
+    {
+        RaycastHit2D rightInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.right, _height + 1f, 1 << 9);
+        RaycastHit2D leftInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.left, _height + 1f, 1 << 9);
+        if (rightInfo.collider != null || leftInfo.collider != null)
+        {
+            if (currentMovementState == MovementState.Following)
+            {
+                _rigid.velocity = new Vector2(_currentSpeed, _rigid.velocity.y);
             }
         }
     }
@@ -114,7 +130,7 @@ public class Goblin : Enemy
     //Attack based on sprite flip.
     IEnumerator Attack()
     {
-        _rigid.velocity = new Vector2(0, _rigid.velocity.y);
+        _rigid.velocity = Vector2.zero;
         _enemyAnim.StopWalking();
         yield return new WaitForSeconds(attackDelay);
         if (_facedRight == true)
@@ -161,7 +177,7 @@ public class Goblin : Enemy
         _canThrow = 0;
         StartCoroutine(KnockedBack(2.1f));
         _enemyAnim.StopWalking();
-        _rigid.velocity = new Vector2(0, 0);
+        _rigid.velocity = Vector2.zero;
         _enemyAnim.RockThrowAnim();
         yield return new WaitForSeconds(1.4f);
         _audio.SwingAudio();

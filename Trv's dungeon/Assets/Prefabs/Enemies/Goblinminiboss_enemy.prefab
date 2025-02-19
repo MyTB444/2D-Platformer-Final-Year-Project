@@ -169,7 +169,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -192,10 +192,10 @@ BoxCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 648
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -246,6 +246,8 @@ MonoBehaviour:
   rock: {fileID: 8591732540436232880, guid: fdb6347f0a0a24ca589b026ba9c94128, type: 3}
   attackDelay: 0
   spawnDelay: 1
+  ab: {fileID: 8001036834962215819}
+  ad: {fileID: 7088272640776244668}
 --- !u!114 &7381796038325077182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,6 +591,11 @@ PrefabInstance:
 --- !u!4 &427753329512686056 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2041107088934255233, guid: 72c9ca21f27164102ba7caa8da14a11b, type: 3}
+  m_PrefabInstance: {fileID: 1854594049473583977}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8001036834962215819 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8553940886739749090, guid: 72c9ca21f27164102ba7caa8da14a11b, type: 3}
   m_PrefabInstance: {fileID: 1854594049473583977}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5956752644366730842

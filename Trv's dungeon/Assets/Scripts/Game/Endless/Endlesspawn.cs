@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -12,7 +13,7 @@ public class Endlesspawn : MonoBehaviour
     public Transform[] warrSpawnPoints;
     public Transform[] archSpawnPoints;
     public Transform[] mermaidSpawnPoints;
-    public Enemypool minibossPool;
+    public GameObject minibosFab;
     public Enemypool mermaidPool;
     public Enemypool[] archerPool;
     public Enemypool[] warriorsPool;
@@ -31,30 +32,29 @@ public class Endlesspawn : MonoBehaviour
         archer.pool = archerPool;
         archer.locs = archSpawnPoints;
     }
-
     void Start()
     {
         SetEnemyTypes();
     }
     public void SpawnMermaid()
     {
-        int x = Random.Range(0, 3);
+        int x = UnityEngine.Random.Range(0, 3);
         Spawn(mermaidPool, x, mermaidSpawnPoints);
     }
     public void SpawnMiniBoss()
     {
-        int x = Random.Range(0, 3);
-        Spawn(minibossPool, x, warrSpawnPoints);
+        int x = UnityEngine.Random.Range(0, 3);
+        Instantiate(minibosFab,warrSpawnPoints[x].position, quaternion.identity);
     }
     public void SpawnWarrior()
     {
-        int x = Random.Range(0, 3);
+        int x = UnityEngine.Random.Range(0, 3);
         SpawnRandomizer(warrior, x);
     }
 
     public void SpawnArcher()
     {
-        int x = Random.Range(0, 4);
+        int x = UnityEngine.Random.Range(0, 4);
         SpawnRandomizer(archer, x);
     }
     // Get an object from the pool and set its pool to the relevant
@@ -68,7 +68,7 @@ public class Endlesspawn : MonoBehaviour
     // Randomly spawn one of the given types
     private void SpawnRandomizer(EnemyTypeToSpawn type, int r)
     {
-        int p = Random.Range(1, 3);
+        int p = UnityEngine.Random.Range(1, 3);
         switch (p)
         {
             case 1:

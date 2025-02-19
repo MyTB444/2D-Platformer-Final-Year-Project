@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] protected int _health;
     public float _playerfragility;
     //Logic
+    public float startDelay;
     public bool canDoubleJump = false;
     private bool airjump;
     [SerializeField] private int jumpCount = 0;
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour
     private bool canPickUp = true;
     private bool canAttack = true;
     [SerializeField] private bool hasSword;
-    public bool _canWalk = true;
+    public bool _canWalk;
     protected bool _canClimb;
     //Component variables for handles
     [SerializeField] private GameObject _key;
@@ -38,12 +39,14 @@ public class Player : MonoBehaviour
     private UIman _uiman;
     void Start()
     {
+        //PlayerPrefs.DeleteAll();
         //HANDLES
         _rigid = GetComponent<Rigidbody2D>();
         _playerAnim = GetComponentInChildren<PlayerAnimation>();
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
         _uiman = GameObject.FindWithTag("UIman").GetComponent<UIman>();
         _audio = GetComponentInChildren<Character_audio>();
+        StartCoroutine(StartDelay());
     }
     void Update()
     {
@@ -54,6 +57,11 @@ public class Player : MonoBehaviour
         //Observer trigger for gamewon
         // gameWon.Invoke();
         // }
+    }
+    IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(startDelay);
+        _canWalk = true;
     }
     enum AirState
     {
@@ -71,7 +79,7 @@ public class Player : MonoBehaviour
     //CAN WE JUMP? We cast a box from our foot. If it hits an object, we know that we are grounded
     private void GroundCalculate()
     {
-        int layerMask = (1 << 6) | (1 << 7) | (1 << 8);
+        int layerMask = (1 << 6) | (1 << 7) | (1 << 8) | (1 << 9);
         RaycastHit2D groundInfo = Physics2D.BoxCast(transform.position, new Vector2(0.6f, 0.2f), 0.0f, Vector2.down, 0.3f, layerMask);
         if (groundInfo.collider != null)
         {

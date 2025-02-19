@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
-using UnityEditor;
 using UnityEngine;
 
 public class Wavemanager : MonoBehaviour
@@ -43,6 +43,7 @@ public class Wavemanager : MonoBehaviour
             {
                 Instantiate(sword, itemLocs[0].position, quaternion.identity);
                 spawn.SpawnMiniBoss();
+                StartCoroutine(FruitSpawn());
             }
             else if (i == 7)
             {
@@ -69,6 +70,15 @@ public class Wavemanager : MonoBehaviour
                 difficulty = difficulty - 0.5f;
             }
             yield return new WaitForSeconds(20f);
+        }
+    }
+    IEnumerator FruitSpawn()
+    {
+        while (true)
+        {
+            int x = UnityEngine.Random.Range(2, 5);
+            Instantiate(fruit, itemLocs[x].position, quaternion.identity);
+            yield return new WaitForSeconds(waveDuration * 2.5f);
         }
     }
     IEnumerator MiniBossSpawn()

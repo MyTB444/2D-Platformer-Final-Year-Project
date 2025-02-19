@@ -65,5 +65,10 @@ public class Player_pickbox : MonoBehaviour
         {
             player.Regen();
         }
+        else if (other.gameObject.tag == "Orange")
+        {
+            player.Regen();
+            Destroy(other.gameObject);
+        }
     }
 }

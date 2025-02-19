@@ -7,6 +7,7 @@ using UnityEngine;
 public class Player_hitbox : MonoBehaviour
 {
     private int collisionnumber;
+    public UIman ui;
     // Damage and push enemies with handles
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -28,6 +29,13 @@ public class Player_hitbox : MonoBehaviour
                     _enemyHit.TakeDamage();
                     _enemyRigid.velocity = new Vector2(_enemyHit._enemyFragility * -1, _enemyHit._enemyFragility);
                 }
+            }
+            else if (other.gameObject.tag == "Startgate")
+            {
+                collisionnumber++;
+                ui.StartTimer();
+                Animator gate = other.gameObject.GetComponent<Animator>();
+                gate.SetTrigger("Play");
             }
         }
     }
