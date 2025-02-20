@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Dashpanel : MonoBehaviour
 {
 
-    private float max = 3f;
+    private float max = 3.1f;
     public Slider slider;
     void Start()
     {

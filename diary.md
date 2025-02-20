@@ -171,3 +171,5 @@ Melee and ranged enemy spawn randomizing is fully setup. The spawn logic for the
 Wave management for the endless mode is almost completed. I will further study on UI design. It is time to start working on the cosmetic aspects of the game and polish it. The overall gameplay is almost finished.
 -19/02/2025
 Massive progress day! UI is updated. Only gamewinning screen for the main game is left. I have added a pixel font and used my other pixel sprites to create fitting UI for the game. Also there was a bug with the enemies. They velocity would be decreased when moved on slopes. This is now fixed. The save system for the endless mode is implemented. Main game now starts with jack falling from above, the camera starts following jack after 2 seconds. The road to the map is blocked by barrels. Jack has to attack and open the way. The timer starts when we de so. 
+-20/02/2025
+Improved the follow cam! The camera now cannot go outside of the map. We also have a dead zone, camer will not follow the player untill they leave the dead zone. The map is now a perfect rectangle and the camera cannot leave it. The locations for some items are changed.
