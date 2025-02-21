@@ -9,7 +9,9 @@ public class Mainmenu : MonoBehaviour
     private AudioSource _audioSource;
     [SerializeField] private TextMeshProUGUI highestScore;
     [SerializeField] private TextMeshProUGUI highestScore2;
-
+    public GameObject facts;
+    public GameObject main;
+    public Animator menu2;
     [SerializeField] private Animator _menu;
     void Start()
     {
@@ -45,16 +47,28 @@ public class Mainmenu : MonoBehaviour
         _audioSource.Play();
         Application.Quit();
     }
+    public void EnableFacts()
+    {
+        main.SetActive(false);
+        facts.SetActive(true);
+    }
+    public void DisableFacts()
+    {
+        main.SetActive(true);
+        facts.SetActive(false);
+    }
     //Play menu animation and delay game load.
     private IEnumerator GameStarting()
     {
         _menu.SetTrigger("Start");
+        menu2.SetTrigger("Start2");
         yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene("Game");
     }
     private IEnumerator EndlessStarting()
     {
         _menu.SetTrigger("Start");
+        menu2.SetTrigger("Start2");
         yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene("Endless");
     }

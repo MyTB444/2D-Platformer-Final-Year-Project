@@ -18,7 +18,7 @@ public class UIman : MonoBehaviour
     public Animator[] waveText;
     public TextMeshProUGUI finalScore;
     [SerializeField] private TextMeshProUGUI _gameoverText;
-    [SerializeField] private TextMeshProUGUI _gamewinText;
+    [SerializeField] private GameObject _gamewinText;
     // Play hearth sign animations for taking damage.
     private void Start()
     {
