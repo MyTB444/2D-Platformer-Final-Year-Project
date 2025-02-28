@@ -9,6 +9,9 @@ public class Mainmenu : MonoBehaviour
     private AudioSource _audioSource;
     [SerializeField] private TextMeshProUGUI highestScore;
     [SerializeField] private TextMeshProUGUI highestScore2;
+    public TextMeshProUGUI begintext;
+    public GameObject begintextObj;
+    public GameObject trv;
     public GameObject facts;
     public GameObject main;
     public Animator menu2;
@@ -62,8 +65,22 @@ public class Mainmenu : MonoBehaviour
     {
         _menu.SetTrigger("Start");
         menu2.SetTrigger("Start2");
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(4.0f);
+        trv.SetActive(false);
+        yield return new WaitForSeconds(1.0f);
+        StartCoroutine(StartText());
+        yield return new WaitForSeconds(11.0f);
         SceneManager.LoadScene("Game");
+    }
+    private IEnumerator StartText()
+    {
+        string fullText = "The Pope is closed in the dungeons deep. Seek thee a path unto him, yet tread with wary step—for thou shalt perish but once. And yeah... be quick, MAKE HASTE!";
+        begintextObj.SetActive(true);
+        foreach (char letter in fullText)
+        {
+            begintext.text += letter;
+            yield return new WaitForSeconds(0.05f);
+        }
     }
     private IEnumerator EndlessStarting()
     {

@@ -175,5 +175,7 @@ Massive progress day! UI is updated. Only gamewinning screen for the main game i
 Improved the follow cam! The camera now cannot go outside of the map. We also have a dead zone, camer will not follow the player untill they leave the dead zone. The map is now a perfect rectangle and the camera cannot leave it. The locations for some items are changed.
 -21/02/2025
 I will take my time and work on the details extensively. I have added a fact section to the mainmenu. The things that I am planning to study and potentially improve are : movement smoothness(acceleration, deacceleration), UI, sound effects and the camera.
--21/02/2025
+-27/02/2025
 I am using most of my time working on the report and thinking about the final steps i should take before releasing the game.
+-28/02/2025
+I have improved the game start animation, added flavour text to explain the objective. I will improve the player controls next week.
