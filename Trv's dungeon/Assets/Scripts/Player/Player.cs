@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         _audio = GetComponentInChildren<Character_audio>();
         StartCoroutine(StartDelay());
     }
-    void Update()
+    void FixedUpdate()
     {
         GroundCalculate();
         SlowCheck();

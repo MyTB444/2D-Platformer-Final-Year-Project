@@ -179,3 +179,5 @@ I will take my time and work on the details extensively. I have added a fact sec
 I am using most of my time working on the report and thinking about the final steps i should take before releasing the game.
 -28/02/2025
 I have improved the game start animation, added flavour text to explain the objective. I will improve the player controls next week.
+-04/03/2025
+I have changed my mind on swapping to new controls. It will require some time and i would rather work on the report.

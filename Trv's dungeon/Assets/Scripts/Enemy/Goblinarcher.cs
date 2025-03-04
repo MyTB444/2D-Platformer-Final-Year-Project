@@ -72,16 +72,18 @@ public class Goblinarcher : Enemy
     {
         _enemyAnim.AttackLeft();
         yield return new WaitForSeconds(attackdelay);
-        if (_facedRight == true)
-        {
-            _audio.SwingAudio();
-            Instantiate(_arrow, new Vector2(transform.position.x + 0.8f, transform.position.y + 0.3f), Quaternion.identity, gameObject.transform);
-        }
-        else if (_facedRight == false)
-        {
-            _audio.SwingAudio();
-            Instantiate(_arrow, new Vector2(transform.position.x - 0.8f, transform.position.y + 0.3f), Quaternion.identity, gameObject.transform);
-        }
+        Instantiate(_arrow, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity, gameObject.transform);
+        _audio.SwingAudio();
+        //if (_facedRight == true)
+        //{
+        //  _audio.SwingAudio();
+        //Instantiate(_arrow, new Vector2(transform.position.x + 0.8f, transform.position.y + 0.3f), Quaternion.identity, gameObject.transform);
+        //}
+        //else if (_facedRight == false)
+        //{
+        //  _audio.SwingAudio();
+        // Instantiate(_arrow, new Vector2(transform.position.x - 0.8f, transform.position.y + 0.3f), Quaternion.identity, gameObject.transform);
+        //}
         yield return new WaitForSeconds(_attackDuration);
         currentMovementState = MovementState.Following;
         canAttack = true;

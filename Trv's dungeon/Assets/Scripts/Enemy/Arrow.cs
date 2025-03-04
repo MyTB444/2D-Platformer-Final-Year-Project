@@ -37,8 +37,14 @@ public class Arrow : MonoBehaviour
         {
             if (this.gameObject.tag == "Arrow")
             {
-                Destroy(this.gameObject);
+                StartCoroutine(Destroying());
             }
         }
+    }
+    private IEnumerator Destroying()
+    {
+        yield return new WaitForSeconds(0.05f);
+        Destroy(this.gameObject);
+
     }
 }
