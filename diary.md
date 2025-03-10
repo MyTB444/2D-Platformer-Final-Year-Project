@@ -181,3 +181,5 @@ I am using most of my time working on the report and thinking about the final st
 I have improved the game start animation, added flavour text to explain the objective. I will improve the player controls next week.
 -04/03/2025
 I have changed my mind on swapping to new controls. It will require some time and i would rather work on the report.
+-10/03/2025
+I am working on the sound effects, they will hopefully all be ready by the end of this week. I am also learning on optimizing my game for itch.io.
