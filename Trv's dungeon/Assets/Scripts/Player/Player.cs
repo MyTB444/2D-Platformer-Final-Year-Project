@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int jumpCount = 0;
     private int rollState = 0;
     private bool canPickUp = true;
+    private bool damageable = true;
     private bool canAttack = true;
     [SerializeField] private bool hasSword;
     public bool _canWalk;
@@ -264,7 +265,7 @@ public class Player : MonoBehaviour
     // Dont take damage if dashing
     public void TakeDamage()
     {
-        if (currentMovementState != MovementState.Rolling && IsPlayerDead() == false)
+        if (currentMovementState != MovementState.Rolling && IsPlayerDead() == false && damageable == true)
         {
             _playerAnim.Damaged();
             _health = _health - 1;
@@ -299,8 +300,10 @@ public class Player : MonoBehaviour
     }
     public IEnumerator Stun(float time)
     {
+        damageable = false;
         _canWalk = false;
         yield return new WaitForSeconds(time);
+        damageable = true;
         _canWalk = true;
     }
     public void EnableCLimb()
