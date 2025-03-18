@@ -5,12 +5,14 @@ using UnityEngine;
 public class ButtonPress : MonoBehaviour
 {
     private SpriteRenderer sr;
+    private AudioSource _audio;
     [SerializeField] private Sprite[] srs;
     [SerializeField] private GameObject rockprefab;
     private BoxCollider2D bcollider;
     private int presscount;
     void Start()
     {
+        _audio = GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
         bcollider = GetComponent<BoxCollider2D>();
     }
@@ -42,6 +44,7 @@ public class ButtonPress : MonoBehaviour
     // Button press action
     IEnumerator ButtonPressed()
     {
+        _audio.Play();
         presscount = 1;
         sr.sprite = srs[1];
         bcollider.offset = new Vector2(0, -0.06f);

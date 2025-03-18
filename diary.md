@@ -185,3 +185,5 @@ I have changed my mind on swapping to new controls. It will require some time an
 I am working on the sound effects, they will hopefully all be ready by the end of this week. I am also learning on optimizing my game for itch.io.
 -12/03/2025
 I am revising my interim report, rewriting it based on the final state of the game.
+-18/03/2025
+I have ben working on the sound effecs over the weekend. Today I have finished all the coding required for the audio implementation. Game sounds are all finished, this drastically enhances the overall atmosphere. 

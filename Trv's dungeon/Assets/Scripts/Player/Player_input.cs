@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player_input : MonoBehaviour
@@ -45,17 +46,17 @@ public class Player_input : MonoBehaviour
             _player.StartRoll();
         }
         //SWING
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             _player.StartAttack();
         }
         //KEY
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse2))
         {
             _player.DropKey();
         }
         //PICK UP
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.Mouse1))
         {
             _player.StartPickUp();
         }

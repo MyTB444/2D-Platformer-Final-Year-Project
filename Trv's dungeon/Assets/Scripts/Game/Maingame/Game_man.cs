@@ -66,6 +66,7 @@ public class Game_man : MonoBehaviour
     public void GemFound()
     {
         _count = _count + 1;
+        _audio.GlassB();
         Destroy(_gem.gameObject);
         _audio.CLickAudio();
         EnableGate();
@@ -73,6 +74,7 @@ public class Game_man : MonoBehaviour
     public void DiamondFound()
     {
         _count = _count + 1;
+        _audio.GlassB();
         Destroy(_diamond.gameObject);
         _audio.CLickAudio();
         EnableGate();
@@ -80,6 +82,7 @@ public class Game_man : MonoBehaviour
     public void EmeraldFound()
     {
         _count = _count + 1;
+        _audio.GlassB();
         Destroy(_emerald.gameObject);
         _audio.CLickAudio();
         EnableGate();
@@ -112,6 +115,7 @@ public class Game_man : MonoBehaviour
         {
             firewall[i].SetActive(false);
         }
+        _audio.FireFightStop();
     }
     public void GameOver()
     {

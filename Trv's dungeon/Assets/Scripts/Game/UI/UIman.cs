@@ -12,6 +12,7 @@ public class UIman : MonoBehaviour
     public bool _gameStop;
     private float startTime = 0;
     public TextMeshProUGUI timeText;
+    public Audioman _audio;
     public Slider slider;
     public float scoreTime = 0;
     [SerializeField] private Animator[] _live;
@@ -29,6 +30,7 @@ public class UIman : MonoBehaviour
     }
     public void StartTimer()
     {
+        _audio.Horns();
         startTime = Time.time;
         _gameStop = false;
     }
@@ -55,6 +57,7 @@ public class UIman : MonoBehaviour
     //Activate game win tests.
     public void GameWinSequence()
     {
+        _audio.WinS();
         scoreTime = Time.time - startTime;
         SaveBestTime(scoreTime);
         finalScore.text = FormatTime(scoreTime);

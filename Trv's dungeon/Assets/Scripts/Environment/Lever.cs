@@ -6,11 +6,14 @@ public class Lever : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D gate;
     [SerializeField] private Sprite[] sprites;
+    public Audioman aman;
+    private AudioSource _audio;
     private bool mooving = false;
     private SpriteRenderer sr;
     [SerializeField] private float state;
     void Start()
     {
+        _audio = GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
     }
     // Move the assigned gate and change sprite
@@ -24,6 +27,8 @@ public class Lever : MonoBehaviour
     }
     IEnumerator MovingGates()
     {
+        _audio.Play();
+        aman.GateMove();
         ChangeSprite();
         gate.velocity = Vector2.up * state;
         yield return new WaitForSeconds(2f);

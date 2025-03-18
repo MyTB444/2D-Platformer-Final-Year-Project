@@ -27,7 +27,6 @@ public class Firemage : Enemy
     protected override void Init()
     {
         base.Init();
-        StartCoroutine(FireballPhase1());
     }
 
     protected override void Update()
@@ -45,6 +44,10 @@ public class Firemage : Enemy
             }
         }
 
+    }
+    public void StartThings()
+    {
+        StartCoroutine(FireballPhase1());
     }
     private void FireRotationUpdate()
     {
@@ -73,6 +76,7 @@ public class Firemage : Enemy
         _enemyAnim.AttackLeft();
         yield return new WaitForSeconds(0.5f);
         FireRotationUpdate();
+        _audio.SwingAudio();
         Instantiate(p1fireball, new Vector2(transform.position.x + firerotation, transform.position.y + 0.9f), Quaternion.identity, this.gameObject.transform);
     }
     public override void TakeDamage()
@@ -95,6 +99,7 @@ public class Firemage : Enemy
             }
             else if (_health == 0)
             {
+                _audio.DeathAudio();
                 gameman.StopAllWalls();
             }
         }
@@ -111,6 +116,7 @@ public class Firemage : Enemy
         _rigid.gravityScale = 0;
         _collider.enabled = false;
         yield return new WaitForSeconds(1f);
+        _audio.DashAudio();
         // Fire mage teleports to specific locations on jacks way back to the underground
         if (x >= 8)
         {
@@ -181,6 +187,7 @@ public class Firemage : Enemy
             {
                 _enemyAnim.AttackRight();
                 yield return new WaitForSeconds(0.3f);
+                _audio.JumpAudio();
                 Instantiate(minifireball, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
                 yield return new WaitForSeconds(0.2f);
                 Instantiate(minifireball, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
@@ -191,6 +198,7 @@ public class Firemage : Enemy
             {
                 _enemyAnim.AttackLeft();
                 yield return new WaitForSeconds(0.5f);
+                _audio.SwingAudio();
                 Instantiate(p2fireball, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
             }
             yield return new WaitForSeconds(4f);

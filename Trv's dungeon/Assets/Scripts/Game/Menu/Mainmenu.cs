@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Mainmenu : MonoBehaviour
 {
     private AudioSource _audioSource;
+    public AudioClip _text6sound;
+    public AudioClip _text2sound;
+    public AudioClip oldClick;
+    public AudioClip newClick;
+
     [SerializeField] private TextMeshProUGUI highestScore;
     [SerializeField] private TextMeshProUGUI highestScore2;
     public TextMeshProUGUI begintext;
     public GameObject begintextObj;
     public GameObject trv;
     public GameObject facts;
+    public GameObject controls;
     public GameObject main;
     public Animator menu2;
     [SerializeField] private Animator _menu;
@@ -38,27 +45,48 @@ public class Mainmenu : MonoBehaviour
     public void StartButton()
     {
         StartCoroutine(GameStarting());
+        _audioSource.clip = newClick;
         _audioSource.Play();
     }
     public void EndlessButton()
     {
         StartCoroutine(EndlessStarting());
+        _audioSource.clip = newClick;
         _audioSource.Play();
     }
     public void ExitButton()
     {
+        _audioSource.clip = oldClick;
         _audioSource.Play();
         Application.Quit();
     }
     public void EnableFacts()
     {
+        _audioSource.clip = oldClick;
+        _audioSource.Play();
         main.SetActive(false);
         facts.SetActive(true);
     }
     public void DisableFacts()
     {
+        _audioSource.clip = oldClick;
+        _audioSource.Play();
         main.SetActive(true);
         facts.SetActive(false);
+    }
+    public void EnableControls()
+    {
+        _audioSource.clip = oldClick;
+        _audioSource.Play();
+        main.SetActive(false);
+        controls.SetActive(true);
+    }
+    public void DisableControls()
+    {
+        _audioSource.clip = oldClick;
+        _audioSource.Play();
+        main.SetActive(true);
+        controls.SetActive(false);
     }
     //Play menu animation and delay game load.
     private IEnumerator GameStarting()
@@ -74,12 +102,23 @@ public class Mainmenu : MonoBehaviour
     }
     private IEnumerator StartText()
     {
-        string fullText = "The Pope is closed in the dungeons deep. Seek thee a path unto him, yet tread with wary step—for thou shalt perish but once. And yeah... be quick, MAKE HASTE!";
+        string fullText = "The Pope is closed in the dungeons deep. Seek thee a path unto him, yet tread with wary step—for thou shalt perish but once.";
         begintextObj.SetActive(true);
+        _audioSource.clip = _text6sound;
+        _audioSource.Play();
         foreach (char letter in fullText)
         {
             begintext.text += letter;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.046f);
+        }
+        string remText = "And yeah... be quick, MAKE HASTE!";
+        yield return new WaitForSeconds(1.0f);
+        _audioSource.clip = _text2sound;
+        _audioSource.Play();
+        foreach (char letter in remText)
+        {
+            begintext.text += letter;
+            yield return new WaitForSeconds(0.055f);
         }
     }
     private IEnumerator EndlessStarting()

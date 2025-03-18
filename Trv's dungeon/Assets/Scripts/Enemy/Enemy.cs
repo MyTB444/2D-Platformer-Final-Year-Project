@@ -175,6 +175,7 @@ public abstract class Enemy : MonoBehaviour
     {
         _canJump = false;
         _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
+        _audio.JumpAudio();
         StartCoroutine(WaitForJump());
     }
     protected IEnumerator WaitForJump()

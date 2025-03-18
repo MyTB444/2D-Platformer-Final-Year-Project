@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackClip: {fileID: 8300000, guid: 1371f291c786f4d8f962ed0dbafe034d, type: 3}
-  _damageClip: {fileID: 8300000, guid: a9b2f70c098a84d92a015dc8a2d3629e, type: 3}
+  _damageClip: {fileID: 8300000, guid: e986bf1520c1b446e86b86ae32d8c9a1, type: 3}
   _jumpClip: {fileID: 8300000, guid: d10d075d813c447f6836f8a070eb4fc3, type: 3}
   _deathClip: {fileID: 0}
   _dashClip: {fileID: 0}
@@ -169,7 +169,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0

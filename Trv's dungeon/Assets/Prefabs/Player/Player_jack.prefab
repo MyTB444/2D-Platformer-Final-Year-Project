@@ -45,7 +45,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -509,8 +509,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0030593872, y: 0.56417084}
-  m_Size: {x: 0.8124924, y: 1.0038795}
+  m_Offset: {x: -0.013002396, y: 0.5509143}
+  m_Size: {x: 0.6600456, y: 0.97736645}
   m_Direction: 0
 --- !u!1 &6006478206315556579
 GameObject:
@@ -831,6 +831,14 @@ PrefabInstance:
     - target: {fileID: 4434318912380939490, guid: 49c724cf5799c4b12b72dff6ebf2f503, type: 3}
       propertyPath: m_Name
       value: Feet
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434318912380939490, guid: 49c724cf5799c4b12b72dff6ebf2f503, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434318912380939490, guid: 49c724cf5799c4b12b72dff6ebf2f503, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

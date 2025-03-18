@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 2537882373423050008, guid: d9ea2d06a57ac4d55b1fa43e08bc88ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 4, y: 4}
@@ -205,7 +205,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.023668498, y: 0.46822676}
+  m_Offset: {x: -0.000000014901161, y: 0.46822676}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.125}
@@ -216,7 +216,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9549331, y: 0.95147985}
+  m_Size: {x: 0.682567, y: 0.95147985}
   m_EdgeRadius: 0
 --- !u!114 &2530910717868699343
 MonoBehaviour:
@@ -235,7 +235,7 @@ MonoBehaviour:
   _speed: 1
   _jumpForce: 6
   _jumpCooldown: 6
-  _attackDistance: 2.3
+  _attackDistance: 2.1
   _height: 0.8
   _attackDuration: 2
   _stunVulnerability: 0.1
@@ -306,7 +306,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -402,11 +402,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e650eeaf2134bc1a4e0d4bce90d36d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackClip: {fileID: 0}
-  _damageClip: {fileID: 8300000, guid: a9b2f70c098a84d92a015dc8a2d3629e, type: 3}
+  _attackClip: {fileID: 8300000, guid: 5d4e702d058144671a06d73fe2fa27f5, type: 3}
+  _damageClip: {fileID: 8300000, guid: a515e2c71859b4251b41da0027f4e5ae, type: 3}
   _jumpClip: {fileID: 0}
-  _deathClip: {fileID: 0}
-  _dashClip: {fileID: 0}
+  _deathClip: {fileID: 8300000, guid: a515e2c71859b4251b41da0027f4e5ae, type: 3}
+  _dashClip: {fileID: 8300000, guid: 24aad2623082b4296a53bdee2c533456, type: 3}
 --- !u!1 &7088272640776244668
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,19 +541,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3372279685224855763, guid: 72c9ca21f27164102ba7caa8da14a11b, type: 3}
       propertyPath: m_Size.x
-      value: 0.1128681
+      value: 0.09341003
       objectReference: {fileID: 0}
     - target: {fileID: 3372279685224855763, guid: 72c9ca21f27164102ba7caa8da14a11b, type: 3}
       propertyPath: m_Size.y
-      value: 0.23570919
+      value: 0.054100633
       objectReference: {fileID: 0}
     - target: {fileID: 3372279685224855763, guid: 72c9ca21f27164102ba7caa8da14a11b, type: 3}
       propertyPath: m_Offset.x
-      value: -0.0034546833
+      value: 0.0032429993
       objectReference: {fileID: 0}
     - target: {fileID: 3372279685224855763, guid: 72c9ca21f27164102ba7caa8da14a11b, type: 3}
       propertyPath: m_Offset.y
-      value: 0.10599077
+      value: 0.19679505
       objectReference: {fileID: 0}
     - target: {fileID: 8553940886739749090, guid: 72c9ca21f27164102ba7caa8da14a11b, type: 3}
       propertyPath: m_Name

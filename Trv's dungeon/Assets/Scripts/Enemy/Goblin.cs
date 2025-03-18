@@ -135,13 +135,19 @@ public class Goblin : Enemy
         yield return new WaitForSeconds(attackDelay);
         if (_facedRight == true)
         {
-            _audio.SwingAudio();
             _enemyAnim.AttackRight();
         }
         else if (_facedRight == false)
         {
-            _audio.SwingAudio();
             _enemyAnim.AttackLeft();
+        }
+        if (_isABoss == false)
+        {
+            _audio.SwingAudio();
+        }
+        else if (_isABoss == true)
+        {
+            StartCoroutine(BossAttackDelay());
         }
         yield return new WaitForSeconds(_attackDuration);
         canAttack = true;
@@ -149,6 +155,11 @@ public class Goblin : Enemy
         {
             currentMovementState = MovementState.Following;
         }
+    }
+    private IEnumerator BossAttackDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _audio.SwingAudio();
     }
     // Rock throwing logic for miniboss similar to the archers
     private void RockThrow()
@@ -179,8 +190,8 @@ public class Goblin : Enemy
         _enemyAnim.StopWalking();
         _rigid.velocity = Vector2.zero;
         _enemyAnim.RockThrowAnim();
+        _audio.DashAudio();
         yield return new WaitForSeconds(1.4f);
-        _audio.SwingAudio();
         Instantiate(rock, new Vector2(transform.position.x, transform.position.y + 2.0f), Quaternion.identity, gameObject.transform);
         yield return new WaitForSeconds(8);
         _canThrow = 1;

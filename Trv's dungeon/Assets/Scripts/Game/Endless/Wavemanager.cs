@@ -9,6 +9,7 @@ public class Wavemanager : MonoBehaviour
 {
     public float waveDuration;
     public Transform[] itemLocs;
+    public Audioman aman;
     public GameObject fruit;
     public GameObject sword;
     public GameObject boots;
@@ -31,6 +32,7 @@ public class Wavemanager : MonoBehaviour
         {
             ui.WaveTextPlay(i);
             yield return new WaitForSeconds(1f);
+            aman.Horns();
             if (i == 1)
             {
                 StartCoroutine(WarrSpawn());

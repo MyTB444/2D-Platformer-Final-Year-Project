@@ -41,6 +41,7 @@ public class Mermaid : Enemy
                         Flip(1);
                         currentMovementState = MovementState.Attacking;
                         canAttack = false;
+                        _audio.SwingAudio();
                         _enemyAnim.AttackRight();
                         _rigid.gravityScale = 0;
                         _rigid.velocity = new Vector2(_speed, 0);
@@ -51,6 +52,7 @@ public class Mermaid : Enemy
                         Flip(-1);
                         currentMovementState = MovementState.Attacking;
                         canAttack = false;
+                        _audio.SwingAudio();
                         _enemyAnim.AttackLeft();
                         _rigid.gravityScale = 0;
                         _rigid.velocity = new Vector2(_speed * -1, 0);

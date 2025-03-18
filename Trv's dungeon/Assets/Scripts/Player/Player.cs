@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
     private Character_audio _audio;
     [SerializeField] private GameObject wavePrefab;
     private SpriteRenderer _playerSprite;
+    public Audioman aman;
     public Dashpanel dp;
     [SerializeField] UnityEvent playerIsDead;
     private PlayerAnimation _playerAnim;
@@ -234,6 +236,7 @@ public class Player : MonoBehaviour
     }
     public void GotSword()
     {
+        aman.Upgrade();
         hasSword = true;
     }
     public void StartPickUp()
@@ -318,6 +321,7 @@ public class Player : MonoBehaviour
     }
     public void EnableDoubleJump()
     {
+        aman.Upgrade();
         canDoubleJump = true;
     }
 
@@ -329,17 +333,11 @@ public class Player : MonoBehaviour
     public void DropItem(int index)
     {
         InventorySystem inventory = FindObjectOfType<InventorySystem>();
-        InventoryItemSO itemToDrop = inventory.GetItem(index);
 
         Vector3 dropPosition = transform.position + transform.forward * 1.5f + Vector3.up * 0.5f;
         GameObject droppedItem = Instantiate(_key, dropPosition, Quaternion.identity);
 
         droppedItem.transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
-        Player_pickbox droppedItemPickup = droppedItem.GetComponent<Player_pickbox>();
-        if (droppedItemPickup != null)
-        {
-            droppedItemPickup.key = itemToDrop;
-        }
         inventory.RemoveItem(index);
     }
     // Serach inventory, find the key and drop it
@@ -360,8 +358,13 @@ public class Player : MonoBehaviour
     // Heal to full
     public void Regen()
     {
+        aman.RegenA();
         _health = 5;
         _uiman.Regen();
+    }
+    public void GameDon()
+    {
+        _canWalk = false;
     }
 }
 
