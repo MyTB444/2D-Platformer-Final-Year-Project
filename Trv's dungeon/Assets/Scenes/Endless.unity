@@ -629,7 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goblin: {fileID: 1494152648871863133, guid: 900087af1e92547b491489b475b5c6ba, type: 3}
-  poolSize: 1
+  poolSize: 5
 --- !u!1 &62688318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1852,7 +1852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goblin: {fileID: 8649210186964826479, guid: 2be0021ee9a7b422793488e7d5f786ec, type: 3}
-  poolSize: 1
+  poolSize: 5
 --- !u!4 &237371361 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6326405529163564013, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
@@ -12053,7 +12053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goblin: {fileID: 7466929996686338955, guid: fc4d0386c97e24cbaac5091f2aa506aa, type: 3}
-  poolSize: 1
+  poolSize: 5
 --- !u!1 &1373541531
 GameObject:
   m_ObjectHideFlags: 0
@@ -13523,7 +13523,7 @@ Transform:
   m_GameObject: {fileID: 1611042712}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.082832, y: 3.9494, z: -10}
+  m_LocalPosition: {x: -24.083042, y: 3.94941, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14228,7 +14228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goblin: {fileID: 5358146325842711869, guid: 3da5956679eec4ae7bea3d8b1e3918a1, type: 3}
-  poolSize: 1
+  poolSize: 5
 --- !u!1 &1780415598
 GameObject:
   m_ObjectHideFlags: 0
@@ -15138,6 +15138,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 871095960}
     - target: {fileID: 5492444054544822916, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
+      propertyPath: aman
+      value: 
+      objectReference: {fileID: 2038158483}
+    - target: {fileID: 5492444054544822916, guid: 538c3d18b57a1432784f805f3e2cd026, type: 3}
       propertyPath: _health
       value: 5
       objectReference: {fileID: 0}
@@ -15656,7 +15660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goblin: {fileID: 4070226153672958933, guid: 44205798bdcff4563b509f07868856ee, type: 3}
-  poolSize: 1
+  poolSize: 5
 --- !u!1 &2038158481
 GameObject:
   m_ObjectHideFlags: 0
