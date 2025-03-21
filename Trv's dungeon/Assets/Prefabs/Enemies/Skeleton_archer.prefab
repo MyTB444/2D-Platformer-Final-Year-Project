@@ -477,7 +477,7 @@ MonoBehaviour:
   _jumpCooldown: 4
   _attackDistance: 1
   _height: 0.9
-  _attackDuration: 4
+  _attackDuration: 5
   _stunVulnerability: 1.5
   _canJump: 1
   pool: {fileID: 0}

@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackClip: {fileID: 8300000, guid: c993a5d3e039b42f98c7a613a72488e0, type: 3}
-  _damageClip: {fileID: 8300000, guid: a9b2f70c098a84d92a015dc8a2d3629e, type: 3}
+  _damageClip: {fileID: 8300000, guid: a4d1941311f9140018a08d9c1b6f2c97, type: 3}
   _jumpClip: {fileID: 0}
   _deathClip: {fileID: 0}
   _dashClip: {fileID: 0}

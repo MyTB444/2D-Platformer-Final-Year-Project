@@ -42,6 +42,10 @@ public class Audioman : MonoBehaviour
         fireFighBG.clip = fireFight;
         fireFighBG.Play();
     }
+    public void FireFightInc()
+    {
+        fireFighBG.volume = 0.25f;
+    }
     public void FireFightStop()
     {
         fireFighBG.Stop();

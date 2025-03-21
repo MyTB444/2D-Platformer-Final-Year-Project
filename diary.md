@@ -187,3 +187,5 @@ I am working on the sound effects, they will hopefully all be ready by the end o
 I am revising my interim report, rewriting it based on the final state of the game.
 -18/03/2025
 I have ben working on the sound effecs over the weekend. Today I have finished all the coding required for the audio implementation. Game sounds are all finished, this drastically enhances the overall atmosphere. 
+-21/03/2025
+I have converted to development platform to WebGL. I had to do some graphical adjustments for this. I have also fixated the game sclaing to 1280*720 to match the scaling on the website. The game is released!

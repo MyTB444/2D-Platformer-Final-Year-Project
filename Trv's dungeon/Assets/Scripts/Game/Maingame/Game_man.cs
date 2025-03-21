@@ -107,6 +107,7 @@ public class Game_man : MonoBehaviour
         for (int i = 1; i < 4; i++)
         {
             firewall[i].SetActive(true);
+            _audio.FireFightInc();
         }
     }
     public void StopAllWalls()

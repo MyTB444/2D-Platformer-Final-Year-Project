@@ -201,7 +201,7 @@ public class Firemage : Enemy
                 _audio.SwingAudio();
                 Instantiate(p2fireball, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
             }
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(5f);
         }
     }
     private void WhereIsPlayer()
