@@ -8830,7 +8830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ed176b16584990becd57d4edac8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveDuration: 30
+  waveDuration: 1
   itemLocs:
   - {fileID: 1743707071}
   - {fileID: 1674246761}
