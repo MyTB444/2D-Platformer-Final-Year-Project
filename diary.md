@@ -191,3 +191,5 @@ I have ben working on the sound effecs over the weekend. Today I have finished a
 I have converted to development platform to WebGL. I had to do some graphical adjustments for this. I have also fixated the game sclaing to 1280*720 to match the scaling on the website. The game is released!
 -24/03/2025
 I have started recieving feedback from the players. I have to fix some minor bugs. The report is my main priority right now.
+-28/03/2025
+The report is almost done, I will make the final bugfixes and re-release the game soon.
