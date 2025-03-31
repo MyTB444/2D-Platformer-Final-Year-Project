@@ -50,15 +50,15 @@ public class Arenaspawndetector : MonoBehaviour
         {
             phase1count++;
             aman.Horns();
-            sm.SpawnBossArcher(transform.position.x + 7.5f, transform.position.y + 3);
-            sm.SpawnBossArcher(transform.position.x - 7, transform.position.y + 3);
+            sm.SpawnBossArcher(transform.position.x + 6.5f, transform.position.y + 3);
+            sm.SpawnBossArcher(transform.position.x - 6.1f, transform.position.y + 3);
         }
         else if (currentphase == phase.phase2 && phase2count == 2)
         {
             phase2count++;
             aman.Horns();
-            sm.SpawnBossArcher(transform.position.x + 7.5f, transform.position.y + 3);
-            sm.SpawnBossArcher(transform.position.x - 7, transform.position.y + 3);
+            sm.SpawnBossArcher(transform.position.x + 6.3f, transform.position.y + 3);
+            sm.SpawnBossArcher(transform.position.x - 5.8f, transform.position.y + 3);
             sm.SpawnMiniBoss(transform.position.x, transform.position.y + 3);
 
         }

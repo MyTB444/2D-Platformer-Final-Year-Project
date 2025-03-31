@@ -193,3 +193,5 @@ I have converted to development platform to WebGL. I had to do some graphical ad
 I have started recieving feedback from the players. I have to fix some minor bugs. The report is my main priority right now.
 -28/03/2025
 The report is almost done, I will make the final bugfixes and re-release the game soon.
+-31/03/2025
+Players have found a way to completely skip the arena fight. This is now fixed, players cannot exit the arena until the mini boss is spawned.
