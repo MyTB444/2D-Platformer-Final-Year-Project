@@ -35,6 +35,7 @@ public abstract class Enemy : MonoBehaviour
     protected Enemy_animations _enemyAnim;
     protected Player _player;
     protected SpriteRenderer _enemySprite;
+    // Virtual init class, called in first frame by all of the enemies.
     protected virtual void Init()
     {
         _enemyAnim = GetComponentInChildren<Enemy_animations>();
@@ -60,6 +61,8 @@ public abstract class Enemy : MonoBehaviour
         FowCheck();
         OutOfMap();
     }
+    // EnEnable method is called when the object is enabled (from disabled state). This method ensures that the enemies will 
+    // behave as they are "respawned" in the endless mode, when they ar enabled by the enemypools.
     protected virtual void OnEnable()
     {
         currentMovementState = MovementState.Following;
@@ -67,6 +70,7 @@ public abstract class Enemy : MonoBehaviour
         canAttack = true;
         _canJump = true;
     }
+    // States for logic
     protected enum CombatState
     {
         Neutral,
@@ -88,7 +92,8 @@ public abstract class Enemy : MonoBehaviour
         int layerMask = (1 << 3 | 1 << 7);
         RaycastHit2D fow = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.6f), _target.position - transform.position, distance + 2, layerMask);
         //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + 0.7f), _target.position - transform.position, Color.green);
-        // Debug.Log(fow.collider.tag);
+        //Debug.Log(fow.collider.tag);
+        //The commented out methods above are used to visualise the ray on the Unity editor.      
         if (fow.collider != null)
         {
             _hasLos = fow.collider.CompareTag("Player");
@@ -108,6 +113,7 @@ public abstract class Enemy : MonoBehaviour
             _facedRight = false;
         }
     }
+    // Play the damage animations and sounf effects, get knocked back and reduce hp by 1.
     public virtual void TakeDamage()
     {
         if (currentCombatState != CombatState.Dead)
@@ -123,6 +129,8 @@ public abstract class Enemy : MonoBehaviour
             }
         }
     }
+    // The miniboss falls off from the map just like the other enemies in Endless mode. In main mode, it stays on the ground 
+    // acting as a surface to be jumped on.
     public void EnemyDead()
     {
         StopAllCoroutines();

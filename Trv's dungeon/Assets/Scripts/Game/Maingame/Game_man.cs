@@ -29,6 +29,7 @@ public class Game_man : MonoBehaviour
         }
         _count = 0;
     }
+    // Delay the follow camera when the game begins
     IEnumerator StartDelay()
     {
         yield return new WaitForSeconds(startDelay);
@@ -101,7 +102,7 @@ public class Game_man : MonoBehaviour
         firewall[0].SetActive(true);
         firewall[4].SetActive(true);
     }
-    // Firemage during fight walls
+    // Firemage, during fight walls
     public void FightWalls()
     {
         for (int i = 1; i < 4; i++)
@@ -118,6 +119,7 @@ public class Game_man : MonoBehaviour
         }
         _audio.FireFightStop();
     }
+    // Finish the game, start pop animation
     public void GameOver()
     {
         _isGameover = true;

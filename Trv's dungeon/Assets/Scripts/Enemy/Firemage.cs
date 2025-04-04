@@ -45,6 +45,7 @@ public class Firemage : Enemy
         }
 
     }
+    // Start the fireball spam if the player is in the clouds map
     public void StartThings()
     {
         StartCoroutine(FireballPhase1());
@@ -97,6 +98,7 @@ public class Firemage : Enemy
                 gameman.FightWalls();
                 sm.SpawnFightArcher();
             }
+            // When dead, walls are disabled
             else if (_health == 0)
             {
                 _audio.DeathAudio();
@@ -104,12 +106,13 @@ public class Firemage : Enemy
             }
         }
     }
-    // Only take damage every 0.3f seconds
+    // Only take damage every 0.3f seconds so that player cannot quickly kill it with ease
     private IEnumerator ResetDamage()
     {
         yield return new WaitForSeconds(0.3f);
         damageable = true;
     }
+    // Fire mage teleport logic handler
     private IEnumerator LocationUpdate(int x)
     {
         _enemyAnim.WalkTrigger();
@@ -117,7 +120,7 @@ public class Firemage : Enemy
         _collider.enabled = false;
         yield return new WaitForSeconds(1f);
         _audio.DashAudio();
-        // Fire mage teleports to specific locations on jacks way back to the underground
+        // Fire mage teleports to specific locations as jack fights with it on his way to dungeons
         if (x >= 8)
         {
             switch (x)
@@ -183,6 +186,7 @@ public class Firemage : Enemy
         while (true)
         {
             int attacktype = Random.Range(1, 3);
+            // Three mini
             if (attacktype == 1)
             {
                 _enemyAnim.AttackRight();
@@ -194,6 +198,7 @@ public class Firemage : Enemy
                 yield return new WaitForSeconds(0.2f);
                 Instantiate(minifireball, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
             }
+            // Big fireball
             else if (attacktype == 2)
             {
                 _enemyAnim.AttackLeft();

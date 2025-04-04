@@ -15,7 +15,6 @@ public class Goblinarcher : Enemy
             if (_player.IsPlayerDead() == false)
             {
                 base.Update();
-                // OutOfMap();
                 if (currentCombatState != CombatState.Dead)
                 {
                     ArcherMovement();
@@ -74,16 +73,6 @@ public class Goblinarcher : Enemy
         yield return new WaitForSeconds(attackdelay);
         Instantiate(_arrow, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity, gameObject.transform);
         _audio.SwingAudio();
-        //if (_facedRight == true)
-        //{
-        //  _audio.SwingAudio();
-        //Instantiate(_arrow, new Vector2(transform.position.x + 0.8f, transform.position.y + 0.1f), Quaternion.identity, gameObject.transform);
-        //}
-        //else if (_facedRight == false)
-        //{
-        //  _audio.SwingAudio();
-        //Instantiate(_arrow, new Vector2(transform.position.x - 0.8f, transform.position.y + 0.1f), Quaternion.identity, gameObject.transform);
-        //}
         yield return new WaitForSeconds(_attackDuration);
         currentMovementState = MovementState.Following;
         canAttack = true;

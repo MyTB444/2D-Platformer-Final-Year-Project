@@ -42,6 +42,7 @@ public class Mainmenu : MonoBehaviour
 
         _audioSource = GetComponent<AudioSource>();
     }
+    // Buttons handle related actions and play animations/sound effects
     public void StartButton()
     {
         StartCoroutine(GameStarting());
@@ -60,6 +61,7 @@ public class Mainmenu : MonoBehaviour
         _audioSource.Play();
         Application.Quit();
     }
+    // Enable/disable facts view
     public void EnableFacts()
     {
         _audioSource.clip = oldClick;
@@ -74,6 +76,7 @@ public class Mainmenu : MonoBehaviour
         main.SetActive(true);
         facts.SetActive(false);
     }
+    // Enable/disable controls view
     public void EnableControls()
     {
         _audioSource.clip = oldClick;
@@ -100,6 +103,8 @@ public class Mainmenu : MonoBehaviour
         yield return new WaitForSeconds(11.0f);
         SceneManager.LoadScene("Game");
     }
+    // Write the text using a foreach loop, write a character every 0.046f seconds
+    // The second part is written after a delay, sounds effects are adjusted for good timing
     private IEnumerator StartText()
     {
         string fullText = "The Pope is closed in the dungeons deep. Seek thee a path unto him, yet tread with wary step—for thou shalt perish but once.";

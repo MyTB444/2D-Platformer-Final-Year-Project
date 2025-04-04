@@ -5,24 +5,22 @@ using UnityEngine;
 
 public class Audioman : MonoBehaviour
 {
-    //Simple audio manager playing the assigned audio
+    // Clips
     public AudioClip win;
     public AudioClip regen;
     public AudioClip upgrade;
     public AudioClip glass;
     public AudioClip gatemov;
-
-    //--------------
     public AudioClip fireFight;
     public AudioClip normalBG;
     public AudioClip horns;
     [SerializeField] private AudioClip _clickClip;
+    // AudioSources
     private AudioSource _audioSource;
     public AudioSource fireFighBG;
     public AudioSource bg;
     public AudioSource events;
     public Transform player;
-    //private int x = 0;
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -31,6 +29,7 @@ public class Audioman : MonoBehaviour
     {
         BGMusic();
     }
+    // All methods other than BGMusic is quite self explanatory
 
     public void CLickAudio()
     {
@@ -50,6 +49,7 @@ public class Audioman : MonoBehaviour
     {
         fireFighBG.Stop();
     }
+    // Update the wind audio based on jack location
     private void BGMusic()
     {
         if (bg.volume == 0.04f && player.transform.position.y < -4)

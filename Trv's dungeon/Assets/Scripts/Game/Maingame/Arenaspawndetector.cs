@@ -25,6 +25,7 @@ public class Arenaspawndetector : MonoBehaviour
         PhaseInitiate();
     }
     // Colligion logic for phase handling
+    // Phase 1 when jack enter
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player" && phase1count == 0)
@@ -32,6 +33,7 @@ public class Arenaspawndetector : MonoBehaviour
             currentphase = phase.phase1;
         }
     }
+    // Phase 2 when phase 1 archers die
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")

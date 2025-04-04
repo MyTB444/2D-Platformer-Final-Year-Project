@@ -17,6 +17,7 @@ public class Dashpanel : MonoBehaviour
     {
         StartCoroutine(DashCooldownRoutine());
     }
+    //fill the slider in 3.1f time (dash cooldown)
     IEnumerator DashCooldownRoutine()
     {
         slider.value = 0f;

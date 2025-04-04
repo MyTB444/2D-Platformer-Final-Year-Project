@@ -24,7 +24,7 @@ public class Endlesspawn : MonoBehaviour
     }
     public EnemyTypeToSpawn warrior;
     public EnemyTypeToSpawn archer;
-    // Set the values for enemytypes
+    // Set the values for enemytypes struct
     private void SetEnemyTypes()
     {
         warrior.pool = warriorsPool;
@@ -36,6 +36,7 @@ public class Endlesspawn : MonoBehaviour
     {
         SetEnemyTypes();
     }
+    // The location is randomised in these unique methods
     public void SpawnMermaid()
     {
         int x = UnityEngine.Random.Range(0, 3);

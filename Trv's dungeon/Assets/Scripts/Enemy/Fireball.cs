@@ -27,6 +27,7 @@ public class Fireball : MonoBehaviour
             sr.flipX = true;
         }
     }
+    // Destroy if too far
     void Update()
     {
         if (transform.position.x > 60)

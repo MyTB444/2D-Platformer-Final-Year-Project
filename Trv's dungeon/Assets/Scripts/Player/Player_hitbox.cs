@@ -39,6 +39,7 @@ public class Player_hitbox : MonoBehaviour
             }
         }
     }
+    // Limit collision
     private void OnTriggerExit2D(Collider2D other)
     {
         StartCoroutine(HitboxColdown());

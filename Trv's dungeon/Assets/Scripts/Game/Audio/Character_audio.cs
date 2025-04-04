@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character_audio : MonoBehaviour
 {
-    // Hold clips and assign/play those clips when called.
+    // Hold clips and assign/play those clips when called, similar to audioman
     [SerializeField] private AudioClip _attackClip;
     [SerializeField] private AudioClip _damageClip;
     [SerializeField] private AudioClip _jumpClip;

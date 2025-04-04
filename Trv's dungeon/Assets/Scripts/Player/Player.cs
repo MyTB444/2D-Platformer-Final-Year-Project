@@ -10,14 +10,14 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    // player stats
+    // Player stats
     [SerializeField] protected float _speed;
     [SerializeField] protected float _jumpForce;
     [SerializeField] protected float _attackDuration;
     [SerializeField] protected float _stunDuration;
     [SerializeField] protected int _health;
     public float _playerfragility;
-    //Logic
+    // Logic
     public float startDelay;
     public bool canDoubleJump = false;
     private bool airjump;
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool hasSword;
     public bool _canWalk;
     protected bool _canClimb;
-    //Component variables for handles
+    // Handles
     [SerializeField] private GameObject _key;
     private Character_audio _audio;
     [SerializeField] private GameObject wavePrefab;
@@ -43,7 +43,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         //PlayerPrefs.DeleteAll();
-        //HANDLES
         _rigid = GetComponent<Rigidbody2D>();
         _playerAnim = GetComponentInChildren<PlayerAnimation>();
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
@@ -55,12 +54,8 @@ public class Player : MonoBehaviour
     {
         GroundCalculate();
         SlowCheck();
-        // if (OutOfMap() == true)
-        // {
-        //Observer trigger for gamewon
-        // gameWon.Invoke();
-        // }
     }
+    // Delay for main game 
     IEnumerator StartDelay()
     {
         yield return new WaitForSeconds(startDelay);
@@ -79,7 +74,7 @@ public class Player : MonoBehaviour
     }
     AirState currentAirState = AirState.Grounded;
     MovementState currentMovementState = MovementState.Standing;
-    //CAN WE JUMP? We cast a box from our foot. If it hits an object, we know that we are grounded
+    //Can we jump? We cast a box from our foot, if it hits an object, we know that we are grounded
     private void GroundCalculate()
     {
         int layerMask = (1 << 6) | (1 << 7) | (1 << 8) | (1 << 9);
@@ -150,6 +145,7 @@ public class Player : MonoBehaviour
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce / 1.5f);
         }
     }
+    // Flip our sprite and start walking
     public void Walk(float quick)
     {
         if (currentMovementState != MovementState.Attacking)
@@ -159,7 +155,7 @@ public class Player : MonoBehaviour
         _rigid.velocity = new Vector2(quick * _speed, _rigid.velocity.y);
         _playerAnim.RunAnim(quick);
     }
-    //FACING LEFT OR RIGHT?
+    // Facing left or right?
     void Flip(float move)
     {
         if (move > 0)
@@ -179,6 +175,7 @@ public class Player : MonoBehaviour
         }
         return false;
     }
+    // Roll logic
     public void StartRoll()
     {
         if (rollState == 0 && currentMovementState == MovementState.Standing)
@@ -186,6 +183,7 @@ public class Player : MonoBehaviour
             StartCoroutine(Rolling());
         }
     }
+    // Uses a variable and states to handle player immunity during roll and roll cooldown
     IEnumerator Rolling()
     {
         currentMovementState = MovementState.Rolling;
@@ -234,6 +232,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(_attackDuration);
         canAttack = true;
     }
+    // Sword picked up
     public void GotSword()
     {
         aman.Upgrade();
@@ -243,7 +242,7 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(PickUp());
     }
-    // Similar to attacking
+    // Similar to attacking, we use the pickbox instead
     IEnumerator PickUp()
     {
         if (currentMovementState == MovementState.Standing)
@@ -276,6 +275,7 @@ public class Player : MonoBehaviour
             DamageEffect();
         }
     }
+    // Check player state, enemies use this
     public bool IsPlayerDead()
     {
         if (_health == 0)
@@ -284,7 +284,7 @@ public class Player : MonoBehaviour
         }
         return false;
     }
-    // Call observers if dead
+    // Call observers if we are dead
     private void DamageEffect()
     {
         if (IsPlayerDead() == false)
@@ -319,6 +319,7 @@ public class Player : MonoBehaviour
         _playerAnim.ClimbAnimStop();
         _canClimb = false;
     }
+    // Boots picked up
     public void EnableDoubleJump()
     {
         aman.Upgrade();
@@ -340,7 +341,7 @@ public class Player : MonoBehaviour
         droppedItem.transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
         inventory.RemoveItem(index);
     }
-    // Serach inventory, find the key and drop it
+    // Search inventory, find the key and drop it
     public void DropKey()
     {
         InventorySystem inventory = FindObjectOfType<InventorySystem>();
@@ -362,6 +363,7 @@ public class Player : MonoBehaviour
         _health = 5;
         _uiman.Regen();
     }
+    // Disable walking if game is finished
     public void GameDon()
     {
         _canWalk = false;

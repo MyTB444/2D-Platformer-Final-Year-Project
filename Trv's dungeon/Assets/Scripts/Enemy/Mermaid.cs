@@ -62,6 +62,7 @@ public class Mermaid : Enemy
             }
         }
     }
+    // Set variables back to normal and wait for the next attack
     private IEnumerator AttackReset()
     {
         yield return new WaitForSeconds(1.0f);

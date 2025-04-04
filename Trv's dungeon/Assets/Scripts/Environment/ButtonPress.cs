@@ -24,7 +24,7 @@ public class ButtonPress : MonoBehaviour
     // Check if jack is pressing the button
     private void IsPressed()
     {
-        RaycastHit2D upInfo1; // = Physics2D.Raycast(transform.position, Vector2.up, 1 << 3);
+        RaycastHit2D upInfo1; 
         upInfo1 = Physics2D.BoxCast(transform.position, new Vector2(0.25f, 0.2f), 0f, new Vector2(0, 1f), 0.15f, 1 << 3);
         Debug.DrawRay(transform.position, Vector2.up, Color.green);
         if (presscount == 0)

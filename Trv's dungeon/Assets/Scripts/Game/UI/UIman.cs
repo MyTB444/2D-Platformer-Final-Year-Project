@@ -27,17 +27,19 @@ public class UIman : MonoBehaviour
             startTime = Time.time;
         }
     }
+    // Start the timer when barrels are hit
     public void StartTimer()
     {
         _audio.Horns();
         startTime = Time.time;
         _gameStop = false;
     }
+    // Destroy hearths
     public void DamageUpdate(int i)
     {
         _live[i].SetTrigger("Destroy");
     }
-    //Activate gameover text.
+    //Activate gameover text
     public void GameOverSequence()
     {
         _gameStop = true;
@@ -53,7 +55,7 @@ public class UIman : MonoBehaviour
         finalScore.gameObject.SetActive(true);
         timeText.gameObject.SetActive(false);
     }
-    //Activate game win tests.
+    //Activate game win tests
     public void GameWinSequence()
     {
         _audio.WinS();
@@ -71,7 +73,7 @@ public class UIman : MonoBehaviour
             DisplayTime(Time.time - startTime);
         }
     }
-    // Format time 
+    // Format time to miliseconds
     string FormatTime(float time)
     {
         int minutes = (int)(time / 60);
@@ -87,6 +89,7 @@ public class UIman : MonoBehaviour
         if (timeText != null)
             timeText.text = formattedTime;
     }
+    // Save the best time for main game as "BestTime"
     void SaveBestTime(float time)
     {
         float bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue);
@@ -98,6 +101,7 @@ public class UIman : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+    // Save the best time for endless mode as "BestWave"
     void SaveBestWave(float time)
     {
         float bestTime = PlayerPrefs.GetFloat("BestWave", float.MinValue);
@@ -109,7 +113,7 @@ public class UIman : MonoBehaviour
         }
 
     }
-    // Regen player hp
+    // Regen player hp, enable all hearts
     public void Regen()
     {
         for (int i = 0; i < 5; i++)
@@ -117,6 +121,7 @@ public class UIman : MonoBehaviour
             _live[i].SetTrigger("Regen");
         }
     }
+    // Endless mode, display wave count
     public void WaveTextPlay(int x)
     {
         waveText[x].SetTrigger("Play");

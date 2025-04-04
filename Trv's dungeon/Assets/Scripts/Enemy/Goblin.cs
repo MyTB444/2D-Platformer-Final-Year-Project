@@ -18,6 +18,7 @@ public class Goblin : Enemy
         base.Init();
         StartCoroutine(SpawnDelay());
     }
+    // OnEnable method for endless mode as explained in the enemy script
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -52,7 +53,7 @@ public class Goblin : Enemy
             }
         }
     }
-    // Spawn delay allow start method to run before we start executing our code
+    // Spawn delay allow start method to run before we start executing our code, negating any type checks
     private IEnumerator SpawnDelay()
     {
         yield return new WaitForSeconds(spawnDelay);
@@ -78,6 +79,7 @@ public class Goblin : Enemy
             }
         }
     }
+    // If we are on a slope reset our speed so that we dont fall
     private void CheckSlope()
     {
         RaycastHit2D rightInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.right, _height + 1f, 1 << 9);
@@ -90,7 +92,7 @@ public class Goblin : Enemy
             }
         }
     }
-    // Is jack at a reachable place. If not stop walking and combat mode
+    // Is jack at a reachable place? If not stop walking and exit combat mode
     protected void IsJackHere()
     {
         RaycastHit2D upInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.up, _attackDistance * 5, 1 << 3);
@@ -109,7 +111,7 @@ public class Goblin : Enemy
             }
         }
     }
-    // Move until jack is at an attackable distance. Then start attack animation.
+    // Move until jack is at an attackable distance, then start attack animation
     protected void Walking(float speed)
     {
         RaycastHit2D rightInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + _height), Vector2.right, _attackDistance, 1 << 3);
@@ -127,7 +129,7 @@ public class Goblin : Enemy
             }
         }
     }
-    //Attack based on sprite flip.
+    //Attack based on sprite flip, minibos animation logic is separated
     IEnumerator Attack()
     {
         _rigid.velocity = Vector2.zero;
@@ -156,6 +158,7 @@ public class Goblin : Enemy
             currentMovementState = MovementState.Following;
         }
     }
+    // Delayed miniboss attack sound effect
     private IEnumerator BossAttackDelay()
     {
         yield return new WaitForSeconds(0.5f);

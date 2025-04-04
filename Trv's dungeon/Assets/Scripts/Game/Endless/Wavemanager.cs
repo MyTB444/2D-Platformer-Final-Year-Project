@@ -26,6 +26,7 @@ public class Wavemanager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         StartCoroutine(WaveMan());
     }
+    // The wave manager, each in the loop represents a wave
     IEnumerator WaveMan()
     {
         for (int i = 1; i < 11; i++)
@@ -33,25 +34,30 @@ public class Wavemanager : MonoBehaviour
             ui.WaveTextPlay(i);
             yield return new WaitForSeconds(1f);
             aman.Horns();
+            // Warr spawn at wave 1
             if (i == 1)
             {
                 StartCoroutine(WarrSpawn());
             }
+            // Archer spawn at wave 3
             else if (i == 3)
             {
                 StartCoroutine(ArchSpawn());
             }
+            // Give sowrd, spawn a miniboss and spawn fruits at wave 5
             else if (i == 5)
             {
                 Instantiate(sword, itemLocs[0].position, quaternion.identity);
                 spawn.SpawnMiniBoss();
                 StartCoroutine(FruitSpawn());
             }
+            // Give boots and spawn mermaids at wave 7
             else if (i == 7)
             {
                 Instantiate(boots, itemLocs[1].position, quaternion.identity);
                 StartCoroutine(MerSpawn());
             }
+            // Spawn an additional miniboss, spawn minibosses and start the endless wave
             else if (i == 9)
             {
                 spawn.SpawnMiniBoss();
@@ -63,6 +69,7 @@ public class Wavemanager : MonoBehaviour
 
         }
     }
+    // Continously increase difficulty
     IEnumerator IncDif()
     {
         while (true)

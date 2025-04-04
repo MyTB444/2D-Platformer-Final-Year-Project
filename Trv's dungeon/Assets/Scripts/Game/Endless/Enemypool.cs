@@ -18,7 +18,7 @@ public class Enemypool : MonoBehaviour
             pool.Enqueue(obj);
         }
     }
-    // Return the object from pool if there is one, otherwise spawn it
+    // Return the object from pool, if there is none left, instantiate it
     public GameObject GetFromPool()
     {
         if (pool.Count > 0)
@@ -34,7 +34,6 @@ public class Enemypool : MonoBehaviour
         }
     }
     // Return the object to pool
-
     public void ReturnToPool(GameObject obj)
     {
         obj.SetActive(false);

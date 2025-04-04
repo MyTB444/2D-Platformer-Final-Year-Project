@@ -9,7 +9,7 @@ using UnityEngine.AI;
 
 public class Enemy_hitbox : MonoBehaviour
 {
-    // Assing handles to the player if we hit the player. Call its take damage, and push it away.
+    // Assing handles to the player if we hit the player. Call its take damage, and push it away
     [SerializeField] private int collisionnumber = 0;
     public void OnTriggerEnter2D(Collider2D other)
     {
