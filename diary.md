@@ -197,3 +197,5 @@ The report is almost done, I will make the final bugfixes and re-release the gam
 Players have found a way to completely skip the arena fight. This is now fixed, players cannot exit the arena until the mini boss is spawned.
 -04/04/2025
  I am finalising my report. I have also improved all of the documentation of my scripts.
+-04/07/2025
+The game was too hard apparently. The difficulty is decreased, web page is updated.

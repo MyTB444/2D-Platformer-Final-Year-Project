@@ -230,14 +230,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b725574dabc40499490b2a443fc93161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 6
-  _health: 6
+  maxHealth: 5
+  _health: 5
   _speed: 1
   _jumpForce: 6
   _jumpCooldown: 6
   _attackDistance: 2.1
   _height: 0.8
-  _attackDuration: 2
+  _attackDuration: 2.5
   _stunVulnerability: 0.1
   _canJump: 0
   pool: {fileID: 0}
