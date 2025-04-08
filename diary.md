@@ -199,3 +199,5 @@ Players have found a way to completely skip the arena fight. This is now fixed, 
  I am finalising my report. I have also improved all of the documentation of my scripts.
 -04/07/2025
 The game was too hard apparently. The difficulty is decreased, web page is updated.
+-04/08/2025
+I have finished my final report. Everything is ready to submit, end of the journey!
